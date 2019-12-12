@@ -1,5 +1,7 @@
 import React from 'react';
 import Routes from './routes'
+import Navbar from './components/navbar'
+import Footer from './components/footer'
 import './paginas/App.css';
 import { BrowserRouter } from 'react-router-dom'
 
@@ -8,9 +10,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <h1>Local da NavBar</h1>
+          <Navbar/>
           <Routes />
-          <h1>Local do Footer</h1>
+          <Footer/>
         </BrowserRouter>
       </div>
     );

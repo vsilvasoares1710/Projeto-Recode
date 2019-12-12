@@ -75,6 +75,14 @@ button.bg-info:focus {
   background-color: #00ceaf !important;
 }
 
+.footer-dark{
+    background-color: #000000;
+}
+
+.navbar-dark {
+    background-color: #000000;
+}
+
 .nav-margin {
     margin-top: 80px;
 }
