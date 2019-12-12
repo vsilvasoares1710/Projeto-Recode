@@ -1,0 +1,89 @@
+#brand-logo {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 32px;
+    color: #00ceaf;
+}
+
+.btn-info {
+    font-weight: bold;
+    background-color: white;
+    color: #00ceaf;
+    border: 2px solid #00ceaf;
+}
+
+.btn-info:hover {
+    background-color: #00ceaf;
+    font-weight: bold;
+    color: white;
+    border: 2px solid ;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #00ceaf;
+    border-color: #00ceaf;
+}
+  
+.btn-info:hover {
+  color: #fff;
+  background-color: #138496;
+  border-color: #117a8b;
+}
+
+.btn-info:focus, .btn-info.focus {
+  box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+}
+
+.btn-info.disabled, .btn-info:disabled {
+  color: #fff;
+  background-color: #00ceaf;
+  border-color: #00ceaf;
+}
+
+.btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
+.show > .btn-info.dropdown-toggle {
+  color: #fff;
+  background-color: #117a8b;
+  border-color: #10707f;
+}
+
+.btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus,
+.show > .btn-info.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+}
+  
+.text-content {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+    text-justify: auto;
+}
+
+.green-text {
+    color: #00ceaf;
+}
+
+.bg-info {
+  background-color: #00ceaf !important;
+}
+
+.border-info {
+  border-color: #00ceaf !important;
+}
+
+a.bg-info:hover, a.bg-info:focus,
+button.bg-info:hover,
+button.bg-info:focus {
+  background-color: #00ceaf !important;
+}
+
+.nav-margin {
+    margin-top: 80px;
+}
+.card-content, .last-card-content {
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+    
+}
+.card-content:hover {
+    color: #00ceaf;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+}
