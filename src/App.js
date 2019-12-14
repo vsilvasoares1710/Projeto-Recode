@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Routes from './routes'
 import Navbar from './components/navbar'
 import Footer from './components/footer'
 import './paginas/App.css';
 import { BrowserRouter } from 'react-router-dom'
 
-class App extends React.Component {
+class App extends Component {
   render() {
     return (
       <div className="App">
