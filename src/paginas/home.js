@@ -6,8 +6,11 @@ import carRepair from '../img/carRepair.jpg'
 import programmerCrossedLegs from '../img/programmerCrossedLegs.jpg'
 import hairSalon from "../img/hairSalon.jpg"
 import peopleShakingHands from "../img/peopleShakingHads.jpg"
+import Btn from "../components/button.js"
 
 class Home extends Component {
+
+
 	render() {
 		return (
 			<div className="App">
@@ -48,8 +51,7 @@ class Home extends Component {
 									cobrimos os mais diversos ramos, clique abaixo e descubra.</h4>
 									<br />
 									<Link to='/encontreProfissionais' className="btn btn-info shadow mt-3 mr-2 my-sm-0">Encontre Profissionais</Link>
-									<Link to='/cadastro' className="btn btn-info shadow mt-3 my-sm-0" >Cadastre-se</Link>
-
+									<Btn text="Cadastre-se" lead="/cadastro"/>
 								</div>
 							</div>
 							{/* <!-- Fim da text-box com conteúdo à direita/topo da primeira imagem --> */}

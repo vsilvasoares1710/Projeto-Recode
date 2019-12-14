@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class Button extends Component {
+class Btn extends Component {
 
     constructor(props) {
         super(props)
@@ -9,37 +9,60 @@ class Button extends Component {
             text: this.props.text,
             type: this.props.type,
             lead: this.props.lead,
-            className: this.props.className
+            className: this.props.className,
+            onClick: this.props.onClick
         }
         this.changeCssClass = this.changeCssClass.bind(this)
+        this.changeOnClick = this.changeOnClick.bind(this)
     }
 
     changeCssClass = () => {
-        this.state.className === undefined ? 
-        this.setState({className: "btn btn-info shadow m-1" }) :
-        this.state.className = String(this.state.className)
-        
+        if (this.state.className === undefined) {
+            this.setState({className: "btn btn-info shadow m-1" })
+        }
     }
 
-    route = () => {
+    changeOnClick = () => {
+        if (this.state.onClick === undefined) {
+            this.setState({onClick: ""})
+            return ""
+        } else {
+            return this.state.onClick
+        }
+    }
+    
+    emptyButton = () => {
+        this.changeOnClick()
         this.changeCssClass()
-        return <Link to={this.state.lead} className={this.state.className} >{this.state.text}</Link>
+
+        return <button type="button" onClick={this.state.onClick} className={this.state.className}>{this.state.text}</button>
+    }
+
+    routeButton = () => {
+        this.changeOnClick()
+        this.changeCssClass()
+        return <Link to={this.state.lead} className={this.state.className}>{this.state.text}</Link>
 
     }
 
-    link = () => {
+    linkButton = () => {
+        this.changeOnClick()
         this.changeCssClass()
-        return <a className={this.state.className} href={this.state.lead}>{this.state.text}</a>
+        return <a href={this.state.lead} className={this.state.className} >{this.state.text}</a>
     }
 
     buttonType = () => {
-        return this.state.type === "link" ? this.link() : this.route()
+        return this.state.type === "link" ? this.linkButton() : this.routeButton()
     }
 
     render() {
-        return this.buttonType()
+        if (this.state.lead === undefined) {
+            return this.emptyButton()
+        } else {
+            return this.buttonType()
+        }
     }
 
 }
 
-export default Button;
+export default Btn;
