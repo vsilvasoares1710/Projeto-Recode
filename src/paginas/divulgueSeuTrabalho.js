@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
+import Btn from '../components/button.js'
 // Import de Imagens
 import clientes from "../img/clientes.jpg"
 import clientes2 from "../img/clientes2.png"
 import womanJumping from "../img/womanJumping.jpg"
-
-import { Link } from 'react-router-dom';
 
 class DivulgueSeuTrabalho extends Component {
 	render() {
@@ -25,7 +24,7 @@ class DivulgueSeuTrabalho extends Component {
                                 seu trabalho,
                                 cadastre-se agora mesmo gratuitamente e comece a vender cada vez mais.</h4>
                             <br/>
-                            <Link to="/cadastro" className="btn btn-info shadow mt-3 0" >Cadastre-se</Link>
+                            <Btn text="Cadastre-se" lead="/cadastro"/>
                         </div>
                     </div>
                     {/* <!-- Fim da text-box com conteúdo à direita/topo da primeira imagem -->
@@ -60,7 +59,7 @@ class DivulgueSeuTrabalho extends Component {
                                     negocie e venda via chat, cadastre-se e tenha acesso a esses e outros benefícios agora
                                     mesmo..</h4>
                             <br/>
-                            <Link to="/cadastro" className="btn btn-info shadow mt-3">Cadastre-se</Link>
+                            <Btn text="Cadastre-se" lead="/cadastro"/>
                         </div>
                     </div>
                     {/* <!-- Imagem à direita/baixo -->

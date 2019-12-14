@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
+import Btn from "../components/button.js"
 //images
 import carRepair from '../img/carRepair.jpg'
 import programmerCrossedLegs from '../img/programmerCrossedLegs.jpg'
 import hairSalon from "../img/hairSalon.jpg"
 import peopleShakingHands from "../img/peopleShakingHads.jpg"
-import Btn from "../components/button.js"
+
 
 class Home extends Component {
-
 
 	render() {
 		return (
@@ -50,7 +50,7 @@ class Home extends Component {
 									<h4 className="text-content text-justify">De mecânicos a manicures ou de pintores a DJ's,
 									cobrimos os mais diversos ramos, clique abaixo e descubra.</h4>
 									<br />
-									<Link to='/encontreProfissionais' className="btn btn-info shadow mt-3 mr-2 my-sm-0">Encontre Profissionais</Link>
+									<Btn text="Encontre Profissionais" lead="/encontreProfissionais"/>
 									<Btn text="Cadastre-se" lead="/cadastro"/>
 								</div>
 							</div>
@@ -74,8 +74,7 @@ class Home extends Component {
 											<Link to='/encontreProfissionais' className="card-text card-content">Mecânicos</Link>
 											<Link to='/encontreProfissionais' className="card-text card-content">Pedreiros</Link>
 											<Link to='/encontreProfissionais' className="card-text card-content">Pintores</Link>
-											<Link to='/encontreProfissionais' className="btn btn-info shadow mt-3 mx-0">Mais
-											Categorias...</Link>
+											<Btn text="Mais Categorias..." lead="/encontreProfissionais" className="btn btn-info shadow mt-3 mx-0"/>
 										</div>
 									</div>
 								</div>
@@ -93,8 +92,7 @@ class Home extends Component {
 											<Link to='/encontreProfissionais' className="card-text card-content">Maquiadoras</Link>
 											<Link to='/encontreProfissionais' className="card-text card-content">Pedicures</Link>
 											<Link to='/encontreProfissionais' className="card-text card-content">Sobrancelhas</Link>
-											<Link to='/encontreProfissionais' className="btn btn-info shadow mt-3 mx-0">Mais
-											Categorias...</Link>
+											<Btn text="Mais Categorias..." lead="/encontreProfissionais" className="btn btn-info shadow mt-3 mx-0"/>
 										</div>
 									</div>
 								</div>
@@ -112,7 +110,7 @@ class Home extends Component {
 											<Link to='/encontreProfissionais' className="card-text card-content">Inglês</Link>
 											<Link to='/encontreProfissionais' className="card-text card-content">Música</Link>
 											<Link to='/encontreProfissionais' className="card-text card-content">Pré-Vestibular</Link>
-											<Link to='/encontreProfissionais' className="btn btn-info shadow mt-3 mx-0">Mais Categorias...</Link>
+											<Btn text="Mais Categorias..." lead="/encontreProfissionais" className="btn btn-info shadow mt-3 mx-0"/>
 										</div>
 									</div>
 								</div>
@@ -126,8 +124,7 @@ class Home extends Component {
 											<div className="card-text last-card-content text-justify pb-3">Encontre os mais diversos
 												serviços e soluções profissionais da sua região, buscando
 											por mais categorias, no botão abaixo.</div>
-											<Link to='/encontreProfissionais' className="btn btn-info shadow mt-auto mx-0" >Mais
-											Categorias...</Link>
+											<Btn text="Mais Categorias..." lead="/encontreProfissionais" className="btn btn-info shadow mt-auto mx-0"/>
 										</div>
 									</div>
 								</div>
@@ -155,8 +152,8 @@ class Home extends Component {
 										um espaço para divulgação do seu trabalho, cadastre-se gratuitamente e comece a angariar
 									mais clientes.</h4>
 									<br />
-									<Link to='/divulgueSeuTrabalho' className="btn btn-info shadow mt-3 mr-2 my-sm-0 " >Divulgue seu Trabalho</Link>
-									<Link to='/cadastro' className="btn btn-info shadow mt-3 my-sm-0 ">Cadastre-se</Link>
+									<Btn text="Divulgue Seu Trabalho" lead="/divulgueSeuTrabalho"/>
+									<Btn text="Cadastre-se" lead="/cadastro"/>
 								</div>
 							</div>
 							{/* <!-- Fim da text-box com conteúdo à esquerda/abaixo da primeira imagem --> */}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Btn from './button.js'
 
 class Navbar extends Component {
     render() {
@@ -30,8 +31,8 @@ class Navbar extends Component {
                             <Link to='/contato' className="nav-link" >Contato</Link>
                         </li>
                     </ul>
-                    <Link to='/entrar' className="btn btn-info my-3 mr-3" >Entrar</Link>
-                    <Link to='/cadastro' className="btn btn-info my-3" >Cadastre-se</Link>
+                    <Btn text="Entrar" lead="/entrar"/>
+                    <Btn text="Cadastro" lead="/cadastro"/>
                 </div>
             </nav>
 

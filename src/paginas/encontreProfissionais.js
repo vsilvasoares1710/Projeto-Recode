@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Link } from 'react-router-dom';
+import Btn from '../components/button.js'
 import workers from '../img/workers.jpg';
 
 class EncontreProfissionais extends Component {
@@ -46,11 +46,11 @@ class EncontreProfissionais extends Component {
 							<div className="col-sm-12 p-3 col-lg-6 rounded my-auto text-center">
 								<h1 className="green-text">A qualquer hora em qualquer lugar</h1>
 								<br />
-								<h4 className="text-content">Encontre o profissional adequado para as suas necessidades, realize um
+								<h4 className="text-content text-justify">Encontre o profissional adequado para as suas necessidades, realize um
 									busca mais profunda, contate e negocie com diversos profissionais, cadastre-se para ter
 									acesso a mais informações.</h4>
 								<br />
-								<Link to="/cadastro" className="btn btn-info my-3 my-sm-0" href="#">Cadastre-se</Link>
+								<Btn text="Cadastre-se" lead="/cadastro"/>
 							</div>
 							{/* <!-- Fim da Imagem à direita/baixo --> */}
 						</div>
