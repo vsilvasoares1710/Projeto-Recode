@@ -60,6 +60,9 @@
 .green-text {
     color: #00ceaf;
 }
+.white-text {
+  color: #ffffff;
+}
 
 .bg-info {
   background-color: #00ceaf !important;
