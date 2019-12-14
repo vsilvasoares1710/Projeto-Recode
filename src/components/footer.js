@@ -30,7 +30,7 @@ class Footer extends React.Component {
                 <footer className="container-fluid d-none d-md-block footer-dark">
                     <div className="row d-flex">
                         <Link to='/' className="col mb-4 mt-4 text-white text-center" >Home</Link>
-                        <Link to='/quemSomos' className="col mb-4 mt-4 text-white text-center" >Encontre
+                        <Link to='/encontreProfissionais' className="col mb-4 mt-4 text-white text-center" >Encontre
                             Profissionais</Link>
                         <Link to='/divulgueSeuTrabalho' className="col mb-4 mt-4 text-white text-center" >Divulgue seu
                             Trabalho</Link>
