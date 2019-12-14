@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import { Link } from 'react-router-dom';
 
-class QuemSomos extends React.Component {
+class QuemSomos extends Component {
 	render() {
 		return (
 			<div className="App">
