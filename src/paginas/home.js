@@ -4,10 +4,7 @@ import { Link } from 'react-router-dom';
 import Btn from "../components/button.js"
 // Images
 import carRepair from '../img/carRepair.jpg'
-import programmerCrossedLegs from '../img/programmerCrossedLegs.jpg'
-import hairSalon from "../img/hairSalon.jpg"
 import peopleShakingHands from "../img/peopleShakingHads.jpg"
-
 
 class Home extends Component {
 
@@ -19,24 +16,13 @@ class Home extends Component {
 					{/* <!-- Primeira row --> */}
 					<div className="row">
 						{/* <!-- Imagem à esquerda/topo --> */}
-						<div id="carouselExampleSlidesOnly" className="carousel slide col-sm-12 col-md-12 col-lg-6 col-xl-5 my-auto mx-auto"
-							data-ride="carousel" data-interval="2000">
-							<div className="carousel-inner">
-								<div className="carousel-item active">
-									<img className="d-block w-100 mt-4" src={carRepair} alt="First slide" />
-								</div>
-								<div className="carousel-item">
-									<img className="d-block w-100 mt-4" src={programmerCrossedLegs} alt="Second slide" />
-								</div>
-								<div className="carousel-item">
-									<img className="d-block w-100 mt-4" src={hairSalon} alt="Third slide" />
-								</div>
-							</div>
+						<div className="col-sm-12 col-md-10 col-lg-6 col-xl-5 my-auto mx-auto">
+							<img src={carRepair} width="100%" alt="Mecânico consertando veículo" />
 						</div>
 						{/* <!-- Fim da Imagem à esquerda/topo --> */}
 
 						{/* <!-- Text-box com conteúdo à direita/topo da primeira imagem --> */}
-						<div className="col-sm-12 col-lg-6 col-xl-6 mt-4">
+						<div className="col-sm-12 col-lg-6 col-xl-7 mt-4">
 							<div className="jumbotron my-auto text-center">
 
 								<h1 className="green-text">Profissionais diversos;</h1>
