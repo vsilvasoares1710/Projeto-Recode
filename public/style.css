@@ -83,7 +83,6 @@ background-color: #138496;
 
 }
 
-
 .btn-white.disabled, .btn-white:disabled {
 color: #00ceaf;
 font-weight: bold;
@@ -208,5 +207,9 @@ button.bg-info:focus {
 }
 
 .card-box {
+  border-radius: 0.75rem;
+}
+
+.rounded-image {
   border-radius: 0.75rem;
 }
