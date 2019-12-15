@@ -13,7 +13,6 @@ class Btn extends Component {
             onClick: this.props.onClick
         }
         this.changeCssClass = this.changeCssClass.bind(this)
-        this.changeOnClick = this.changeOnClick.bind(this)
     }
 
     changeCssClass = () => {
@@ -21,32 +20,23 @@ class Btn extends Component {
             this.setState({className: "btn btn-info shadow-lg m-1" })
         }
     }
-
-    changeOnClick = () => {
-        if (this.state.onClick === undefined) {
-            this.setState({onClick: ""})
-            return ""
-        } else {
-            return this.state.onClick
-        }
-    }
     
     emptyButton = () => {
-        this.changeOnClick()
         this.changeCssClass()
-
-        return <button type="button" onClick={this.state.onClick} className={this.state.className}>{this.state.text}</button>
+        if(typeof(this.state.onClick) === "function") {
+            return <button type="button" onClick={this.state.onClick} className={this.state.className}>{this.state.text}</button>
+        } else {
+            return <button type="button" className={this.state.className}>{this.state.text}</button>
+        }
     }
 
     routeButton = () => {
-        this.changeOnClick()
         this.changeCssClass()
         return <Link to={this.state.lead} className={this.state.className}>{this.state.text}</Link>
 
     }
 
     linkButton = () => {
-        this.changeOnClick()
         this.changeCssClass()
         return <a href={this.state.lead} className={this.state.className} >{this.state.text}</a>
     }

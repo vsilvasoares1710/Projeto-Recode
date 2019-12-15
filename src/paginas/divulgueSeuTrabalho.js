@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+// Components
 import Btn from '../components/button.js'
-// Import de Imagens
+// Images
 import clientes from "../img/clientes.jpg"
 import clientes2 from "../img/clientes2.png"
 import womanJumping from "../img/womanJumping.jpg"
@@ -16,7 +16,7 @@ class DivulgueSeuTrabalho extends Component {
                 <div className="row">
                     {/* <!-- Text-box com conteúdo à direita/topo da primeira imagem --> */}
                     <div className="col-sm-12 mt-4">
-                        <div className="jumbotron my-auto rounded">
+                        <div className="jumbotron my-auto text-center">
 
                             <h1 className="green-text">Divulgue seu Trabalho</h1>
                             <br/>
@@ -30,10 +30,10 @@ class DivulgueSeuTrabalho extends Component {
                     {/* <!-- Fim da text-box com conteúdo à direita/topo da primeira imagem -->
                     <!-- Imagem à direita/baixo --> */}
                     <div className="row mt-4 mx-2">
-                        <div className="col-10 col-md-6 py-2 mx-auto">
+                        <div className="col-10 col-md-6 py-2 d-none d-md-block mx-auto">
                             <img src={clientes} width="100%" alt="Lupa fazendo a leitura do contrato em uma prancheta e simbolizando letras pequenas"/>
                         </div>
-                        <div className="col-10 col-md-6 py-2 mx-auto">
+                        <div className="col-10 col-md-6 py-2 d-none d-md-block mx-auto">
                             <img src={clientes2} width="100%" alt="Assinatura do contrato, duas mãos, uma prancheta e uma uma caneta"/>
                         </div>
                     </div>
@@ -49,8 +49,8 @@ class DivulgueSeuTrabalho extends Component {
                     </div>
                     {/* <!-- Fim da text-box com conteúdo à esquerda/abaixo da primeira imagem --> */}
                     
-                    <div className="col-sm-12 col-lg-6 mt-2 text-right">
-                        <div className="jumbotron my-auto rounded">
+                    <div className="col-sm-12 col-lg-6 mt-2 text-center">
+                        <div className="jumbotron my-auto">
                             <h1 className="green-text">Encontrar, ser encontrado, negociar e vender...</h1>
                             <br/>
                             <h4 className="text-content text-justify">Serviço bem feito merece visibilidade, faça seu negócio decolar conosco.</h4>

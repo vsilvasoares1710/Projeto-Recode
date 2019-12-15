@@ -14,20 +14,20 @@ class Navbar extends Component {
                     <span className="navbar-toggler-icon"></span>
             </button>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo">
-                    <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li className="nav-item active">
+                    <ul className="navbar-nav mr-auto ml-1 ">
+                        <li className="nav-item active my-3">
                             <Link to ='/' className="nav-link" >Home</Link>
                         </li>
-                        <li className="nav-item active">
+                        <li className="nav-item active my-3">
                             <Link to='/encontreProfissionais' className="nav-link" >Encontre Profissionais</Link>
                         </li>
-                        <li className="nav-item active">
+                        <li className="nav-item active my-3">
                             <Link to='/divulgueSeuTrabalho' className="nav-link" >Divulgue seu Trabalho</Link>
                         </li>
-                        <li className="nav-item active">
+                        <li className="nav-item active my-3">
                             <Link to='/quemSomos' className="nav-link" >Quem Somos</Link>
                         </li>
-                        <li className="nav-item active">
+                        <li className="nav-item active my-3">
                             <Link to='/contato' className="nav-link" >Contato</Link>
                         </li>
                     </ul>

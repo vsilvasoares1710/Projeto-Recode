@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Routes from './routes'
 import Navbar from './components/navbar'
 import Footer from './components/footer'
-import './paginas/App.css';
 import { BrowserRouter } from 'react-router-dom'
 
 class App extends Component {

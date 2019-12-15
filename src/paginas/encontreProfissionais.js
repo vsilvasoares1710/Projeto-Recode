@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+// Components
 import Btn from '../components/button.js'
+// Images
 import workers from '../img/workers.jpg';
 
 class EncontreProfissionais extends Component {
@@ -11,7 +12,6 @@ class EncontreProfissionais extends Component {
 				<div className="container-fluid bg-info">
 					{/* <!-- Conteúdo principal da página --> */}
 					<div className="container bg-white">
-
 						{/* <!-- Primeira row --> */}
 						<div className="row">
 							{/* <!-- Imagem à esquerda/topo --> */}
@@ -21,7 +21,7 @@ class EncontreProfissionais extends Component {
 										<label className="green-text"><h1>Campo de Pesquisa</h1></label>
 										<input type="text" className="form-control" placeholder="Busque por termos chave como eletricista, manicure, DJ e etc..." />
 									</div>
-									<button type="submit" className="btn btn-info mx-auto">Pesquisar</button>
+									<Btn text="Pesquisar"/>
 								</div>
 							</form>
 							{/* <!-- Fim da Imagem à esquerda/topo --> */}

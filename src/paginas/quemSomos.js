@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+// Images
 import Missao from "../img/missao.png";
 import Visao from "../img/visao.png";
 import Valores from "../img/valores.png";
@@ -15,7 +15,7 @@ class QuemSomos extends Component {
             {/* <!-- Inicio do conteiner quem somos --> */}
             <div className="col-12 mt-4">
               {/* <!-- Inicio do jumbotron superior --> */}
-              <div className="jumbotron my-auto rounded">
+              <div className="jumbotron my-auto text-center">
                 <h1 className="green-text text-center">Quem Somos</h1>
                 <br />
                 <h4 className="text-content text-justify">
