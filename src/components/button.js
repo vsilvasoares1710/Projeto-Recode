@@ -17,7 +17,7 @@ class Btn extends Component {
 
     changeCssClass = () => {
         if (this.state.className === undefined) {
-            this.setState({className: "btn btn-info shadow-lg m-1" })
+            this.setState({className: "btn btn-info shadow m-1" })
         }
     }
     

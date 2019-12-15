@@ -16,14 +16,14 @@ class Home extends Component {
 					{/* <!-- Primeira row --> */}
 					<div className="row">
 						{/* <!-- Imagem à esquerda/topo --> */}
-						<div className="col-sm-12 col-md-10 col-lg-6 col-xl-5 my-auto mx-auto">
-							<img src={carRepair} width="100%" alt="Mecânico consertando veículo" />
+						<div className="col-sm-12 col-md-8 col-lg-6 col-xl-5 mt-3 mx-auto">
+							<img src={carRepair} width="98%" className="my-auto" alt="Mecânico consertando veículo" />
 						</div>
 						{/* <!-- Fim da Imagem à esquerda/topo --> */}
 
 						{/* <!-- Text-box com conteúdo à direita/topo da primeira imagem --> */}
 						<div className="col-sm-12 col-lg-6 col-xl-7 mt-4">
-							<div className="jumbotron my-auto text-center">
+							<div className="jumbotron-clear shadow my-auto text-center">
 
 								<h1 className="green-text">Profissionais diversos;</h1>
 								<h1 className="green-text">Soluções simples...</h1>
@@ -105,10 +105,10 @@ class Home extends Component {
 							<div className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 my-4 ix">
 								<div className="card h-100 w-100">
 									<div className="card-body shadow d-flex flex-column">
-										<h4 className="card-title pb-1">Diversos</h4>
+										<h4 className="card-title pb-1">Várias Categorias</h4>
 										<div className="card-text last-card-content text-justify pb-3">Encontre os mais diversos
 											serviços e soluções profissionais da sua região, buscando
-											por mais categorias, no botão abaixo.</div>
+											por todas as categorias, no botão abaixo.</div>
 										<Btn text="Mais Categorias..." lead="/encontreProfissionais" className="btn btn-info shadow mt-auto mx-0" />
 									</div>
 								</div>
@@ -122,8 +122,8 @@ class Home extends Component {
 					{/* <!-- Terceira row --> */}
 					<div className="row">
 						{/* <!-- Text-box com conteúdo à esquerda/abaixo da primeira imagem --> */}
-						<div className="col-sm-12 col-lg-6 mt-0">
-							<div className="jumbotron my-auto text-center">
+						<div className="col-sm-12 col-lg-6 col-xl-7 mt-0">
+							<div className="jumbotron-clear shadow my-auto text-center">
 								<h1 className="green-text">Clientes à vista</h1>
 								<br />
 								<h4 className="text-content text-justify">Prestador de serviços, profissional liberal,
@@ -144,7 +144,7 @@ class Home extends Component {
 						{/* <!-- Fim da text-box com conteúdo à esquerda/abaixo da primeira imagem --> */}
 
 						{/* <!-- Imagem à direita/baixo --> */}
-						<div className="col-sm-12 col-md-10 col-lg-6 my-auto mx-auto">
+						<div className="col-sm-12 col-md-10 col-lg-6 col-xl-5 my-auto mx-auto d-none d-lg-block">
 							<img src={peopleShakingHands} width="100%" alt="Pessoas apertando as mãos" />
 						</div>
 						{/* <!-- Fim da Imagem à direita/baixo --> */}

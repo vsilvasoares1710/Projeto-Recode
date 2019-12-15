@@ -16,7 +16,7 @@ class DivulgueSeuTrabalho extends Component {
                 <div className="row">
                     {/* <!-- Text-box com conteúdo à direita/topo da primeira imagem --> */}
                     <div className="col-sm-12 mt-4">
-                        <div className="jumbotron my-auto text-center">
+                        <div className="jumbotron-clear my-auto text-center">
 
                             <h1 className="green-text">Divulgue seu Trabalho</h1>
                             <br/>
@@ -44,22 +44,22 @@ class DivulgueSeuTrabalho extends Component {
                 <!-- Segunda row --> */}
                 <div className="row">
                     {/* <!-- Text-box com conteúdo à esquerda/abaixo da primeira imagem --> */}
-                    <div className="col-sm-12 col-md-10 col-lg-6 mt-0 mx-auto">
+                    <div className="col-sm-12 col-md-8 col-lg-6 col-xl-5 my-auto mx-auto">
                         <img src={womanJumping} width="100%" alt="Uma mulher segurando um trofeu, pulando de felicidade e uma seta simbolizando o aumento das vendas"/>
                     </div>
                     {/* <!-- Fim da text-box com conteúdo à esquerda/abaixo da primeira imagem --> */}
                     
-                    <div className="col-sm-12 col-lg-6 mt-2 text-center">
-                        <div className="jumbotron my-auto">
-                            <h1 className="green-text">Encontrar, ser encontrado, negociar e vender...</h1>
+                    <div className="col-sm-12 col-lg-6 col-xl-7 mt-2 text-center">
+                        <div className="jumbotron-green my-auto">
+                            <h1 className="white-text">Encontrar, ser encontrado, negociar e vender...</h1>
                             <br/>
-                            <h4 className="text-content text-justify">Serviço bem feito merece visibilidade, faça seu negócio decolar conosco.</h4>
+                            <h4 className="text-content text-justify white-text">Serviço bem feito merece visibilidade, faça seu negócio decolar conosco.</h4>
                             <br/>
-                            <h4 className="text-content text-justify">Seja visualizado e encontrado por milhares de clientes, converse,
+                            <h4 className="text-content text-justify white-text">Seja visualizado e encontrado por milhares de clientes, converse,
                                     negocie e venda via chat, cadastre-se e tenha acesso a esses e outros benefícios agora
                                     mesmo..</h4>
                             <br/>
-                            <Btn text="Cadastre-se" lead="/cadastro"/>
+                            <Btn text="Cadastre-se" lead="/cadastro" className="btn btn-white"/>
                         </div>
                     </div>
                     {/* <!-- Imagem à direita/baixo -->

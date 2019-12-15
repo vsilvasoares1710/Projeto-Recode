@@ -9,7 +9,6 @@
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 20px;
   padding: 0rem 0.5rem;
-  text-align: center
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -70,6 +69,40 @@
   box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
 }
   
+.btn-white {
+  color: #00ceaf;
+  font-weight: bold;
+  background-color: white;
+}
+
+.btn-white:hover,.btn-white:focus, .btn-white.focus {
+box-shadow: 1 1 1 1rem #000000;
+color: white;
+background-color: #138496;
+
+
+}
+
+
+.btn-white.disabled, .btn-white:disabled {
+color: #00ceaf;
+font-weight: bold;
+background-color: #cacaca;
+border-color: #5fffe7;
+}
+
+.btn-white:not(:disabled):not(.disabled):active, .btn-white:not(:disabled):not(.disabled).active,
+.show > .btn-white.dropdown-toggle {
+color: #fff;
+background-color: #000000;
+border-color: #10707f;
+}
+
+.btn-white:not(:disabled):not(.disabled):active:focus, .btn-white:not(:disabled):not(.disabled).active:focus,
+.show > .btn-white.dropdown-toggle:focus {
+box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+}
+
 .text-content {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
     
@@ -132,8 +165,24 @@ button.bg-info:focus {
   border-radius: 0.75rem;
 }
 
+.jumbotron-clear{
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.75rem;
+  border: solid #00ceaf 2px;
+}
+
+.jumbotron-green{
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #00ceaf;
+  border-radius: 0.75rem;
+  border: solid white 2px;
+}
+
 @media (min-width: 576px) {
-  .jumbotron {
+  .jumbotron,.jumbotron-clear,.jumbotron-green {
     padding: 1.5rem 1.5rem;
   }
 }
