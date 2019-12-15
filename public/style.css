@@ -119,6 +119,12 @@ button.bg-info:focus {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
 }
 
+.type-field {
+  color: black;
+  font-size: 22px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+  font-weight: bold;
+}
 .jumbotron {
   padding: 2rem 1rem;
   margin-bottom: 2rem;

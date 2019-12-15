@@ -19,16 +19,12 @@ class EncontreProfissionais extends Component {
 								<div className="jumbotron">
 									<div className="form-group text-center">
 										<label className="green-text"><h1>Campo de Pesquisa</h1></label>
-										<input type="text" className="form-control" placeholder="Busque por termos chave como eletricista, manicure, DJ e etc..." />
+										<input type="text" className="form-control type-field" placeholder="Busque por termos chave como eletricista, manicure, DJ e etc..." />
 									</div>
 									<Btn text="Pesquisar"/>
 								</div>
 							</form>
 							{/* <!-- Fim da Imagem à esquerda/topo --> */}
-
-							{/* <!-- Text-box com conteúdo à direita/topo da primeira imagem --> */}
-
-							{/* <!-- Fim da text-box com conteúdo à direita/topo da primeira imagem --> */}
 						</div>
 						{/* <!-- Primeira da primeira row --> */}
 
