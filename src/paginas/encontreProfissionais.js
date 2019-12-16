@@ -15,13 +15,13 @@ class EncontreProfissionais extends Component {
 						{/* <!-- Primeira row --> */}
 						<div className="row">
 							{/* <!-- Imagem à esquerda/topo --> */}
-							<form className="col-12 mt-4">
-								<div className="jumbotron">
-									<div className="form-group text-center">
-										<label className="green-text"><h1>Campo de Pesquisa</h1></label>
-										<input type="text" className="form-control type-field" placeholder="Busque por termos chave como eletricista, manicure, DJ e etc..." />
+							<form className="col-12 mt-4 ">
+								<div className="jumbotron-clear text-center mx-auto">
+									<div className="form-inline">
+										<label className="green-text"><h1>Encontre Profissionais</h1></label>
+										<input type="text" className="form-control b-info type-field col-10 mr-2 " placeholder="Busque por termos chave como eletricista, manicure, DJ e etc..." />
+										<Btn text="Pesquisar" />
 									</div>
-									<Btn text="Pesquisar"/>
 								</div>
 							</form>
 							{/* <!-- Fim da Imagem à esquerda/topo --> */}

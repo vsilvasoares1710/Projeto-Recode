@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Missao from "../img/missao.png";
 import Visao from "../img/visao.png";
 import Valores from "../img/valores.png";
-
+import LogoFundoClaro from "../img/logFundoClaro.png";
 class QuemSomos extends Component {
   render() {
     return (
@@ -14,21 +14,40 @@ class QuemSomos extends Component {
           <div className="row">
             {/* <!-- Inicio do conteiner quem somos --> */}
             <div className="col-12 mt-4">
+              <div className="row text-center mx-auto mb-2">
+                <img
+                  className="mx-auto my-1 align-items-center"
+                  src={LogoFundoClaro}
+                  height="90px"
+                  width="335px"
+                  alt="logo"
+                />
+              </div>
               {/* <!-- Inicio do jumbotron superior --> */}
-              <div className="jumbotron my-auto text-center">
+              <div className="jumbotron-clear my-auto text-center">
                 <h1 className="green-text text-center">Quem Somos</h1>
                 <br />
                 <h4 className="text-content text-justify">
-                  O FixHub é uma plataforma criada no ano de 2019 na cidade de Osasco - SP por Andresa Lima, Renata Cruz e Victor Soares, operando inicialmente na cidade em que foi fundada.
-                  No período em questão, os membros fundadores participavam do RecodePro, um projeto social realizada pela ONG Recode, que tem como objetivo a promoção do empoderamento digital.
+                  O FixHub é uma plataforma criada no ano de 2019 na cidade de
+                  Osasco - SP por Andresa Lima, Renata Cruz e Victor Soares,
+                  operando inicialmente na cidade em que foi fundada. No período
+                  em questão, os membros fundadores participavam do RecodePro,
+                  um projeto social realizada pela ONG Recode, que tem como
+                  objetivo a promoção do empoderamento digital.
                 </h4>
                 <br />
                 <h4 className="text-content text-justify">
-                  Durante a realização do projeto, os três membros, que até então eram apenas alunos, foram incumbidos da missão de desenvolver um projeto de impacto social buscando o crescimento da economia de comunidades locais.
+                  Durante a realização do projeto, os três membros, que até
+                  então eram apenas alunos, foram incumbidos da missão de
+                  desenvolver um projeto de impacto social buscando o
+                  crescimento da economia de comunidades locais.
                 </h4>
                 <br />
                 <h4 className="text-content text-justify">
-                  A partir desta missão, surgiu a ideia por trás da plataforma, a criação de um espaço gratuito para a disseminação de informações e divulgação de profissionais, free-lancers e pequenas empresas.
+                  A partir desta missão, surgiu a ideia por trás da plataforma,
+                  a criação de um espaço gratuito para a disseminação de
+                  informações e divulgação de profissionais, free-lancers e
+                  pequenas empresas.
                 </h4>
               </div>
               {/* <!-- Fim do jumbotron superior --> */}
@@ -50,7 +69,9 @@ class QuemSomos extends Component {
                     width="40px"
                     alt="icone-missao"
                   />
-                  <h3><b className="text-content white-text">Missão</b></h3>
+                  <h3>
+                    <b className="text-content white-text">Missão</b>
+                  </h3>
                   <br />
                   <h5 className="text-content text-justify white-text">
                     Dar o poder da tecnologia à trabalhadores autônomos,
@@ -73,10 +94,14 @@ class QuemSomos extends Component {
                     width="40px"
                     alt="icone-visao"
                   />
-                  <h3><b className="text-content white-text">Visão</b></h3>
+                  <h3>
+                    <b className="text-content white-text">Visão</b>
+                  </h3>
                   <br />
                   <h5 className="text-content text-justify white-text">
-                    Estabecer o FixHub, como a maior, mais acessível e tranparente plataforma para divulgação de profissionais e serviços do Brasil.
+                    Estabecer o FixHub, como a maior, mais acessível e
+                    tranparente plataforma para divulgação de profissionais e
+                    serviços do Brasil.
                   </h5>
                 </div>
               </div>
@@ -94,11 +119,13 @@ class QuemSomos extends Component {
                     width="40px"
                     alt="icone-valores"
                   />
-                  <h3><b className="text-content white-text">Valores</b></h3>
+                  <h3>
+                    <b className="text-content white-text">Valores</b>
+                  </h3>
                   <br />
                   <h5 className="text-content text-justify white-text">
-                    Segurança, eficiência e transparência total entre clientes
-                      e profissionais.
+                    Segurança, eficiência e transparência total entre clientes e
+                    profissionais.
                   </h5>
                 </div>
               </div>
@@ -106,7 +133,6 @@ class QuemSomos extends Component {
             {/* <!-- Fim o Card de valores --> */}
           </div>
           {/* <!-- Fim do box dos cards--> */}
-
         </div>
         {/* <!-- Fim do background verde água --> */}
       </div>

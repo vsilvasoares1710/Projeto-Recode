@@ -24,20 +24,20 @@ class Contato extends Component {
 
 						{/* <!-- Text-box com formulário à esquerda --> */}
 						<div className="col-12 col-md-11 col-lg-7 mt-2 mb-3 mx-auto">
-							<div className="jumbotron-green shadow my-auto ">
+							<div className="jumbotron-clear my-auto ">
 								<form>
 									<div className="form-group">
-										<label className="white-text"><h5><b>Nome Completo</b></h5></label>
-										<input type="text" className="form-control" id="nome-contato" placeholder="João da Silva" />
+										<label className="text"><h5>Nome Completo</h5></label>
+										<input type="text" className="form-control b-info" id="nome-contato" placeholder="João da Silva" />
 									</div>
 									<div className="form-group">
-										<label className="white-text"><h5><b>E-mail</b></h5></label>
-										<input type="email" className="form-control" id="email-contato" placeholder="joãodasilva@email.com" />
+										<label className="text"><h5>E-mail</h5></label>
+										<input type="email" className="form-control b-info" id="email-contato" placeholder="joãodasilva@email.com" />
 									</div>
 									<br />
 									<div className="form-group">
-										<label className="white-text"><h5><b>Finalidade do Contato</b></h5></label>
-										<select className="form-control" id="finalidade-contato">
+										<label className="text"><h5>Finalidade do Contato</h5></label>
+										<select className="form-control b-info" id="finalidade-contato">
 											<option>Sugestão</option>
 											<option>Elogio</option>
 											<option>Ajuda</option>
@@ -46,10 +46,10 @@ class Contato extends Component {
 										</select>
 									</div>
 									<div className="form-group">
-										<label className="white-text"><h5><b>Mensagem</b></h5></label>
-										<textarea className="form-control" id="mensagem-contato" rows="6" placeholder="Digite sua mensagem neste campo..."></textarea>
+										<label className="text"><h5>Mensagem</h5></label>
+										<textarea className="form-control b-info" id="mensagem-contato" rows="6" placeholder="Digite sua mensagem neste campo..."></textarea>
 									</div>
-									<Btn text="Enviar Mensagem" onClick={this.enviarMensagem} className="btn btn-white mt-2" />
+									<Btn text="Enviar Mensagem" onClick={this.enviarMensagem} />
 								</form>
 							</div>
 						</div>

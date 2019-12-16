@@ -23,7 +23,7 @@ class Home extends Component {
 
 						{/* <!-- Text-box com conteúdo à direita/topo da primeira imagem --> */}
 						<div className="col-sm-12 col-lg-6 col-xl-7 mt-4">
-							<div className="jumbotron-clear shadow my-auto text-center">
+							<div className="jumbotron-clear my-auto text-center">
 
 								<h1 className="green-text">Profissionais diversos;</h1>
 								<h1 className="green-text">Soluções simples...</h1>
@@ -123,7 +123,7 @@ class Home extends Component {
 					<div className="row">
 						{/* <!-- Text-box com conteúdo à esquerda/abaixo da primeira imagem --> */}
 						<div className="col-sm-12 col-lg-6 col-xl-7 mt-0">
-							<div className="jumbotron-clear shadow my-auto text-center">
+							<div className="jumbotron-clear my-auto text-center">
 								<h1 className="green-text">Clientes à vista</h1>
 								<br />
 								<h4 className="text-content text-justify">Prestador de serviços, profissional liberal,
