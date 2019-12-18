@@ -12,10 +12,10 @@ variables:
   azureSubscription: 'e331c5a2-f61a-49fd-a2f3-da0278a1c9fe'
 
   # Web app name
-  webAppName: ''
+  webAppName: 'React App-FixHub'
   
   # Environment name
-  environmentName: ''
+  environmentName: 'Production'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
