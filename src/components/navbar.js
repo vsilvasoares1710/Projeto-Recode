@@ -32,7 +32,7 @@ class Navbar extends Component {
         <div className="collapse navbar-collapse" id="navbarTogglerDemo">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active my-3">
-              <Link to="/" className="nav-link ml-1">
+              <Link to="/" className="nav-link ml-1" tabIndex="0">
                 Home
               </Link>
             </li>

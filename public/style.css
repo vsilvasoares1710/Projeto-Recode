@@ -222,6 +222,7 @@ button.bg-info:focus {
   height: 20px;
   margin-left: 8px;
   margin-top: 4px;
+  margin-bottom: 4px;
   -webkit-appearance: none;
 	background-color: white;
 	border: 2px solid #00ceaf;
@@ -259,7 +260,7 @@ button.bg-info:focus {
   background-color: #fff;
   border-radius: 5px;
   margin-top: 8px;
-  padding-bottom: 10px;
+
 }
 
 .card-heading{
@@ -269,6 +270,7 @@ button.bg-info:focus {
   cursor: pointer;
   position: relative;
   top: 6px;
+  padding-bottom: 10px;
 }
 .card-divider {
   margin-right: 8px;
@@ -277,9 +279,29 @@ button.bg-info:focus {
   border-bottom: 2px solid #00ceaf;
   margin-bottom: 4px;
 }
-.inner-card-accordion {
+.card-divider-long {
 
+  padding-bottom: 1px;
+  border-bottom: 2px solid #00ceaf;
+  margin-bottom: 4px;
 }
-button .green-text {
-  opacity: 0;
+
+.accordion-heading button {
+  -webkit-appearance: none;
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+  outline: inherit;
+  width: 100%;
+  text-align: start;
+}
+.accordion-heading button:hover, .accordion-heading button:focus {
+  border-radius: 5px;
+  box-shadow: white;
+  text-decoration: underline;
+  text-decoration-color: black;
+  text-decoration-thickness: 1;
 }

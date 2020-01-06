@@ -13,21 +13,19 @@ class EncontreProfissionais extends Component {
       filtrosMarcados: []
     };
     this.getProfissionais = this.getProfissionais.bind(this);
-    this.getFiltros = this.getFiltros.bind(this);
     this.limparFiltros = this.limparFiltros.bind(this);
   }
 
-  getFiltros = event => {
-    alert(JSON.stringify("Arrumar, olhar event.target.value"));
-  };
-
   getProfissionais() {
-    console.log(JSON.parse(localStorage.getItem("filtrosMarcadosFixHub")));
-    console.log(this.state.filtrosMarcados);
+    // console.log(this.state);
     try {
       axios.get("/pesquisaPrestadores").then(response => {
         this.setState({ profissionaisEncontrados: [] });
         this.setState({ profissionaisEncontrados: response.data });
+        localStorage.setItem(
+          "profissionaisEncontradosFixHub",
+          JSON.stringify(this.state.profissionaisEncontrados)
+        );
         // console.log(response.data);
         // console.log(
         //   "ProfissionaisEncontrados: ",
@@ -42,8 +40,9 @@ class EncontreProfissionais extends Component {
 
   validateCheckbox = inputId => {
     const input = inputId;
-    const ExcludedText = input.indexOf("Checkbox");
-    const tag = input.slice(0, ExcludedText);
+    const excludedText = input.indexOf("Checkbox");
+    const tagNonFormatted = input.slice(0, excludedText);
+    const tag = tagNonFormatted.toLowerCase();
 
     let filtrosMarcados = this.state.filtrosMarcados;
     if (this.state.filtrosMarcados.indexOf(tag) === -1) {
@@ -63,12 +62,12 @@ class EncontreProfissionais extends Component {
   };
 
   renderCheckbox = labelText => {
-    const label = labelText;
+    const label = labelText.charAt(0).toUpperCase() + labelText.slice(1);
     const inputId = label + "Checkbox";
 
     return (
       <div className="form-inline">
-        {this.state.filtrosMarcados.indexOf(label) === -1 ? (
+        {this.state.filtrosMarcados.indexOf(label.toLowerCase()) === -1 ? (
           <input
             type="checkbox"
             className="checkbox"
@@ -131,42 +130,6 @@ class EncontreProfissionais extends Component {
           "Música",
           "Pré-Vestibular"
         ]
-      },
-      {
-        categoria: "Reparos2",
-        tags: [
-          "Eletricista",
-          "Encanador",
-          "Gesseiro",
-          "Marceneiro",
-          "Mecânico",
-          "Pintor",
-          "Vidraceiro"
-        ]
-      },
-      {
-        categoria: "Estética2",
-        tags: [
-          "Barbeiro",
-          "Cabelereiro",
-          "Depilação",
-          "Manicure",
-          "Maquiagem",
-          "Pedicure",
-          "Sobrancelha"
-        ]
-      },
-      {
-        categoria: "Professores2",
-        tags: [
-          "Aulas de Reforço",
-          "Dança",
-          "Espanhol",
-          "Francês",
-          "Inglês",
-          "Música",
-          "Pré-Vestibular"
-        ]
       }
     ];
 
@@ -175,32 +138,49 @@ class EncontreProfissionais extends Component {
         <div className="col-6 col-md-4 col-lg-3 m-0 p-0">
           <div className="accordion-group accordion-card shadow mr-2">
             <div className="accordion-heading">
-              <div
+              <button
+                type="button"
                 className="accordion-toggle"
                 data-toggle="collapse"
                 data-parent="#accordionFiltros"
-                href={"#collapse" + objeto.categoria}
+                data-target={"#collapse" + objeto.categoria}
               >
                 <div className="card-heading">
-                  <h5 className="green-text" >{objeto.categoria}</h5>
+                  <h5 className="green-text">{objeto.categoria}</h5>
                 </div>
-              </div>
+              </button>
             </div>
-            <div id={"collapse" + objeto.categoria} className="accordion-body collapse in">
+            <div
+              id={"collapse" + objeto.categoria}
+              className="accordion-body collapse in"
+            >
               <div className="card-divider"></div>
             </div>
             <div className="inner-card-accordion">
-              {objeto.tags.map(tag => {
-                return (
-                  <div
-                    id={"collapse" + objeto.categoria}
-                    className="accordion-body collapse out"
-                  >
-                    <div className="accordion-inner card-item">
-                      {this.renderCheckbox(tag)}
+              {objeto.tags.map((tag, index) => {
+                if (index < objeto.tags.length -1) {
+                  return (
+                    <div
+                      id={"collapse" + objeto.categoria}
+                      className="accordion-body collapse out"
+                    >
+                      <div className="accordion-inner card-item">
+                        {this.renderCheckbox(tag)}
+                      </div>
                     </div>
-                  </div>
-                );
+                  );
+                } else {
+                  return (
+                    <div
+                      id={"collapse" + objeto.categoria}
+                      className="accordion-body collapse out"
+                    >
+                      <div className="accordion-inner card-item pb-1">
+                        {this.renderCheckbox(tag)}
+                      </div>
+                    </div>
+                  );
+                }
               })}
             </div>
           </div>
@@ -209,6 +189,14 @@ class EncontreProfissionais extends Component {
     });
   }
 
+  renderProfissionais() {
+    return (
+      <div className="jumbotron-clear">
+        <h4 className="text-left">Nome do Profissional</h4>
+        <div className="card-divider-long"></div>
+      </div>
+    );
+  }
   limparFiltros() {
     localStorage.setItem("filtrosMarcadosFixHub", "[]");
     this.setState({
@@ -219,8 +207,19 @@ class EncontreProfissionais extends Component {
     if (JSON.parse(localStorage.getItem("filtrosMarcadosFixHub")) === null) {
       localStorage.setItem("filtrosMarcadosFixHub", "[]");
     }
+    if (
+      JSON.parse(localStorage.getItem("profissionaisEncontradosFixHub")) ===
+      null
+    ) {
+      localStorage.setItem("profissionaisEncontradosFixHub", "[]");
+    }
     this.setState({
-      filtrosMarcados: JSON.parse(localStorage.getItem("filtrosMarcadosFixHub"))
+      filtrosMarcados: JSON.parse(
+        localStorage.getItem("filtrosMarcadosFixHub")
+      ),
+      profissionaisEncontrados: JSON.parse(
+        localStorage.getItem("profissionaisEncontradosFixHub")
+      )
     });
   }
   render() {
@@ -246,21 +245,26 @@ class EncontreProfissionais extends Component {
                     />
                     <Btn text="Pesquisar" onClick={this.getProfissionais} />
                   </div>
-                  {/* Inicio do Jumbotron cinza com filtros de pesquisa */}
+                  {/* Inicio do Jumbotron verde com filtros de pesquisa */}
                   <div className="jumbotron-green col-12 text-left">
                     <div className="accordion" id="accordionFiltros">
-                    <Btn
-                      text="Limpar Filtros"
-                      className="btn btn-white shadow btn-sm mt-2"
-                      onClick={this.limparFiltros}
-                    />
+                      <Btn
+                        text="Limpar Filtros"
+                        className="btn btn-white shadow btn-sm mt-2"
+                        onClick={this.limparFiltros}
+                      />
                       <div className="d-flex flex-wrap">
                         {this.renderAccordion()}
                       </div>
                     </div>
                   </div>
-                  {/* Fim do Jumbotron cinza com filtros de pesquisa */}
+                  {/* Fim do Jumbotron verde com filtros de pesquisa */}
+
+                  {/* Inicio dos resultados de pesquisa */}
+                  {this.renderProfissionais()}
+                  {/* Fim dos resultados de pesquisa */}
                 </div>
+
                 {/* Fim do Jumbotron de borda verde que engloba toda a seção de pesquisa */}
               </form>
             </div>

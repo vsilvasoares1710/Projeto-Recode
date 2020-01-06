@@ -60,46 +60,47 @@ class Home extends Component {
               <div className="col-md-6 col-lg-4 col-xl-3 my-4 d-none d-md-block">
                 <div className="card h-100 w-100">
                   <div className="card-body shadow d-flex flex-column">
-                    <h4 className="card-title pb-1">Reparos</h4>
+                    <h4 className="card-title pb-1" >Reparos</h4>
                     <Link
                       to="/encontreProfissionais"
-                      className="card-text card-content"
+                      className="card-text card-content" tabIndex="-1"
+                      id="eletricistasLink"
                     >
                       Eletricistas
                     </Link>
                     <Link
                       to="/encontreProfissionais"
-                      className="card-text card-content"
+                      className="card-text card-content" tabIndex="-1"
                     >
                       Encanadores
                     </Link>
                     <Link
                       to="/encontreProfissionais"
-                      className="card-text card-content"
+                      className="card-text card-content" tabIndex="-1"
                     >
                       Gesseiros
                     </Link>
                     <Link
                       to="/encontreProfissionais"
-                      className="card-text card-content"
+                      className="card-text card-content" tabIndex="-1"
                     >
                       Marceneiros
                     </Link>
                     <Link
                       to="/encontreProfissionais"
-                      className="card-text card-content"
+                      className="card-text card-content" tabIndex="-1"
                     >
                       Mecânicos
                     </Link>
                     <Link
                       to="/encontreProfissionais"
-                      className="card-text card-content"
+                      className="card-text card-content" tabIndex="-1"
                     >
                       Pedreiros
                     </Link>
                     <Link
                       to="/encontreProfissionais"
-                      className="card-text card-content"
+                      className="card-text card-content" tabIndex="-1"
                     >
                       Pintores
                     </Link>
