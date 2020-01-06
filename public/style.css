@@ -41,12 +41,12 @@
     background-color: #00ceaf;
     border-color: #00ceaf;
 }
-  
+
 .btn-info:hover,.btn-info:focus, .btn-info.focus {
   box-shadow: 1 1 1 1rem #00ceaf;
   background-color: #138496;
   border-color: #0f6875;
-  
+
 }
 
 
@@ -68,7 +68,7 @@
 .show > .btn-info.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
 }
-  
+
 .btn-white {
   color: #00ceaf;
   font-weight: bold;
@@ -103,8 +103,8 @@ box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
 }
 
 .text-content {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
-    
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
     text-justify: auto;
 }
 
@@ -143,18 +143,18 @@ button.bg-info:focus {
 .card-content, .last-card-content {
     color: black;
     font-size: 18px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
-    
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 .card-content:hover,.card-content:focus {
     color: #00ceaf;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .type-field {
   color: black;
   font-size: 22px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
 }
 .jumbotron {
@@ -215,4 +215,71 @@ button.bg-info:focus {
 }
 .b-info{
   border: solid #00ceaf 2px;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  margin-top: 4px;
+  -webkit-appearance: none;
+	background-color: white;
+	border: 2px solid #00ceaf;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	border-radius: 2px;
+  position: relative;
+  cursor: pointer
+}
+
+.checkbox:focus{
+	border: 2px solid black;
+}
+
+.checkbox:checked {
+	background-color: #00ceaf;
+
+}
+.checkbox:checked:after {
+  content: '\2713';
+	font-size: 16px;
+  position: relative;
+  bottom: 4px;
+  left: 2px;
+  color: #ffffff;
+  margin: 10
+}
+.checkbox-label{
+  cursor: pointer;
+  position: relative;
+  top: 2px;
+  left: 4px;
+}
+
+.accordion-card{
+  background-color: #fff;
+  border-radius: 5px;
+  margin-top: 8px;
+  padding-bottom: 10px;
+}
+
+.card-heading{
+  padding-top: 5px;
+  padding-right: 8px;
+  padding-left: 8px;
+  cursor: pointer;
+  position: relative;
+  top: 6px;
+}
+.card-divider {
+  margin-right: 8px;
+  margin-left: 8px;
+  padding-bottom: 1px;
+  border-bottom: 2px solid #00ceaf;
+  margin-bottom: 4px;
+}
+.inner-card-accordion {
+
+}
+button .green-text {
+  opacity: 0;
 }
