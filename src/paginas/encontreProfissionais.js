@@ -75,14 +75,14 @@ class EncontreProfissionais extends Component {
             onChange={() => this.validateCheckbox(inputId)}
           />
         ) : (
-            <input
-              type="checkbox"
-              className="checkbox"
-              id={inputId}
-              onChange={() => this.validateCheckbox(inputId)}
-              checked
-            />
-          )}
+          <input
+            type="checkbox"
+            className="checkbox"
+            id={inputId}
+            onChange={() => this.validateCheckbox(inputId)}
+            checked
+          />
+        )}
         <label
           className="form-check-label checkbox-label"
           onClick={() => this.validateCheckbox(inputId)}
@@ -121,13 +121,7 @@ class EncontreProfissionais extends Component {
       },
       {
         categoria: "Eventos",
-        tags: [
-          "Animação",
-          "Bandas",
-          "Decoração",
-          "DJ's",
-          "Fotografia",
-        ]
+        tags: ["Animação", "Bandas", "Decoração", "DJ's", "Fotografia"]
       },
       {
         categoria: "Informática e Telefonia",
@@ -149,7 +143,7 @@ class EncontreProfissionais extends Component {
           "Geladeira/Freezer",
           "Lava Louças",
           "Máquina de Lavar ",
-          "Microondas",
+          "Microondas"
         ]
       },
       {
@@ -186,7 +180,7 @@ class EncontreProfissionais extends Component {
           "Encadernação",
           "Flyers e Panfletos",
           "Plotagem",
-          "TCC's",
+          "TCC's"
         ]
       },
       {
@@ -195,13 +189,13 @@ class EncontreProfissionais extends Component {
           "Criação de Sites",
           "Criação de Apps",
           "Logomarcas",
-          "Marketing Digital",
+          "Marketing Digital"
         ]
-      },
+      }
     ];
 
     return filtros.map(objeto => {
-      const categoriaFormatted = objeto.categoria.replace(/ /g, "-")
+      const categoriaFormatted = objeto.categoria.replace(/ /g, "-");
       return (
         <div className="col-6 col-md-4 col-lg-3 m-0 p-0">
           <div className="accordion-group accordion-card shadow mr-2">
@@ -226,29 +220,20 @@ class EncontreProfissionais extends Component {
             </div>
             <div className="inner-card-accordion">
               {objeto.tags.map((tag, index) => {
-                if (index < objeto.tags.length - 1) {
-                  return (
-                    <div
-                      id={"collapse" + categoriaFormatted}
-                      className="accordion-body collapse out"
-                    >
-                      <div className="accordion-inner card-item">
-                        {this.renderCheckbox(tag)}
-                      </div>
+                let inferiorPadding
+                index < objeto.tags.length - 1
+                  ? (inferiorPadding = "")
+                  : (inferiorPadding = "pb-1");
+                return (
+                  <div
+                    id={"collapse" + categoriaFormatted}
+                    className="accordion-body collapse out"
+                  >
+                    <div className={`accordion-inner card-item ${inferiorPadding}`}>
+                      {this.renderCheckbox(tag)}
                     </div>
-                  );
-                } else {
-                  return (
-                    <div
-                      id={"collapse" + categoriaFormatted}
-                      className="accordion-body collapse out"
-                    >
-                      <div className="accordion-inner card-item pb-1">
-                        {this.renderCheckbox(tag)}
-                      </div>
-                    </div>
-                  );
-                }
+                  </div>
+                );
               })}
             </div>
           </div>
