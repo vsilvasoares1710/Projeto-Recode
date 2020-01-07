@@ -66,7 +66,7 @@ class EncontreProfissionais extends Component {
     const inputId = label + "Checkbox";
 
     return (
-      <div className="form-inline">
+      <div className="form-inline text-wrap">
         {this.state.filtrosMarcados.indexOf(label.toLowerCase()) === -1 ? (
           <input
             type="checkbox"
@@ -75,14 +75,14 @@ class EncontreProfissionais extends Component {
             onChange={() => this.validateCheckbox(inputId)}
           />
         ) : (
-          <input
-            type="checkbox"
-            className="checkbox"
-            id={inputId}
-            onChange={() => this.validateCheckbox(inputId)}
-            checked
-          />
-        )}
+            <input
+              type="checkbox"
+              className="checkbox"
+              id={inputId}
+              onChange={() => this.validateCheckbox(inputId)}
+              checked
+            />
+          )}
         <label
           className="form-check-label checkbox-label"
           onClick={() => this.validateCheckbox(inputId)}
@@ -96,15 +96,15 @@ class EncontreProfissionais extends Component {
   renderAccordion() {
     const filtros = [
       {
-        categoria: "Reparos",
+        categoria: "Aulas",
         tags: [
-          "Eletricista",
-          "Encanador",
-          "Gesseiro",
-          "Marceneiro",
-          "Mecânico",
-          "Pintor",
-          "Vidraceiro"
+          "Reforço Escolar",
+          "Dança",
+          "Espanhol",
+          "Francês",
+          "Inglês",
+          "Música",
+          "Pré-Vestibular"
         ]
       },
       {
@@ -120,20 +120,88 @@ class EncontreProfissionais extends Component {
         ]
       },
       {
-        categoria: "Professores",
+        categoria: "Eventos",
         tags: [
-          "Aulas de Reforço",
-          "Dança",
-          "Espanhol",
-          "Francês",
-          "Inglês",
-          "Música",
-          "Pré-Vestibular"
+          "Animação",
+          "Bandas",
+          "Decoração",
+          "DJ's",
+          "Fotografia",
         ]
-      }
+      },
+      {
+        categoria: "Informática e Telefonia",
+        tags: [
+          "Cabos/Redes ",
+          "Celular",
+          "Computador",
+          "Impressora",
+          "Notebook",
+          "Tablet",
+          "Telefone Fixo",
+          "Telefone Pabx"
+        ]
+      },
+      {
+        categoria: "Reparo de Eletrodomésticos",
+        tags: [
+          "Fogão/Cooktop",
+          "Geladeira/Freezer",
+          "Lava Louças",
+          "Máquina de Lavar ",
+          "Microondas",
+        ]
+      },
+      {
+        categoria: "Reparo de Eletrônicos",
+        tags: [
+          "Aparelho de Som",
+          "Ar condicionado",
+          "Câmera",
+          "DVD",
+          "BLU-RAY",
+          "Home Theater",
+          "Televisão",
+          "Video Game"
+        ]
+      },
+      {
+        categoria: "Reparos em Geral",
+        tags: [
+          "Eletricista",
+          "Encanador",
+          "Gesseiro",
+          "Marceneiro",
+          "Mecânico",
+          "Pintor",
+          "Vidraceiro"
+        ]
+      },
+      {
+        categoria: "Serviços Gráficos",
+        tags: [
+          "Banners",
+          "Convites",
+          "Cartões de Visita",
+          "Encadernação",
+          "Flyers e Panfletos",
+          "Plotagem",
+          "TCC's",
+        ]
+      },
+      {
+        categoria: "Tecnologia e Design",
+        tags: [
+          "Criação de Sites",
+          "Criação de Apps",
+          "Logomarcas",
+          "Marketing Digital",
+        ]
+      },
     ];
 
     return filtros.map(objeto => {
+      const categoriaFormatted = objeto.categoria.replace(/ /g, "-")
       return (
         <div className="col-6 col-md-4 col-lg-3 m-0 p-0">
           <div className="accordion-group accordion-card shadow mr-2">
@@ -143,7 +211,7 @@ class EncontreProfissionais extends Component {
                 className="accordion-toggle"
                 data-toggle="collapse"
                 data-parent="#accordionFiltros"
-                data-target={"#collapse" + objeto.categoria}
+                data-target={"#collapse" + categoriaFormatted}
               >
                 <div className="card-heading">
                   <h5 className="green-text">{objeto.categoria}</h5>
@@ -151,17 +219,17 @@ class EncontreProfissionais extends Component {
               </button>
             </div>
             <div
-              id={"collapse" + objeto.categoria}
+              id={"collapse" + categoriaFormatted}
               className="accordion-body collapse in"
             >
               <div className="card-divider"></div>
             </div>
             <div className="inner-card-accordion">
               {objeto.tags.map((tag, index) => {
-                if (index < objeto.tags.length -1) {
+                if (index < objeto.tags.length - 1) {
                   return (
                     <div
-                      id={"collapse" + objeto.categoria}
+                      id={"collapse" + categoriaFormatted}
                       className="accordion-body collapse out"
                     >
                       <div className="accordion-inner card-item">
@@ -172,7 +240,7 @@ class EncontreProfissionais extends Component {
                 } else {
                   return (
                     <div
-                      id={"collapse" + objeto.categoria}
+                      id={"collapse" + categoriaFormatted}
                       className="accordion-body collapse out"
                     >
                       <div className="accordion-inner card-item pb-1">
@@ -253,7 +321,7 @@ class EncontreProfissionais extends Component {
                         className="btn btn-white shadow btn-sm mt-2"
                         onClick={this.limparFiltros}
                       />
-                      <div className="d-flex flex-wrap">
+                      <div className="d-flex flex-wrap align-items-stretch">
                         {this.renderAccordion()}
                       </div>
                     </div>
