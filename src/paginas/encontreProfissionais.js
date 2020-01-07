@@ -41,7 +41,10 @@ class EncontreProfissionais extends Component {
   validateCheckbox = inputId => {
     const input = inputId;
     const excludedText = input.indexOf("Checkbox");
-    const tagNonFormatted = input.slice(0, excludedText);
+    let tagNonFormatted = input.slice(0, excludedText);
+    if(excludedText === -1) {
+      tagNonFormatted = inputId
+    }
     const tag = tagNonFormatted.toLowerCase();
 
     let filtrosMarcados = this.state.filtrosMarcados;
@@ -84,7 +87,7 @@ class EncontreProfissionais extends Component {
           />
         )}
         <label
-          className="form-check-label checkbox-label"
+          className="form-check-label checkbox-label unselectable"
           onClick={() => this.validateCheckbox(inputId)}
         >
           {label}
@@ -220,7 +223,7 @@ class EncontreProfissionais extends Component {
             </div>
             <div className="inner-card-accordion">
               {objeto.tags.map((tag, index) => {
-                let inferiorPadding
+                let inferiorPadding;
                 index < objeto.tags.length - 1
                   ? (inferiorPadding = "")
                   : (inferiorPadding = "pb-1");
@@ -229,7 +232,9 @@ class EncontreProfissionais extends Component {
                     id={"collapse" + categoriaFormatted}
                     className="accordion-body collapse out"
                   >
-                    <div className={`accordion-inner card-item ${inferiorPadding}`}>
+                    <div
+                      className={`accordion-inner card-item ${inferiorPadding}`}
+                    >
                       {this.renderCheckbox(tag)}
                     </div>
                   </div>
@@ -243,12 +248,69 @@ class EncontreProfissionais extends Component {
   }
 
   renderProfissionais() {
-    return (
-      <div className="jumbotron-clear">
-        <h4 className="text-left">Nome do Profissional</h4>
-        <div className="card-divider-long"></div>
-      </div>
-    );
+    const profisisonais = [
+      {
+        nome: "Piruleison da Silva Sauro",
+        icone: "https://image.flaticon.com/icons/png/512/57/57134.png",
+        tags: [
+          "eletricista",
+          "pintor",
+          "encanador",
+          "pedreiro",
+          "gesseiro",
+          "marceneiro",
+          "vidraceiro"
+        ],
+        anuncio: {
+          texto:
+            "Tempor pariatur anim esse culpa ullamco dolor ea ea eiusmod. Cupidatat exercitation ipsum ullamco ipsum aute. Culpa ex voluptate laborum deserunt commodo est ullamco labore in ullamco.\nDo velit ad duis dolor magna ullamco id esse dolor incididunt ad dolor ipsum. Laborum aliquip consectetur exercitation id sunt qui. Ullamco ad aliqua quis incididunt occaecat. Pariatur est voluptate do Lorem est aliquip officia sunt enim et sint sit. Consectetur ullamco minim tempor quis labore nulla esse laboris ex labore. Aliqua est id Lorem officia eiusmod aute irure aliquip tempor ex ex occaecat officia officia. Sint eu mollit reprehenderit adipisicing dolor exercitation labore esse nulla dolor veniam cillum aliquip."
+        }
+      },
+      {
+        nome: "Jubileu Astrogildo de Magalhães",
+        icone: "https://image.flaticon.com/icons/png/512/56/56990.png",
+        tags: ["professor", "música", "dança", "canto"],
+        anuncio: {
+          texto:
+            "Tempor pariatur anim esse culpa ullamco dolor ea ea eiusmod. Cupidatat exercitation ipsum ullamco ipsum aute. Culpa ex voluptate laborum deserunt commodo est ullamco labore in ullamco.\nDo velit ad duis dolor magna ullamco id esse dolor incididunt ad dolor ipsum. Laborum aliquip consectetur exercitation id sunt qui. Ullamco ad aliqua quis incididunt occaecat. Pariatur est voluptate do Lorem est aliquip officia sunt enim et sint sit. Consectetur ullamco minim tempor quis labore nulla esse laboris ex labore. Aliqua est id Lorem officia eiusmod aute irure aliquip tempor ex ex occaecat officia officia. Sint eu mollit reprehenderit adipisicing dolor exercitation labore esse nulla dolor veniam cillum aliquip."
+        }
+      }
+    ];
+
+    return profisisonais.map(value => {
+      return (
+        <div className="jumbotron-clear">
+          <div className="row">
+            <div className="col-5 col-sm-5 col-md-3 col-lg-2 mx-auto mb-2 ">
+              <img
+                src={value.icone}
+                width="100%"
+                alt={`Imagem de ${value.nome}`}
+              />
+            </div>
+            <div className=" col-12 col-md-9 col-lg-10">
+              <div className="vertical-divider" />
+              <h4 className="text-left">{value.nome}</h4>
+              <div className="card-divider-long"></div>
+              <p className="text-left five-line-truncate">
+                {value.anuncio.texto}
+              </p>
+              <div className="d-flex flex-wrap">
+                {value.tags.map(tag => {
+                  const tagName = tag.charAt(0).toUpperCase() + tag.slice(1);
+                  return (
+                    <Btn text={tagName} className="btn btn-info shadow p-1 m-1 clickable" onClick={() => this.validateCheckbox(tag)}/>
+                    // <div className="tag white-text shadow-text bg-info p-1 m-1 clickable" onClick={() => this.validateCheckbox(tag)}>
+                    //   <strong>{tagName}</strong>
+                    // </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    });
   }
   limparFiltros() {
     localStorage.setItem("filtrosMarcadosFixHub", "[]");
