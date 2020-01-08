@@ -42,8 +42,8 @@ class EncontreProfissionais extends Component {
     const input = inputId;
     const excludedText = input.indexOf("Checkbox");
     let tagNonFormatted = input.slice(0, excludedText);
-    if(excludedText === -1) {
-      tagNonFormatted = inputId
+    if (excludedText === -1) {
+      tagNonFormatted = inputId;
     }
     const tag = tagNonFormatted.toLowerCase();
 
@@ -67,25 +67,19 @@ class EncontreProfissionais extends Component {
   renderCheckbox = labelText => {
     const label = labelText.charAt(0).toUpperCase() + labelText.slice(1);
     const inputId = label + "Checkbox";
-
+    let isChecked;
+    this.state.filtrosMarcados.indexOf(label.toLowerCase()) === -1
+      ? (isChecked = false)
+      : (isChecked = true);
     return (
       <div className="form-inline text-wrap">
-        {this.state.filtrosMarcados.indexOf(label.toLowerCase()) === -1 ? (
-          <input
-            type="checkbox"
-            className="checkbox"
-            id={inputId}
-            onChange={() => this.validateCheckbox(inputId)}
-          />
-        ) : (
-          <input
-            type="checkbox"
-            className="checkbox"
-            id={inputId}
-            onChange={() => this.validateCheckbox(inputId)}
-            checked
-          />
-        )}
+        <input
+          type="checkbox"
+          className="checkbox"
+          id={inputId}
+          onChange={() => this.validateCheckbox(inputId)}
+          checked={isChecked}
+        />
         <label
           className="form-check-label checkbox-label unselectable"
           onClick={() => this.validateCheckbox(inputId)}
@@ -200,7 +194,7 @@ class EncontreProfissionais extends Component {
     return filtros.map(objeto => {
       const categoriaFormatted = objeto.categoria.replace(/ /g, "-");
       return (
-        <div className="col-6 col-md-4 col-lg-3 m-0 p-0">
+        <div className="col-12 col-sm-6 col-md-4 col-lg-3 m-0 p-0">
           <div className="accordion-group accordion-card shadow mr-2">
             <div className="accordion-heading">
               <button
@@ -299,7 +293,11 @@ class EncontreProfissionais extends Component {
                 {value.tags.map(tag => {
                   const tagName = tag.charAt(0).toUpperCase() + tag.slice(1);
                   return (
-                    <Btn text={tagName} className="btn btn-info shadow p-1 m-1 clickable" onClick={() => this.validateCheckbox(tag)}/>
+                    <Btn
+                      text={tagName}
+                      className="btn btn-info shadow py-1 px-2 m-1"
+                      onClick={() => this.validateCheckbox(tag)}
+                    />
                     // <div className="tag white-text shadow-text bg-info p-1 m-1 clickable" onClick={() => this.validateCheckbox(tag)}>
                     //   <strong>{tagName}</strong>
                     // </div>
@@ -348,28 +346,62 @@ class EncontreProfissionais extends Component {
             <div className="row">
               <form className="col-12 mt-4 ">
                 {/* Início do Jumbotron de borda verde que engloba toda a seção de pesquisa */}
-                <div className="jumbotron-clear text-center mx-auto">
-                  <div className="form-inline">
-                    <label className="green-text">
-                      <h1>Encontre Profissionais</h1>
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control b-info type-field col-10 mr-2 "
-                      placeholder="Busque por termos chave como eletricista, manicure, DJ e etc..."
-                    />
-                    <Btn text="Pesquisar" onClick={this.getProfissionais} />
-                  </div>
+                <div className="text-center mx-auto">
                   {/* Inicio do Jumbotron verde com filtros de pesquisa */}
                   <div className="jumbotron-green col-12 text-left">
+                    <h1 className="white-text">Encontre Profissionais</h1>
+                    <div className="form-group">
+                      <div className="input-group">
+                        <input
+                          type="text"
+                          className="form-control type-field col"
+                          placeholder="Busque por termos chave como eletricista, manicure, DJ e etc..."
+                        />
+                        <div class="input-group-append">
+                          <Btn
+                            text="Pesquisar"
+                            className="btn btn-outline-white shadow"
+                            onClick={this.getProfissionais}
+                          />
+                        </div>
+                      </div>
+                    </div>
                     <div className="accordion" id="accordionFiltros">
-                      <Btn
-                        text="Limpar Filtros"
-                        className="btn btn-white shadow btn-sm mt-2"
-                        onClick={this.limparFiltros}
-                      />
-                      <div className="d-flex flex-wrap align-items-stretch">
-                        {this.renderAccordion()}
+                      <div className="accordion-groupmr-2">
+                        <div className="accordion-heading">
+                          <button
+                            type="button"
+                            className="accordion-toggle col-1"
+                            data-toggle="collapse"
+                            data-parent="#accordionFiltros"
+                            data-target={"#collapseConjuntoFiltros"}
+                          >
+                            <div className="btn btn-white shadow mt-1">
+                              Filtros
+                            </div>
+                          </button>
+                        </div>
+                        <div
+                          id={"collapseConjuntoFiltros"}
+                          className="accordion-body collapse in"
+                        ></div>
+                        <div className="inner-card-accordion bg-info">
+                          <div
+                            id={"collapseConjuntoFiltros"}
+                            className="accordion-body collapse out"
+                          >
+                            <div className={`accordion-inner card-item`}>
+                              <div className="d-flex flex-wrap">
+                                {this.renderAccordion()}
+                              </div>
+                              <Btn
+                                text="Limpar Filtros"
+                                className="btn btn-white shadow mt-2"
+                                onClick={this.limparFiltros}
+                              />
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -386,33 +418,37 @@ class EncontreProfissionais extends Component {
             {/* <!-- Fim da primeira row --> */}
 
             {/* <!-- Inicio da segunda row --> */}
-            <div className="row">
-              {/* <!-- Imagem à esquerda/baixo --> */}
-              <div className="col-sm-12 col-lg-6 mb-4">
-                <img
-                  src={workers}
-                  width="100%"
-                  alt="Pessoas apertano as mãos"
-                />
-              </div>
-              {/* <!-- Fim da Imagem à esquerda/baixo --> */}
+            <div className="row mx-3">
+              <div className="row jumbotron-clear ">
+                {/* <!-- Imagem à esquerda/baixo --> */}
+                <div className="col-sm-12 col-lg-6 ">
+                  <img
+                    src={workers}
+                    width="100%"
+                    alt="Pessoas apertano as mãos"
+                  />
+                </div>
+                {/* <!-- Fim da Imagem à esquerda/baixo --> */}
 
-              {/* <!-- Text-box com conteúdo à direita/abaixo da primeira imagem --> */}
-              <div className="col-sm-12 p-3 col-lg-6 rounded my-auto text-center">
-                <h1 className="green-text">
-                  A qualquer hora em qualquer lugar
-                </h1>
-                <br />
-                <h4 className="text-content text-justify">
-                  Encontre o profissional adequado para as suas necessidades,
-                  realize um busca mais profunda, contate e negocie com diversos
-                  profissionais, cadastre-se para ter acesso a mais informações.
-                </h4>
-                <br />
-                <Btn text="Cadastre-se" lead="/cadastro" />
+                {/* <!-- Text-box com conteúdo à direita/abaixo da primeira imagem --> */}
+                <div className="col-sm-12 col-lg-6 rounded my-auto text-center">
+                  <h1 className="green-text">
+                    A qualquer hora em qualquer lugar
+                  </h1>
+                  <br />
+                  <h4 className="text-content text-justify">
+                    Encontre o profissional adequado para as suas necessidades,
+                    realize um busca mais profunda, contate e negocie com
+                    diversos profissionais, cadastre-se para ter acesso a mais
+                    informações.
+                  </h4>
+                  <br />
+                  <Btn text="Cadastre-se" lead="/cadastro" />
+                </div>
+                {/* <!-- Fim da text-box com conteúdo à direita/abaixo da primeira imagem --> */}
               </div>
-              {/* <!-- Fim da text-box com conteúdo à direita/abaixo da primeira imagem --> */}
             </div>
+
             {/* Fim da segunda row */}
           </div>
           {/* <!-- Conteúdo principal da página --> */}

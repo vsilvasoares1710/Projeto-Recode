@@ -18,6 +18,13 @@
   text-decoration-thickness: from-font;
 }
 
+@media (max-width: 767.98px) {
+
+  .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
 .btn {
   display: inline-block;
   font-weight: 400;
@@ -109,6 +116,46 @@
 .show > .btn-white.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
 }
+.btn-outline-white {
+  color: #00ceaf;
+  font-weight: bold;
+  background-color: white;
+  background-image: none;
+  border-color: #17a2b8;
+}
+
+.btn-outline-white:hover {
+  box-shadow: 1 1 1 1rem #000000;
+  color: white;
+  background-color: #138496;
+}
+
+.btn-outline-white:focus,
+.btn-outline-white.focus {
+  box-shadow: 1 1 1 1rem #000000;
+  color: white;
+  background-color: #138496;
+}
+
+.btn-outline-info.disabled,
+.btn-outline-info:disabled {
+  color: #17a2b8;
+  background-color: transparent;
+}
+
+.btn-outline-info:not(:disabled):not(.disabled):active,
+.btn-outline-info:not(:disabled):not(.disabled).active,
+.show > .btn-outline-info.dropdown-toggle {
+  color: #fff;
+  background-color: #000000;
+  border-color: #10707f;
+}
+
+.btn-outline-info:not(:disabled):not(.disabled):active:focus,
+.btn-outline-info:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-info.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+}
 
 .text-content {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -174,6 +221,11 @@ button.bg-info:focus {
   font-size: 22px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: bold;
+  border: solid 2px #00ceaf;
+  height: 50px;
+}
+.type-field:focus{
+  border: solid 2px black
 }
 .jumbotron {
   padding: 2rem 1rem;
