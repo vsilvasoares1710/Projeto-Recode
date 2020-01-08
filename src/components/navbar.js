@@ -31,64 +31,34 @@ class Navbar extends Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo">
           <ul className="navbar-nav mr-auto">
-            <li
-              className="nav-item active my-3"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
+            <li className="nav-item active my-3" data-toggle="collapse" data-target=".navbar-collapse.show">
               <Link to="/" className="nav-link ml-1" tabIndex="0">
                 Home
               </Link>
             </li>
-            <li
-              className="nav-item active my-3"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <Link to="/encontreProfissionais" className="nav-link ml-1">
+            <li className="nav-item active my-3" data-toggle="collapse" data-target=".navbar-collapse.show">
+              <Link to="/encontreProfissionais" className="nav-link ml-1" >
                 Encontre Profissionais
               </Link>
             </li>
-            <li
-              className="nav-item active my-3"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
+            <li className="nav-item active my-3" data-toggle="collapse" data-target=".navbar-collapse.show">
               <Link to="/divulgueSeuTrabalho" className="nav-link ml-1">
                 Divulgue seu Trabalho
               </Link>
             </li>
-            <li
-              className="nav-item active my-3"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
+            <li className="nav-item active my-3" data-toggle="collapse" data-target=".navbar-collapse.show">
               <Link to="/quemSomos" className="nav-link ml-1">
                 Quem Somos
               </Link>
             </li>
-            <Link to="/contato" className="nav-link active ml-1">
-              <li
-                className="nav-item active my-3"
-                data-toggle="collapse"
-                data-target=".navbar-collapse.show"
-              >
+            <li className="nav-item active my-3" data-toggle="collapse" data-target=".navbar-collapse.show">
+              <Link to="/contato" className="nav-link ml-1">
                 Contato
-              </li>
-            </Link>
+              </Link>
+            </li>
           </ul>
-          <Btn
-            text="Entrar"
-            lead="/entrar"
-            data-toggle="collapse"
-            data-target=".navbar-collapse.show"
-          />
-          <Btn
-            text="Cadastro"
-            lead="/cadastro"
-            data-toggle="collapse"
-            data-target=".navbar-collapse.show"
-          />
+          <Btn text="Entrar" lead="/entrar"  data-toggle="collapse" data-target=".navbar-collapse.show"/>
+          <Btn text="Cadastro" lead="/cadastro"  data-toggle="collapse" data-target=".navbar-collapse.show"/>
         </div>
       </nav>
     );
