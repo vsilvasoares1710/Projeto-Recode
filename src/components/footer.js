@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class Footer extends Component {
+  getCurrentYear(){
+    const date = new Date()
+    return date.getFullYear()
+  }
   render() {
     return (
       <div>
@@ -55,7 +59,7 @@ class Footer extends Component {
             </Link>
           </div>
           <div className="green-text text-center border-top border-info">
-            © 2019 - FixHub. Todos os direitos reservados.
+            {`© ${this.getCurrentYear()} - FixHub. Todos os direitos reservados.`}
           </div>
         </footer>
 
@@ -109,7 +113,7 @@ class Footer extends Component {
             </div>
           </div>
           <div className="green-text text-center border-top border-info">
-            © 2019 - FixHub. Todos os direitos reservados.
+          {`© ${this.getCurrentYear()} - FixHub. Todos os direitos reservados.`}
           </div>
         </footer>
       </div>
