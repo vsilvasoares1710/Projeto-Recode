@@ -43,20 +43,54 @@ class Btn extends Component {
 
   routeButton = () => {
     this.changeCssClass();
-    return (
-      <Link to={this.state.lead} className={this.state.className}>
-        {this.state.text}
-      </Link>
-    );
+    if (typeof this.state.onClick === "function") {
+      return (
+        <Link
+          to={this.state.lead}
+          type="button"
+          onClick={this.state.onClick}
+          className={this.state.className}
+        >
+          {this.state.text}
+        </Link>
+      );
+    } else {
+      return (
+        <Link
+          to={this.state.lead}
+          type="button"
+          className={this.state.className}
+        >
+          {this.state.text}
+        </Link>
+      );
+    }
   };
 
   linkButton = () => {
     this.changeCssClass();
-    return (
-      <a href={this.state.lead} className={this.state.className}>
-        {this.state.text}
-      </a>
-    );
+    if (typeof this.state.onClick === "function") {
+      return (
+        <a
+          href={this.state.lead}
+          type="button"
+          onClick={this.state.onClick}
+          className={this.state.className}
+        >
+          {this.state.text}
+        </a>
+      );
+    } else {
+      return (
+        <a
+          href={this.state.lead}
+          type="button"
+          className={this.state.className}
+        >
+          {this.state.text}
+        </a>
+      );
+    }
   };
 
   buttonType = () => {

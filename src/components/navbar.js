@@ -2,8 +2,28 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Btn from "./button.js";
 import LogoFundoEscuro from "../img/logFundoEscuro.png";
+import User from "../controllers/userAuthentication.js";
 
 class Navbar extends Component {
+  renderButtons() {
+    const user = new User();
+
+    if (user.isAuthenticated() === false) {
+      return (
+        <div data-toggle="collapse" data-target=".navbar-collapse.show">
+          <Btn text="Entrar" lead="/entrar" />
+          <Btn text="Cadastro" lead="/cadastro" />
+        </div>
+      );
+    } else if (user.isAuthenticated() === true) {
+      return (
+        <div data-toggle="collapse" data-target=".navbar-collapse.show">
+          <Btn text="Sair" lead="/" />
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-xl navbar-dark">
@@ -31,34 +51,53 @@ class Navbar extends Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarTogglerDemo">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active my-3" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <li
+              className="nav-item active my-3"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
               <Link to="/" className="nav-link ml-1" tabIndex="0">
                 Home
               </Link>
             </li>
-            <li className="nav-item active my-3" data-toggle="collapse" data-target=".navbar-collapse.show">
-              <Link to="/encontreProfissionais" className="nav-link ml-1" >
+            <li
+              className="nav-item active my-3"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <Link to="/encontreProfissionais" className="nav-link ml-1">
                 Encontre Profissionais
               </Link>
             </li>
-            <li className="nav-item active my-3" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <li
+              className="nav-item active my-3"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
               <Link to="/divulgueSeuTrabalho" className="nav-link ml-1">
                 Divulgue seu Trabalho
               </Link>
             </li>
-            <li className="nav-item active my-3" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <li
+              className="nav-item active my-3"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
               <Link to="/quemSomos" className="nav-link ml-1">
                 Quem Somos
               </Link>
             </li>
-            <li className="nav-item active my-3" data-toggle="collapse" data-target=".navbar-collapse.show">
+            <li
+              className="nav-item active my-3"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
               <Link to="/contato" className="nav-link ml-1">
                 Contato
               </Link>
             </li>
           </ul>
-          <Btn text="Entrar" lead="/entrar"  data-toggle="collapse" data-target=".navbar-collapse.show"/>
-          <Btn text="Cadastro" lead="/cadastro"  data-toggle="collapse" data-target=".navbar-collapse.show"/>
+          {this.renderButtons()}
         </div>
       </nav>
     );
