@@ -351,54 +351,53 @@ class EncontreProfissionais extends Component {
                   <div className="jumbotron-green col-12 text-left">
                     <h1 className="white-text">Encontre Profissionais</h1>
                     <div className="form-group">
-                      <div className="input-group">
-                        <input
-                          type="text"
-                          className="form-control type-field col"
-                          placeholder="Busque por termos chave como eletricista, manicure, DJ e etc..."
-                        />
-                        <div class="input-group-append">
-                          <Btn
-                            text="Pesquisar"
-                            className="btn btn-outline-white shadow"
-                            onClick={this.getProfissionais}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="accordion" id="accordionFiltros">
-                      <div className="accordion-groupmr-2">
-                        <div className="accordion-heading">
-                          <button
-                            type="button"
-                            className="accordion-toggle col-1"
-                            data-toggle="collapse"
-                            data-parent="#accordionFiltros"
-                            data-target={"#collapseConjuntoFiltros"}
-                          >
-                            <div className="btn btn-white shadow mt-1">
-                              Filtros
+                      <input
+                        type="text"
+                        className="form-control type-field col mr-0"
+                        placeholder="Busque por termos chave como eletricista, manicure, DJ e etc..."
+                      />
+                      <div className="accordion" id="accordionFiltros">
+                        <div className="accordion-group mr-0">
+                          <div className="d-flex justify-content-between">
+                            <div className="accordion-heading">
+                              <button
+                                type="button"
+                                className="accordion-toggle col-1"
+                                data-toggle="collapse"
+                                data-parent="#accordionFiltros"
+                                data-target={"#collapseConjuntoFiltros"}
+                              >
+                                <div className="btn btn-white shadow my-2">
+                                  Filtros
+                                </div>
+                              </button>
                             </div>
-                          </button>
-                        </div>
-                        <div
-                          id={"collapseConjuntoFiltros"}
-                          className="accordion-body collapse in"
-                        ></div>
-                        <div className="inner-card-accordion bg-info">
+
+                            <Btn
+                              text="Pesquisar"
+                              className="btn btn-white shadow my-2 mr-1"
+                              onClick={this.getProfissionais}
+                            />
+                          </div>
                           <div
                             id={"collapseConjuntoFiltros"}
-                            className="accordion-body collapse out"
-                          >
-                            <div className={`accordion-inner card-item`}>
-                              <div className="d-flex flex-wrap">
-                                {this.renderAccordion()}
+                            className="accordion-body collapse in"
+                          ></div>
+                          <div className="inner-card-accordion bg-info">
+                            <div
+                              id={"collapseConjuntoFiltros"}
+                              className="accordion-body collapse out"
+                            >
+                              <div className={`accordion-inner card-item`}>
+                                <div className="d-flex flex-wrap mr-0">
+                                  {this.renderAccordion()}
+                                </div>
+                                <Btn
+                                  text="Limpar Filtros"
+                                  className="btn btn-white shadow mt-2"
+                                  onClick={this.limparFiltros}
+                                />
                               </div>
-                              <Btn
-                                text="Limpar Filtros"
-                                className="btn btn-white shadow mt-2"
-                                onClick={this.limparFiltros}
-                              />
                             </div>
                           </div>
                         </div>

@@ -223,6 +223,7 @@ button.bg-info:focus {
   font-weight: bold;
   border: solid 2px #00ceaf;
   height: 50px;
+  border-radius: 7px;
 }
 .type-field:focus{
   border: solid 2px black
