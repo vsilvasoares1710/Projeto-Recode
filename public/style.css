@@ -248,7 +248,7 @@ button.bg-info:focus {
   margin-bottom: 2rem;
   background-color: #00ceaf;
   border-radius: 0.75rem;
-  border: solid white 2px;
+  border: solid #00ceaf 2px;
 }
 
 @media (min-width: 576px) {

@@ -6,13 +6,7 @@ class User extends Component {
     this.isAuthenticated = this.isAuthenticated.bind(this);
   }
   isAuthenticated = () => {
-    const token = JSON.parse(localStorage.getItem("tokenJWT"));
-
-    if (token === undefined) {
-      return false;
-    } else {
-      return true;
-    }
+    return false
   };
 }
 

@@ -34,7 +34,7 @@ class Entrar extends Component {
                   placeholder="Senha de Usuário"
                 />
               </div>
-              <Btn text="Entrar" lead="/" />
+              <Btn text="Entrar" lead="/"/>
             </div>
             <div className="jumbotron-green my-auto text-center col-12 col-md-6">
               <h1 className="white-text">Sou Profissional</h1>

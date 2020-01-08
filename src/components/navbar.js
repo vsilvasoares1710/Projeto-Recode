@@ -5,6 +5,7 @@ import LogoFundoEscuro from "../img/logFundoEscuro.png";
 import User from "../controllers/userAuthentication.js";
 
 class Navbar extends Component {
+
   renderButtons() {
     const user = new User();
 
@@ -18,7 +19,7 @@ class Navbar extends Component {
     } else if (user.isAuthenticated() === true) {
       return (
         <div data-toggle="collapse" data-target=".navbar-collapse.show">
-          <Btn text="Sair" lead="/" />
+          <Btn text="Sair" lead="/"/>
         </div>
       );
     }
