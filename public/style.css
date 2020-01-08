@@ -1,3 +1,6 @@
+.App {
+  height: 100%
+}
 #brand-logo {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 32px;
@@ -195,8 +198,11 @@ button.bg-info:focus {
 
 .footer-dark {
   background-color: #000000;
+  flex-shrink: none;
 }
-
+.stretch{
+  flex: 1 0 auto;
+}
 .navbar-dark {
   background-color: #000000;
 }

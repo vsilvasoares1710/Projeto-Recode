@@ -8,7 +8,7 @@ class Entrar extends Component {
     return (
       <div className="container-fluid bg-info">
         {/* <!-- Conteúdo principal da página --> */}
-        <div className="container bg-white px-4 pb-4">
+        <div className="container bg-white px-4 pb-4 stretch">
           <h1 className="green-text text-center pt-4">Entrar</h1>
           <div className="row">
             <div className="jumbotron-clear my-auto text-center col-12 col-md-6">
