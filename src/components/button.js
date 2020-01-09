@@ -52,6 +52,7 @@ class Btn extends Component {
           onClick={this.state.onClick}
           className={this.state.className}
           tabIndex={this.props.tabIndex}
+          idProfissional={this.props.idProfissional}
         >
           {this.state.text}
         </Link>
@@ -63,6 +64,7 @@ class Btn extends Component {
           type="button"
           className={this.state.className}
           tabIndex={this.props.tabIndex}
+          idProfissional={this.props.idProfissional}
         >
           {this.state.text}
         </Link>

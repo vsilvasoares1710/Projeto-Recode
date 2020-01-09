@@ -20,7 +20,7 @@ class EncontreProfissionais extends Component {
 
   getProfissionais() {
     try {
-      axios.get("/pesquisaPrestadores").then(response => {
+      axios.get("/pesquisaProfissionais").then(response => {
         this.setState({ profissionaisEncontrados: [] });
         this.setState({
           profissionaisEncontrados: response.data.profissionais
@@ -281,7 +281,7 @@ class EncontreProfissionais extends Component {
         <div className="jumbotron-clear">
           <div className="row">
             <div className="col-5 col-sm-5 col-md-3 col-lg-2 mx-auto mb-2 mt-0">
-              <Link to={`/profissionais/${"id"}/`}>
+              <Link to={`/profissional/${value.id}`}>
                 <img
                   src={value.icone}
                   width="100%"
@@ -293,12 +293,12 @@ class EncontreProfissionais extends Component {
               <Btn
                 text="Perfil Completo"
                 className="btn btn-info shadow py-1 px-2 m-1 mt-2 mx-auto"
-                lead={`/profissionais/${"id"}/`}
+                lead={`/profissional/${value.id}`}
               />
             </div>
             <div className="col-12 col-md-9 col-lg-10">
               <div className="vertical-divider" />
-              <Link to={`/profissionais/${"id"}/`} className="text-link">
+              <Link to={`/profissional/${value.id}`} className="text-link" >
                 <h4 className="text-left">{value.nome}</h4>
               </Link>
 

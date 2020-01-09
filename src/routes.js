@@ -9,6 +9,7 @@ import Contato from './paginas/contato'
 import QuemSomos from './paginas/quemSomos'
 import Entrar from './paginas/entrar'
 import Cadastro from './paginas/cadastro'
+import Profissional from './paginas/profissional'
 
 function Routes() {
 	return (
@@ -20,6 +21,7 @@ function Routes() {
 			<Route exact path='/quemSomos' component={QuemSomos} />
 			<Route exact path='/entrar' component={Entrar} />
 			<Route exact path='/cadastro' component={Cadastro} />
+      <Route exact path='/profissional/:id' component={Profissional} />
 		</Switch>
 	)
 
