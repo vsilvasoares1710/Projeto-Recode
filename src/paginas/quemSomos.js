@@ -4,6 +4,7 @@ import Missao from "../img/missao.png";
 import Visao from "../img/visao.png";
 import Valores from "../img/valores.png";
 import LogoFundoClaro from "../img/logFundoClaro.png";
+
 class QuemSomos extends Component {
   render() {
     return (

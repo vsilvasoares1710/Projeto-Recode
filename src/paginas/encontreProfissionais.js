@@ -14,26 +14,28 @@ class EncontreProfissionais extends Component {
     };
     this.getProfissionais = this.getProfissionais.bind(this);
     this.limparFiltros = this.limparFiltros.bind(this);
+    this.limparLista = this.limparLista.bind(this);
   }
 
   getProfissionais() {
-    // console.log(this.state);
     try {
       axios.get("/pesquisaPrestadores").then(response => {
         this.setState({ profissionaisEncontrados: [] });
-        this.setState({ profissionaisEncontrados: response.data });
+        this.setState({
+          profissionaisEncontrados: response.data.profissionais
+        });
         localStorage.setItem(
           "profissionaisEncontradosFixHub",
           JSON.stringify(this.state.profissionaisEncontrados)
         );
-        // console.log(response.data);
-        // console.log(
-        //   "ProfissionaisEncontrados: ",
-        //   this.state.profissionaisEncontrados
-        // );
+        console.log(response.data);
+        console.log(
+          "ProfissionaisEncontrados: ",
+          this.state.profissionaisEncontrados
+        );
       });
     } catch (error) {
-      // console.error(error);
+      console.error(error);
       alert("Falha na busca por profissionais");
     }
   }
@@ -242,7 +244,7 @@ class EncontreProfissionais extends Component {
   }
 
   renderProfissionais() {
-    const profisisonais = [
+    /* let profisisonais = [
       {
         nome: "Piruleison da Silva Sauro",
         icone: "https://image.flaticon.com/icons/png/512/57/57134.png",
@@ -269,9 +271,9 @@ class EncontreProfissionais extends Component {
             "Tempor pariatur anim esse culpa ullamco dolor ea ea eiusmod. Cupidatat exercitation ipsum ullamco ipsum aute. Culpa ex voluptate laborum deserunt commodo est ullamco labore in ullamco.\nDo velit ad duis dolor magna ullamco id esse dolor incididunt ad dolor ipsum. Laborum aliquip consectetur exercitation id sunt qui. Ullamco ad aliqua quis incididunt occaecat. Pariatur est voluptate do Lorem est aliquip officia sunt enim et sint sit. Consectetur ullamco minim tempor quis labore nulla esse laboris ex labore. Aliqua est id Lorem officia eiusmod aute irure aliquip tempor ex ex occaecat officia officia. Sint eu mollit reprehenderit adipisicing dolor exercitation labore esse nulla dolor veniam cillum aliquip."
         }
       }
-    ];
+    ];*/
 
-    return profisisonais.map(value => {
+    return this.state.profissionaisEncontrados.map(value => {
       return (
         <div className="jumbotron-clear">
           <div className="row">
@@ -315,6 +317,10 @@ class EncontreProfissionais extends Component {
     this.setState({
       filtrosMarcados: JSON.parse(localStorage.getItem("filtrosMarcadosFixHub"))
     });
+  }
+  limparLista() {
+    localStorage.setItem("profissionaisEncontradosFixHub", "[]");
+    this.setState({ profissionaisEncontrados: JSON.parse(localStorage.getItem("profissionaisEncontradosFixHub")) });
   }
   componentDidMount() {
     if (JSON.parse(localStorage.getItem("filtrosMarcadosFixHub")) === null) {
@@ -394,8 +400,13 @@ class EncontreProfissionais extends Component {
                                 </div>
                                 <Btn
                                   text="Limpar Filtros"
-                                  className="btn btn-white shadow mt-2"
+                                  className="btn btn-white shadow mt-2 mr-2"
                                   onClick={this.limparFiltros}
+                                />
+                                <Btn
+                                  text="Limpar Lista"
+                                  className="btn btn-white shadow mt-2"
+                                  onClick={this.limparLista}
                                 />
                               </div>
                             </div>
