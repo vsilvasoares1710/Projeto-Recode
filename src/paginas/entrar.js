@@ -11,7 +11,7 @@ class Entrar extends Component {
         <div className="container bg-white px-4 pb-4 stretch">
           <h1 className="green-text text-center pt-4">Entrar</h1>
           <div className="row">
-            <div className="jumbotron-clear my-auto text-center col-12 col-md-6">
+            <div className="jumbotron-clear my-auto text-center col-12 col-md m-2">
               <h1 className="green-text">Sou Usuário</h1>
               <div className="card-divider-long mb-3"></div>
               <div className="form-group pb-3">
@@ -36,7 +36,7 @@ class Entrar extends Component {
               </div>
               <Btn text="Entrar" lead="/"/>
             </div>
-            <div className="jumbotron-green my-auto text-center col-12 col-md-6">
+            <div className="jumbotron-green my-auto text-center col-12 col-md m-2">
               <h1 className="white-text">Sou Profissional</h1>
               <div className="card-divider-long-white mb-3"></div>
               <div className="form-group pb-3">

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 // Components
 import Btn from "../components/button.js";
@@ -29,10 +30,10 @@ class EncontreProfissionais extends Component {
           JSON.stringify(this.state.profissionaisEncontrados)
         );
         console.log(response.data);
-        console.log(
-          "ProfissionaisEncontrados: ",
-          this.state.profissionaisEncontrados
-        );
+        // console.log(
+        //   "Profissionais Encontrados: ",
+        //   this.state.profissionaisEncontrados
+        // );
       });
     } catch (error) {
       console.error(error);
@@ -206,8 +207,10 @@ class EncontreProfissionais extends Component {
                 data-parent="#accordionFiltros"
                 data-target={"#collapse" + categoriaFormatted}
               >
-                <div className="card-heading">
-                  <h5 className="green-text">{objeto.categoria}</h5>
+                <div className="d-flex align-items-center card-heading ">
+                  <h5 className="green-text mx-auto text-center">
+                    {objeto.categoria}
+                  </h5>
                 </div>
               </button>
             </div>
@@ -277,16 +280,28 @@ class EncontreProfissionais extends Component {
       return (
         <div className="jumbotron-clear">
           <div className="row">
-            <div className="col-5 col-sm-5 col-md-3 col-lg-2 mx-auto mb-2 ">
-              <img
-                src={value.icone}
-                width="100%"
-                alt={`Imagem de ${value.nome}`}
+            <div className="col-5 col-sm-5 col-md-3 col-lg-2 mx-auto mb-2 mt-0">
+              <Link to={`/profissionais/${"id"}/`}>
+                <img
+                  src={value.icone}
+                  width="100%"
+                  alt={`Imagem de ${value.nome}`}
+                  className="rounded-circle"
+                />
+              </Link>
+
+              <Btn
+                text="Perfil Completo"
+                className="btn btn-info shadow py-1 px-2 m-1 mt-2 mx-auto"
+                lead={`/profissionais/${"id"}/`}
               />
             </div>
-            <div className=" col-12 col-md-9 col-lg-10">
+            <div className="col-12 col-md-9 col-lg-10">
               <div className="vertical-divider" />
-              <h4 className="text-left">{value.nome}</h4>
+              <Link to={`/profissionais/${"id"}/`} className="text-link">
+                <h4 className="text-left">{value.nome}</h4>
+              </Link>
+
               <div className="card-divider-long"></div>
               <p className="text-left five-line-truncate">
                 {value.anuncio.texto}
@@ -299,6 +314,7 @@ class EncontreProfissionais extends Component {
                       text={tagName}
                       className="btn btn-info shadow py-1 px-2 m-1"
                       onClick={() => this.validateCheckbox(tag)}
+                      tabIndex="-1"
                     />
                     // <div className="tag white-text shadow-text bg-info p-1 m-1 clickable" onClick={() => this.validateCheckbox(tag)}>
                     //   <strong>{tagName}</strong>
@@ -320,7 +336,11 @@ class EncontreProfissionais extends Component {
   }
   limparLista() {
     localStorage.setItem("profissionaisEncontradosFixHub", "[]");
-    this.setState({ profissionaisEncontrados: JSON.parse(localStorage.getItem("profissionaisEncontradosFixHub")) });
+    this.setState({
+      profissionaisEncontrados: JSON.parse(
+        localStorage.getItem("profissionaisEncontradosFixHub")
+      )
+    });
   }
   componentDidMount() {
     if (JSON.parse(localStorage.getItem("filtrosMarcadosFixHub")) === null) {
@@ -360,7 +380,7 @@ class EncontreProfissionais extends Component {
                       <input
                         type="text"
                         className="form-control type-field col mr-0"
-                        placeholder="Busque por termos chave como eletricista, manicure, DJ e etc..."
+                        placeholder="Busque por termos chave..."
                       />
                       <div className="accordion" id="accordionFiltros">
                         <div className="accordion-group mr-0">
@@ -398,14 +418,15 @@ class EncontreProfissionais extends Component {
                                 <div className="d-flex flex-wrap mr-0">
                                   {this.renderAccordion()}
                                 </div>
+                                <div className="card-divider-long-white mt-3"></div>
                                 <Btn
                                   text="Limpar Filtros"
-                                  className="btn btn-white shadow mt-2 mr-2"
+                                  className="btn btn-dark-green shadow mt-2 mr-2"
                                   onClick={this.limparFiltros}
                                 />
                                 <Btn
                                   text="Limpar Lista"
-                                  className="btn btn-white shadow mt-2"
+                                  className="btn btn-dark-green shadow mt-2"
                                   onClick={this.limparLista}
                                 />
                               </div>
@@ -431,7 +452,7 @@ class EncontreProfissionais extends Component {
             <div className="row mx-3">
               <div className="row jumbotron-clear ">
                 {/* <!-- Imagem à esquerda/baixo --> */}
-                <div className="col-sm-12 col-lg-6 ">
+                <div className="col-10 col-sm-9 col-lg-6 mx-auto">
                   <img
                     src={workers}
                     width="100%"

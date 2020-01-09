@@ -140,6 +140,61 @@
   background-color: #138496;
 }
 
+.btn-dark-green {
+  color: white;
+  font-weight: bold;
+  background-color: #138496;
+}
+
+.btn-dark-green:hover,
+.btn-dark-green:focus,
+.btn-dark-green.focus {
+  box-shadow: 1 1 1 1rem #000000;
+  color: white;
+  background-color: black;
+}
+
+.btn-dark-green.disabled,
+.btn-dark-green:disabled {
+  color: #138496;
+  font-weight: bold;
+  background-color: #cacaca;
+  border-color: #5fffe7;
+}
+
+.btn-dark-green:not(:disabled):not(.disabled):active,
+.btn-dark-green:not(:disabled):not(.disabled).active,
+.show > .btn-dark-green.dropdown-toggle {
+  color: #000000;
+  background-color: #00ceaf;
+  border-color: #ffffff;
+}
+
+.btn-dark-green:not(:disabled):not(.disabled):active:focus,
+.btn-dark-green:not(:disabled):not(.disabled).active:focus,
+.show > .btn-dark-green.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
+}
+.btn-outline-dark-green {
+  color: white;
+  font-weight: bold;
+  background-color: #138496;
+  background-image: none;
+  border-color: #17a2b8;
+}
+
+.btn-outline-dark-green:hover {
+  box-shadow: 1 1 1 1rem #000000;
+  color: white;
+  background-color: black;
+}
+
+.btn-outline-dark-green:focus,
+.btn-outline-dark-green.focus {
+  box-shadow: 1 1 1 1rem #000000;
+  color: white;
+  background-color: black;
+}
 .btn-outline-info.disabled,
 .btn-outline-info:disabled {
   color: #17a2b8;
@@ -162,8 +217,11 @@
 
 .text-content {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-
   text-justify: auto;
+}
+.text-link, .text-link:hover{
+  color: black;
+  text-decoration: none;
 }
 
 .green-text,
@@ -346,13 +404,11 @@ button.bg-info:focus {
 }
 
 .card-heading {
-  padding-top: 5px;
-  padding-right: 8px;
-  padding-left: 8px;
+  padding-top: 6.5px;
+  padding-right: 12px;
+  padding-left: 12px;
   cursor: pointer;
-  position: relative;
-  top: 6px;
-  padding-bottom: 10px;
+  min-height: 63px;
 }
 .card-divider {
   margin-right: 8px;

@@ -28,13 +28,14 @@ class Btn extends Component {
           type="button"
           onClick={this.state.onClick}
           className={this.state.className}
+          tabIndex={this.props.tabIndex}
         >
           {this.state.text}
         </button>
       );
     } else {
       return (
-        <button type="button" className={this.state.className}>
+        <button type="button" className={this.state.className} tabIndex={this.props.tabIndex}>
           {this.state.text}
         </button>
       );
@@ -50,6 +51,7 @@ class Btn extends Component {
           type="button"
           onClick={this.state.onClick}
           className={this.state.className}
+          tabIndex={this.props.tabIndex}
         >
           {this.state.text}
         </Link>
@@ -60,6 +62,7 @@ class Btn extends Component {
           to={this.state.lead}
           type="button"
           className={this.state.className}
+          tabIndex={this.props.tabIndex}
         >
           {this.state.text}
         </Link>
@@ -76,6 +79,7 @@ class Btn extends Component {
           type="button"
           onClick={this.state.onClick}
           className={this.state.className}
+          tabIndex={this.props.tabIndex}
         >
           {this.state.text}
         </a>
@@ -86,6 +90,7 @@ class Btn extends Component {
           href={this.state.lead}
           type="button"
           className={this.state.className}
+          tabIndex={this.props.tabIndex}
         >
           {this.state.text}
         </a>
