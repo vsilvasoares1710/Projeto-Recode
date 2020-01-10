@@ -8,78 +8,90 @@ class Profissional extends Component {
     super(props);
     console.log();
     this.state = {
-      idProfissional: this.props.idProfissional
+      dadosProfissional: "Loading"
     };
-  }
+    // this.getDadosDoProfissional = this.getDadosDoProfissional.bind(this)
 
+  }
   getDadosDoProfissional() {
     try {
-      axios.get(`/profissional/${this.props.match.params.id}`).then(response => {
-        // this.setState({ profissionaisEncontrados: [] });
-        // this.setState({
-        //   profissionaisEncontrados: response.data.profissionais
-        // });
-        // localStorage.setItem(
-        //   "profissionaisEncontradosFixHub",
-        //   JSON.stringify(this.state.profissionaisEncontrados)
-        // );
-        console.log(response.data);
-      });
+      axios
+        .post(`/profissional/${this.props.match.params.id}`, { token: false })
+        .then(response => {
+          console.log(response.data);
+          this.setState({ dadosProfissional: response.data })
+        })
     } catch (error) {
       console.error(error);
-      alert("Falha na busca por profissionais");
+      this.setState({ dadosProfissional: null })
+    }
+  }
+
+  componentDidMount(){
+    this.getDadosDoProfissional()
+  }
+
+  shouldComponentUpdate() {
+    if(typeof this.state.dadosProfissional === "object"){
+      return false
+    } else {
+      return true
     }
   }
 
   render() {
-    return (
-      <div className="container-fluid bg-info">
-        {/* <!-- Conteúdo principal da página --> */}
-        <div className="container bg-white stretch">
-          {/* <!-- Inicio da primeira row --> */}
-          <div className="row">
-            {/* <!-- Inicio do conteiner quem somos --> */}
-            <div className="col-12 mt-4">
-              <div className="row text-center mx-auto mb-2">
-                <img
-                  className="mx-auto my-1 align-items-center"
-                  src={LogoFundoClaro}
-                  height="90px"
-                  width="335px"
-                  alt="logo"
-                />
-              </div>
-              {/* <!-- Inicio do jumbotron superior --> */}
-              <div className="jumbotron-clear my-auto text-center">
-                <h1 className="green-text text-center">
-                  {JSON.stringify(this.props.match.params.id)}
-                  <br/>
-                  {this.getDadosDoProfissional()}
-                </h1>
-                <br />
-                <h4 className="text-content text-justify">
-                  Texto
-                </h4>
-                <br />
-                <h4 className="text-content text-justify">
-                  Texto
-                </h4>
-                <br />
-                <h4 className="text-content text-justify">
-                  Texto
-                </h4>
-              </div>
-              {/* <!-- Fim do jumbotron superior --> */}
+    if(this.state.dadosProfissional === "Loading"){
+      return (
+        <div className="container-fluid bg-info">
+          <div className="container bg-white stretch">
+            <div className="col">
+              <h1 className="green-text text-enter mx-auto">Carregando...</h1>
             </div>
-            {/* <!-- Fim do Container a página quem somos --> */}
           </div>
-          {/* <!-- Fim da primeira row --> */}
-
-          {/* <!-- Fim do box dos cards--> */}
         </div>
-        {/* <!-- Fim do background verde água --> */}
-      </div>
-    );
+      )
+    } else {
+      return (
+        <div className="container-fluid bg-info">
+          {/* <!-- Conteúdo principal da página --> */}
+          <div className="container bg-white">
+            {/* <!-- Inicio da primeira row --> */}
+            <div className="row">
+              {/* <!-- Inicio do conteiner quem somos --> */}
+              <div className="col-12 mt-4">
+                <div className="row text-center mx-auto mb-2">
+                  <img
+                    className="mx-auto my-1 align-items-center"
+                    src={LogoFundoClaro}
+                    height="90px"
+                    width="335px"
+                    alt="logo"
+                    />
+                </div>
+                {/* <!-- Inicio do jumbotron superior --> */}
+                <div className="jumbotron-clear my-auto text-center">
+                  <h1 className="green-text text-center">
+                    {JSON.stringify(this.props.match.params.id)}
+                  </h1>
+                  <br />
+                  <h4 className="text-content text-justify">Texto</h4>
+                  <br />
+                  <h4 className="text-content text-justify">Texto</h4>
+                  <br />
+                  <h4 className="text-content text-justify">Texto</h4>
+                </div>
+                {/* <!-- Fim do jumbotron superior --> */}
+              </div>
+              {/* <!-- Fim do Container a página quem somos --> */}
+            </div>
+            {/* <!-- Fim da primeira row --> */}
+
+            {/* <!-- Fim do box dos cards--> */}
+          </div>
+          {/* <!-- Fim do background verde água --> */}
+        </div>
+      );
+    }
   }
 }
 

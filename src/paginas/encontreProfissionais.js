@@ -11,7 +11,11 @@ class EncontreProfissionais extends Component {
     super();
     this.state = {
       profissionaisEncontrados: [],
-      filtrosMarcados: []
+      filtrosMarcados: [],
+      paginas: {
+        atual: 1,
+        total: 1
+      }
     };
     this.getProfissionais = this.getProfissionais.bind(this);
     this.limparFiltros = this.limparFiltros.bind(this);
@@ -20,7 +24,7 @@ class EncontreProfissionais extends Component {
 
   getProfissionais() {
     try {
-      axios.get("/pesquisaProfissionais").then(response => {
+      axios.get(`/pesquisaProfissionais/${this.state.paginas.atual}`).then(response => {
         this.setState({ profissionaisEncontrados: [] });
         this.setState({
           profissionaisEncontrados: response.data.profissionais
@@ -30,6 +34,7 @@ class EncontreProfissionais extends Component {
           JSON.stringify(this.state.profissionaisEncontrados)
         );
         console.log(response.data);
+        // console.log(typeof this.state)
         // console.log(
         //   "Profissionais Encontrados: ",
         //   this.state.profissionaisEncontrados
