@@ -6,9 +6,6 @@ export default function getFiltros() {
     });
   } catch (error) {
     console.error(error);
-    return {
-      statusCode: 500,
-      body: error.message
-    };
+    return error
   }
 }
