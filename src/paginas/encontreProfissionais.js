@@ -162,6 +162,7 @@ class EncontreProfissionais extends Component {
           "Gesseiro",
           "Marceneiro",
           "Mecânico",
+          "Pedreiro",
           "Pintor",
           "Vidraceiro"
         ]
