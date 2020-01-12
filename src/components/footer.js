@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import User from "../controllers/userAuthentication";
+import User from "../services/userAuthentication";
 
 class Footer extends Component {
   renderOptionsSmallFooter() {

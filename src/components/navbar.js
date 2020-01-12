@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Btn from "./button.js";
 import LogoFundoEscuro from "../img/logFundoEscuro.png";
-import User from "../controllers/userAuthentication.js";
+import User from "../services/userAuthentication.js";
 
 class Navbar extends Component {
 
