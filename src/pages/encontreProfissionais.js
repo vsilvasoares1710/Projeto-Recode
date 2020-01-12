@@ -30,7 +30,7 @@ class EncontreProfissionais extends Component {
   async getProfissionais() {
     const rota = `/pesquisaProfissionais/${this.state.paginas.atual}`;
     const pesquisa = await search(rota);
-    if (pesquisa) {
+    if (typeof pesquisa === "object" && pesquisa.id !== null) {
       this.setState({ profissionaisEncontrados: pesquisa.profissionais });
       localStorage.setItem(
         "profissionaisEncontradosFixHub",
@@ -40,10 +40,10 @@ class EncontreProfissionais extends Component {
   }
 
   async carregarFiltros() {
-    const tags = await getFiltros();
-    if (typeof tags === "object") {
-      console.log(typeof tags)
-      this.setState({ filtros: tags });
+    const filtros = await getFiltros();
+    if (typeof filtros === "object" && filtros.catregoria !== null) {
+      console.log(typeof filtros)
+      this.setState({ filtros: filtros });
     } else {
       return;
     }
