@@ -11,7 +11,6 @@ class Profissional extends Component {
       dadosProfissional: "Loading"
     };
     // this.getDadosDoProfissional = this.getDadosDoProfissional.bind(this)
-
   }
   getDadosDoProfissional() {
     try {
@@ -19,28 +18,28 @@ class Profissional extends Component {
         .post(`/profissional/${this.props.match.params.id}`, { token: false })
         .then(response => {
           console.log(response.data);
-          this.setState({ dadosProfissional: response.data })
-        })
+          this.setState({ dadosProfissional: response.data });
+        });
     } catch (error) {
       console.error(error);
-      this.setState({ dadosProfissional: null })
+      this.setState({ dadosProfissional: null });
     }
   }
 
-  componentDidMount(){
-    this.getDadosDoProfissional()
+  componentDidMount() {
+    this.getDadosDoProfissional();
   }
 
   shouldComponentUpdate() {
-    if(typeof this.state.dadosProfissional === "object"){
-      return false
+    if (typeof this.state.dadosProfissional === "object") {
+      return false;
     } else {
-      return true
+      return true;
     }
   }
 
   render() {
-    if(this.state.dadosProfissional === "Loading"){
+    if (this.state.dadosProfissional === "Loading") {
       return (
         <div className="container-fluid bg-info">
           <div className="container bg-white stretch">
@@ -49,7 +48,7 @@ class Profissional extends Component {
             </div>
           </div>
         </div>
-      )
+      );
     } else {
       return (
         <div className="container-fluid bg-info">
@@ -59,22 +58,15 @@ class Profissional extends Component {
             <div className="row">
               {/* <!-- Inicio do conteiner quem somos --> */}
               <div className="col-12 mt-4">
-                <div className="row text-center mx-auto mb-2">
-                  <img
-                    className="mx-auto my-1 align-items-center"
-                    src={LogoFundoClaro}
-                    height="90px"
-                    width="335px"
-                    alt="logo"
-                    />
-                </div>
                 {/* <!-- Inicio do jumbotron superior --> */}
                 <div className="jumbotron-clear my-auto text-center">
                   <h1 className="green-text text-center">
                     {JSON.stringify(this.props.match.params.id)}
                   </h1>
-                  <br />
-                  <h4 className="text-content text-justify">Texto</h4>
+                  <img
+                    src={this.state.dadosProfissional.icone}
+                    className="rounded-circle col-3 align-self-start"
+                  />
                   <br />
                   <h4 className="text-content text-justify">Texto</h4>
                   <br />
