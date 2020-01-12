@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
 // Components
 import Btn from "../components/button.js";
+// Services
+import search from "../services/search.js";
 // Images
 import workers from "../img/workers.jpg";
 
@@ -15,35 +17,23 @@ class EncontreProfissionais extends Component {
       paginas: {
         atual: 1,
         total: 1
-      }
+      },
+      test: ""
     };
     this.getProfissionais = this.getProfissionais.bind(this);
     this.limparFiltros = this.limparFiltros.bind(this);
     this.limparLista = this.limparLista.bind(this);
   }
 
-  getProfissionais() {
-    try {
-      axios.get(`/pesquisaProfissionais/${this.state.paginas.atual}`).then(response => {
-        this.setState({ profissionaisEncontrados: [] });
-        this.setState({
-          profissionaisEncontrados: response.data.profissionais
-        });
-        localStorage.setItem(
-          "profissionaisEncontradosFixHub",
-          JSON.stringify(this.state.profissionaisEncontrados)
-        );
-        console.log(response.data);
-        // console.log(typeof this.state)
-        // console.log(
-        //   "Profissionais Encontrados: ",
-        //   this.state.profissionaisEncontrados
-        // );
-      });
-    } catch (error) {
-      console.error(error);
-      alert("Falha na busca por profissionais");
-    }
+  async getProfissionais() {
+    const rota = `/pesquisaProfissionais/${this.state.paginas.atual}`
+    const pesquisa = await search(rota)
+    this.setState({ profissionaisEncontrados: pesquisa.profissionais })
+    localStorage.setItem(
+      "profissionaisEncontradosFixHub",
+      JSON.stringify(this.state.profissionaisEncontrados)
+    );
+
   }
 
   validateCheckbox = inputId => {
@@ -303,7 +293,7 @@ class EncontreProfissionais extends Component {
             </div>
             <div className="col-12 col-md-9 col-lg-10">
               <div className="vertical-divider" />
-              <Link to={`/profissional/${value.id}`} className="text-link" >
+              <Link to={`/profissional/${value.id}`} className="text-link">
                 <h4 className="text-left">{value.nome}</h4>
               </Link>
 
