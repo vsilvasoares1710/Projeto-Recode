@@ -1,11 +1,11 @@
 [[redirects]]
-  from = "/*"
-  to = "/"
+  from = "https://fixhub.netlify.com/*"
+  to = "https://fixhub.netlify.com/"
   status = 200
   force = true
 
 [[redirects]]
-  from = "/*"
-  to = "/"
+  from = "https://fixhub.netlify.com/*"
+  to = "https://fixhub.netlify.com/"
   status = 500
   force = true
