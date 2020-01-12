@@ -2,14 +2,14 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 
 //components
-import Home from './paginas/home'
-import EncontreProfissionais from './paginas/encontreProfissionais'
-import DivulgueSeuTrabalho from './paginas/divulgueSeuTrabalho'
-import Contato from './paginas/contato'
-import QuemSomos from './paginas/quemSomos'
-import Entrar from './paginas/entrar'
-import Cadastro from './paginas/cadastro'
-import Profissional from './paginas/profissional'
+import Home from './pages/home'
+import EncontreProfissionais from './pages/encontreProfissionais'
+import DivulgueSeuTrabalho from './pages/divulgueSeuTrabalho'
+import Contato from './pages/contato'
+import QuemSomos from './pages/quemSomos'
+import Entrar from './pages/entrar'
+import Cadastro from './pages/cadastro'
+import Profissional from './pages/profissional'
 
 function Routes() {
 	return (
