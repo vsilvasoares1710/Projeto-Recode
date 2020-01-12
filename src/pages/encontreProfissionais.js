@@ -42,6 +42,8 @@ class EncontreProfissionais extends Component {
     const filtros = await getFiltros();
     if (filtros !== null) {
       this.setState({ filtros: filtros });
+    }else {
+      return
     }
   }
 
