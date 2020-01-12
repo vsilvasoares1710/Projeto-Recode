@@ -1,12 +1,11 @@
 import axios from "axios";
 export default function getFiltros() {
-  return axios
-    .get("/filtros")
-    .then(response => {
+  try {
+    return axios.get("/filtros").then(response => {
       return response.data;
-    })
-    .catch(error => {
-      console.error("Falha no carregamento dos filtros", error);
-      return [{categoria: "Erro", tags:["errosub1", "errosub2"]}];
     });
+  } catch (error) {
+    console.error("Falha no carregamento dos filtros", error);
+    return [{ categoria: "Erro", tags: ["errosub1", "errosub2"] }];
+  }
 }
