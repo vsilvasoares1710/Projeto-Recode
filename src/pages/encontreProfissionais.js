@@ -19,7 +19,7 @@ class EncontreProfissionais extends Component {
       paginas: {
         atual: 1,
         total: 1
-      },
+      }
     };
     this.getProfissionais = this.getProfissionais.bind(this);
     this.limparFiltros = this.limparFiltros.bind(this);
@@ -42,8 +42,8 @@ class EncontreProfissionais extends Component {
     const filtros = await getFiltros();
     if (filtros !== null) {
       this.setState({ filtros: filtros });
-    }else {
-      return
+    } else {
+      return;
     }
   }
 
@@ -100,61 +100,62 @@ class EncontreProfissionais extends Component {
   };
 
   renderAccordion() {
-    if (this.state.filtros === []) {
+    if (this.state.filtros.length < 1) {
       return;
-    }
-    const filtros = this.state.filtros;
+    } else {
+      const filtros = this.state.filtros;
 
-    return filtros.map(objeto => {
-      const categoriaFormatted = objeto.categoria.replace(/ /g, "-");
-      return (
-        <div className="col-12 col-sm-6 col-md-4 col-lg-3 m-0 p-0">
-          <div className="accordion-group accordion-card shadow mr-2">
-            <div className="accordion-heading">
-              <button
-                type="button"
-                className="accordion-toggle"
-                data-toggle="collapse"
-                data-parent="#accordionFiltros"
-                data-target={"#collapse" + categoriaFormatted}
-              >
-                <div className="d-flex align-items-center card-heading ">
-                  <h5 className="green-text mx-auto text-center">
-                    {objeto.categoria}
-                  </h5>
-                </div>
-              </button>
-            </div>
-            <div
-              id={"collapse" + categoriaFormatted}
-              className="accordion-body collapse in"
-            >
-              <div className="card-divider"></div>
-            </div>
-            <div className="inner-card-accordion">
-              {objeto.tags.map((tag, index) => {
-                let inferiorPadding;
-                index < objeto.tags.length - 1
-                  ? (inferiorPadding = "")
-                  : (inferiorPadding = "pb-1");
-                return (
-                  <div
-                    id={"collapse" + categoriaFormatted}
-                    className="accordion-body collapse out"
-                  >
-                    <div
-                      className={`accordion-inner card-item ${inferiorPadding}`}
-                    >
-                      {this.renderCheckbox(tag)}
-                    </div>
+      return filtros.map(objeto => {
+        const categoriaFormatted = objeto.categoria.replace(/ /g, "-");
+        return (
+          <div className="col-12 col-sm-6 col-md-4 col-lg-3 m-0 p-0">
+            <div className="accordion-group accordion-card shadow mr-2">
+              <div className="accordion-heading">
+                <button
+                  type="button"
+                  className="accordion-toggle"
+                  data-toggle="collapse"
+                  data-parent="#accordionFiltros"
+                  data-target={"#collapse" + categoriaFormatted}
+                >
+                  <div className="d-flex align-items-center card-heading ">
+                    <h5 className="green-text mx-auto text-center">
+                      {objeto.categoria}
+                    </h5>
                   </div>
-                );
-              })}
+                </button>
+              </div>
+              <div
+                id={"collapse" + categoriaFormatted}
+                className="accordion-body collapse in"
+              >
+                <div className="card-divider"></div>
+              </div>
+              <div className="inner-card-accordion">
+                {objeto.tags.map((tag, index) => {
+                  let inferiorPadding;
+                  index < objeto.tags.length - 1
+                    ? (inferiorPadding = "")
+                    : (inferiorPadding = "pb-1");
+                  return (
+                    <div
+                      id={"collapse" + categoriaFormatted}
+                      className="accordion-body collapse out"
+                    >
+                      <div
+                        className={`accordion-inner card-item ${inferiorPadding}`}
+                      >
+                        {this.renderCheckbox(tag)}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
-      );
-    });
+        );
+      });
+    }
   }
   limparFiltros() {
     localStorage.setItem("filtrosMarcadosFixHub", "[]");
@@ -269,14 +270,15 @@ class EncontreProfissionais extends Component {
 
                   {/* Inicio dos resultados de pesquisa */}
                   {this.state.profissionaisEncontrados.map(profissional => {
-
-                    return <RenderProfissionais
-                      idProfissional={profissional.id}
-                      nome={profissional.nome}
-                      icone={profissional.icone}
-                      texto={profissional.anuncio.texto}
-                      tags={profissional.tags}
-                    />;
+                    return (
+                      <RenderProfissionais
+                        idProfissional={profissional.id}
+                        nome={profissional.nome}
+                        icone={profissional.icone}
+                        texto={profissional.anuncio.texto}
+                        tags={profissional.tags}
+                      />
+                    );
                   })}
                   {/* Fim dos resultados de pesquisa */}
                 </div>
