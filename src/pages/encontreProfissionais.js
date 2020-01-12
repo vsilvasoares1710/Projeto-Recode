@@ -13,7 +13,7 @@ class EncontreProfissionais extends Component {
   constructor() {
     super();
     this.state = {
-      filtros: [{categoria: "testCategoria", tags: ["testtag1", "testtag2"]}],
+      filtros: [],
       profissionaisEncontrados: [],
       filtrosMarcados: [],
       paginas: {
@@ -101,8 +101,6 @@ class EncontreProfissionais extends Component {
 
   renderAccordion() {
     if (this.state.filtros.length < 1) {
-      return;
-    } else {
       const filtros = this.state.filtros;
 
       return filtros.map(objeto => {
@@ -155,6 +153,8 @@ class EncontreProfissionais extends Component {
           </div>
         );
       });
+    } else {
+      return;
     }
   }
   limparFiltros() {
