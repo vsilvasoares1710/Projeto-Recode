@@ -100,7 +100,7 @@ class EncontreProfissionais extends Component {
   };
 
   renderAccordion() {
-    if (this.state.filtros.length > 0) {
+    if (this.state.filtros) {
       const filtros = this.state.filtros;
 
       return filtros.map(objeto => {
