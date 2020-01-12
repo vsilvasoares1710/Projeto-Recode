@@ -5,7 +5,8 @@ import Btn from "../components/button.js";
 import contato from "../img/contato.png";
 class Contato extends Component {
   enviarMensagem() {
-    alert("Sua mensagem foi enviada com sucesso.");
+    const contactMail = document.getElementById("email-contato").value
+    alert("Mensagem Enviada com Sucesso")
   }
 
   render() {

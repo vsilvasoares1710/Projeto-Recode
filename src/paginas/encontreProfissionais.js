@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 // Components
 import Btn from "../components/button.js";
 // Services
 import search from "../services/search.js";
+import getFiltros from "../services/filters.js";
+import RenderProfissionais from "../components/cardDoProfissional";
 // Images
 import workers from "../img/workers.jpg";
 
@@ -12,13 +13,13 @@ class EncontreProfissionais extends Component {
   constructor() {
     super();
     this.state = {
+      filtros: [],
       profissionaisEncontrados: [],
       filtrosMarcados: [],
       paginas: {
         atual: 1,
         total: 1
       },
-      test: ""
     };
     this.getProfissionais = this.getProfissionais.bind(this);
     this.limparFiltros = this.limparFiltros.bind(this);
@@ -26,14 +27,22 @@ class EncontreProfissionais extends Component {
   }
 
   async getProfissionais() {
-    const rota = `/pesquisaProfissionais/${this.state.paginas.atual}`
-    const pesquisa = await search(rota)
-    this.setState({ profissionaisEncontrados: pesquisa.profissionais })
-    localStorage.setItem(
-      "profissionaisEncontradosFixHub",
-      JSON.stringify(this.state.profissionaisEncontrados)
-    );
+    const rota = `/pesquisaProfissionais/${this.state.paginas.atual}`;
+    const pesquisa = await search(rota);
+    if (pesquisa !== null) {
+      this.setState({ profissionaisEncontrados: pesquisa.profissionais });
+      localStorage.setItem(
+        "profissionaisEncontradosFixHub",
+        JSON.stringify(this.state.profissionaisEncontrados)
+      );
+    }
+  }
 
+  async carregarFiltros() {
+    const filtros = await getFiltros();
+    if (filtros !== null) {
+      this.setState({ filtros: filtros });
+    }
   }
 
   validateCheckbox = inputId => {
@@ -89,106 +98,10 @@ class EncontreProfissionais extends Component {
   };
 
   renderAccordion() {
-    const filtros = [
-      {
-        categoria: "Aulas",
-        tags: [
-          "Reforço Escolar",
-          "Dança",
-          "Espanhol",
-          "Francês",
-          "Inglês",
-          "Música",
-          "Pré-Vestibular"
-        ]
-      },
-      {
-        categoria: "Estética",
-        tags: [
-          "Barbeiro",
-          "Cabelereiro",
-          "Depilação",
-          "Manicure",
-          "Maquiagem",
-          "Pedicure",
-          "Sobrancelha"
-        ]
-      },
-      {
-        categoria: "Eventos",
-        tags: ["Animação", "Bandas", "Decoração", "DJ's", "Fotografia"]
-      },
-      {
-        categoria: "Informática e Telefonia",
-        tags: [
-          "Cabos/Redes ",
-          "Celular",
-          "Computador",
-          "Impressora",
-          "Notebook",
-          "Tablet",
-          "Telefone Fixo",
-          "Telefone Pabx"
-        ]
-      },
-      {
-        categoria: "Reparo de Eletrodomésticos",
-        tags: [
-          "Fogão/Cooktop",
-          "Geladeira/Freezer",
-          "Lava Louças",
-          "Máquina de Lavar ",
-          "Microondas"
-        ]
-      },
-      {
-        categoria: "Reparo de Eletrônicos",
-        tags: [
-          "Aparelho de Som",
-          "Ar condicionado",
-          "Câmera",
-          "DVD",
-          "BLU-RAY",
-          "Home Theater",
-          "Televisão",
-          "Video Game"
-        ]
-      },
-      {
-        categoria: "Reparos em Geral",
-        tags: [
-          "Eletricista",
-          "Encanador",
-          "Gesseiro",
-          "Marceneiro",
-          "Mecânico",
-          "Pedreiro",
-          "Pintor",
-          "Vidraceiro"
-        ]
-      },
-      {
-        categoria: "Serviços Gráficos",
-        tags: [
-          "Banners",
-          "Convites",
-          "Cartões de Visita",
-          "Encadernação",
-          "Flyers e Panfletos",
-          "Plotagem",
-          "TCC's"
-        ]
-      },
-      {
-        categoria: "Tecnologia e Design",
-        tags: [
-          "Criação de Sites",
-          "Criação de Apps",
-          "Logomarcas",
-          "Marketing Digital"
-        ]
-      }
-    ];
+    if (this.state.filtros === []) {
+      return;
+    }
+    const filtros = this.state.filtros;
 
     return filtros.map(objeto => {
       const categoriaFormatted = objeto.categoria.replace(/ /g, "-");
@@ -241,89 +154,6 @@ class EncontreProfissionais extends Component {
       );
     });
   }
-
-  renderProfissionais() {
-    /* let profisisonais = [
-      {
-        nome: "Piruleison da Silva Sauro",
-        icone: "https://image.flaticon.com/icons/png/512/57/57134.png",
-        tags: [
-          "eletricista",
-          "pintor",
-          "encanador",
-          "pedreiro",
-          "gesseiro",
-          "marceneiro",
-          "vidraceiro"
-        ],
-        anuncio: {
-          texto:
-            "Tempor pariatur anim esse culpa ullamco dolor ea ea eiusmod. Cupidatat exercitation ipsum ullamco ipsum aute. Culpa ex voluptate laborum deserunt commodo est ullamco labore in ullamco.\nDo velit ad duis dolor magna ullamco id esse dolor incididunt ad dolor ipsum. Laborum aliquip consectetur exercitation id sunt qui. Ullamco ad aliqua quis incididunt occaecat. Pariatur est voluptate do Lorem est aliquip officia sunt enim et sint sit. Consectetur ullamco minim tempor quis labore nulla esse laboris ex labore. Aliqua est id Lorem officia eiusmod aute irure aliquip tempor ex ex occaecat officia officia. Sint eu mollit reprehenderit adipisicing dolor exercitation labore esse nulla dolor veniam cillum aliquip."
-        }
-      },
-      {
-        nome: "Jubileu Astrogildo de Magalhães",
-        icone: "https://image.flaticon.com/icons/png/512/56/56990.png",
-        tags: ["professor", "música", "dança", "canto"],
-        anuncio: {
-          texto:
-            "Tempor pariatur anim esse culpa ullamco dolor ea ea eiusmod. Cupidatat exercitation ipsum ullamco ipsum aute. Culpa ex voluptate laborum deserunt commodo est ullamco labore in ullamco.\nDo velit ad duis dolor magna ullamco id esse dolor incididunt ad dolor ipsum. Laborum aliquip consectetur exercitation id sunt qui. Ullamco ad aliqua quis incididunt occaecat. Pariatur est voluptate do Lorem est aliquip officia sunt enim et sint sit. Consectetur ullamco minim tempor quis labore nulla esse laboris ex labore. Aliqua est id Lorem officia eiusmod aute irure aliquip tempor ex ex occaecat officia officia. Sint eu mollit reprehenderit adipisicing dolor exercitation labore esse nulla dolor veniam cillum aliquip."
-        }
-      }
-    ];*/
-
-    return this.state.profissionaisEncontrados.map(value => {
-      return (
-        <div className="jumbotron-clear">
-          <div className="row">
-            <div className="col-5 col-sm-5 col-md-3 col-lg-2 mx-auto mb-2 mt-0">
-              <Link to={`/profissional/${value.id}`}>
-                <img
-                  src={value.icone}
-                  width="100%"
-                  alt={`Imagem de ${value.nome}`}
-                  className="rounded-circle"
-                />
-              </Link>
-
-              <Btn
-                text="Perfil Completo"
-                className="btn btn-info shadow py-1 px-2 m-1 mt-2 mx-auto"
-                lead={`/profissional/${value.id}`}
-              />
-            </div>
-            <div className="col-12 col-md-9 col-lg-10">
-              <div className="vertical-divider" />
-              <Link to={`/profissional/${value.id}`} className="text-link">
-                <h4 className="text-left">{value.nome}</h4>
-              </Link>
-
-              <div className="card-divider-long"></div>
-              <p className="text-left five-line-truncate">
-                {value.anuncio.texto}
-              </p>
-              <div className="d-flex flex-wrap">
-                {value.tags.map(tag => {
-                  const tagName = tag.charAt(0).toUpperCase() + tag.slice(1);
-                  return (
-                    <Btn
-                      text={tagName}
-                      className="btn btn-info shadow py-1 px-2 m-1"
-                      onClick={() => this.validateCheckbox(tag)}
-                      tabIndex="-1"
-                    />
-                    // <div className="tag white-text shadow-text bg-info p-1 m-1 clickable" onClick={() => this.validateCheckbox(tag)}>
-                    //   <strong>{tagName}</strong>
-                    // </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    });
-  }
   limparFiltros() {
     localStorage.setItem("filtrosMarcadosFixHub", "[]");
     this.setState({
@@ -356,6 +186,7 @@ class EncontreProfissionais extends Component {
         localStorage.getItem("profissionaisEncontradosFixHub")
       )
     });
+    this.carregarFiltros();
   }
   render() {
     return (
@@ -435,7 +266,16 @@ class EncontreProfissionais extends Component {
                   {/* Fim do Jumbotron verde com filtros de pesquisa */}
 
                   {/* Inicio dos resultados de pesquisa */}
-                  {this.renderProfissionais()}
+                  {this.state.profissionaisEncontrados.map(profissional => {
+
+                    return <RenderProfissionais
+                      idProfissional={profissional.id}
+                      nome={profissional.nome}
+                      icone={profissional.icone}
+                      texto={profissional.anuncio.texto}
+                      tags={profissional.tags}
+                    />;
+                  })}
                   {/* Fim dos resultados de pesquisa */}
                 </div>
 

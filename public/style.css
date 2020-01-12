@@ -290,7 +290,9 @@ button.bg-info:focus {
   border-radius: 7px;
 }
 .type-field:focus{
-  border: solid 2px black
+  border: solid 2px black;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5);
+
 }
 .jumbotron {
   padding: 2rem 1rem;
