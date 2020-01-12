@@ -13,7 +13,7 @@ class EncontreProfissionais extends Component {
   constructor() {
     super();
     this.state = {
-      filtros: [],
+      filtros: [{categoria: "testCategoria", tags: ["testtag1", "testtag2"]}],
       profissionaisEncontrados: [],
       filtrosMarcados: [],
       paginas: {
