@@ -24,6 +24,7 @@ class EncontreProfissionais extends Component {
     this.getProfissionais = this.getProfissionais.bind(this);
     this.limparFiltros = this.limparFiltros.bind(this);
     this.limparLista = this.limparLista.bind(this);
+    this.carregarFiltros = this.carregarFiltros.bind(this)
   }
 
   async getProfissionais() {
