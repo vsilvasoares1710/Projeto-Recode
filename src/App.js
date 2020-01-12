@@ -5,7 +5,7 @@ import Footer from "./components/footer";
 import { BrowserRouter } from "react-router-dom";
 
 class App extends Component {
-  componentDidMount() {
+  /*componentDidMount() {
     if (JSON.parse(localStorage.getItem("filtrosMarcadosFixHub")) === null) {
       localStorage.setItem("filtrosMarcadosFixHub", "[]");
     }
@@ -15,7 +15,7 @@ class App extends Component {
     ) {
       localStorage.setItem("profissionaisEncontradosFixHub", "[]");
     }
-  }
+  }*/
   render() {
     return (
       <div className="App">
