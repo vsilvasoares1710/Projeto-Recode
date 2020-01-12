@@ -41,8 +41,8 @@ class EncontreProfissionais extends Component {
 
   async carregarFiltros() {
     const tags = await getFiltros();
-    if (typeof tags === "array") {
-      console.log("CarregarFiltros: ",tags)
+    if (typeof tags === "object") {
+      console.log(typeof tags)
       this.setState({ filtros: tags });
     } else {
       return;
