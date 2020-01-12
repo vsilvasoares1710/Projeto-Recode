@@ -5,7 +5,7 @@ export default function getFiltros() {
       return response.data;
     });
   } catch (error) {
-    console.error("Falha no carregamento dos filtros", error);
+    console.error(error);
     return [{ categoria: "Erro", tags: ["errosub1", "errosub2"] }];
   }
 }
