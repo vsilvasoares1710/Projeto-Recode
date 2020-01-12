@@ -6,6 +6,6 @@ export default function getFiltros() {
     });
   } catch (error) {
     console.error(error);
-    return error
+    return (error)
   }
 }
