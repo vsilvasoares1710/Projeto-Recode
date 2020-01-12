@@ -2,3 +2,10 @@
   from = "/*"
   to = "/"
   status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 500
+  force = true
