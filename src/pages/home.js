@@ -59,47 +59,53 @@ class Home extends Component {
               <div className="col-md-6 col-lg-4 col-xl-3 my-4 d-none d-md-block">
                 <div className="card h-100 w-100">
                   <div className="card-body shadow d-flex flex-column">
-                    <h4 className="card-title pb-1" >Reparos</h4>
+                    <h4 className="card-title pb-1" >Reparos em Geral</h4>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content" tabIndex="-1"
-                      id="eletricistasLink"
+                      id="eletricista"
                     >
                       Eletricistas
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content" tabIndex="-1"
+                      id="encanador"
                     >
                       Encanadores
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content" tabIndex="-1"
+                      id="gesseiro"
                     >
                       Gesseiros
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content" tabIndex="-1"
+                      id="marceneiro"
                     >
                       Marceneiros
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content" tabIndex="-1"
+                      id="mecânico"
                     >
                       Mecânicos
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content" tabIndex="-1"
+                      id="pedreiro"
                     >
                       Pedreiros
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content" tabIndex="-1"
+                      id="pintor"
                     >
                       Pintores
                     </Link>
@@ -121,42 +127,49 @@ class Home extends Component {
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="barbeiro"
                     >
                       Barbeiros
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="cabelereiro"
                     >
                       Cabelereiros
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="depilação"
                     >
                       Depilação
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="manicure"
                     >
                       Manicures
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="maquiagem"
                     >
                       Maquiadoras
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="pedicure"
                     >
                       Pedicures
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="sobrancelha"
                     >
                       Sobrancelhas
                     </Link>
@@ -174,46 +187,53 @@ class Home extends Component {
               <div className="col-xl-3 my-4 d-none d-xl-block">
                 <div className="card h-100 w-100">
                   <div className="card-body shadow d-flex flex-column">
-                    <h4 className="card-title pb-1">Professores</h4>
+                    <h4 className="card-title pb-1">Aulas</h4>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="reforço escolar"
                     >
-                      Aulas de Reforço
+                      Reforço Escolar
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="dança"
                     >
                       Dança
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="espanhol"
                     >
                       Espanhol
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="francês"
                     >
                       Francês
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="inglês"
                     >
                       Inglês
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="música"
                     >
                       Música
                     </Link>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
+                      id="pré-vestibular"
                     >
                       Pré-Vestibular
                     </Link>
