@@ -6,7 +6,7 @@ class User extends Component {
     this.isAuthenticated = this.isAuthenticated.bind(this);
   }
   isAuthenticated = () => {
-    return true
+    return false
   };
   tipoUsuario = () => {
     return "cliente"
