@@ -7,7 +7,7 @@ import constructionPeople from "../img/constructionPeople.png";
 class Cadastro extends Component {
   render() {
     return (
-      <div className="container-fluid bg-info">
+      <div className="container-fluid bg-white">
         <div className="container bg-white">
           <div className="text-center">
             <br />

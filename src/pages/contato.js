@@ -11,7 +11,7 @@ class Contato extends Component {
 
   render() {
     return (
-      <div className="container-fluid bg-info">
+      <div className="container-fluid bg-white">
         <div className="container bg-white">
           <h1 className="green-text text-center pt-3">Contato</h1>
           {/* <!-- Primeira row --> */}

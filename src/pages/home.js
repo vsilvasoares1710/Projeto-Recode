@@ -9,7 +9,7 @@ import peopleShakingHands from "../img/peopleShakingHads.jpg";
 class Home extends Component {
   render() {
     return (
-      <div className="container-fluid bg-info">
+      <div className="container-fluid bg-white">
         {/* <!-- Conteúdo principal da página --> */}
         <div className="container bg-white">
           {/* <!-- Primeira row --> */}
@@ -45,7 +45,6 @@ class Home extends Component {
                   text="Encontre Profissionais"
                   lead="/encontreProfissionais"
                 />
-                <Btn text="Cadastre-se" lead="/cadastro" />
               </div>
             </div>
             {/* <!-- Fim da text-box com conteúdo à direita/topo da primeira imagem --> */}

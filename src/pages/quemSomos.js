@@ -8,7 +8,7 @@ import LogoFundoClaro from "../img/logFundoClaro.png";
 class QuemSomos extends Component {
   render() {
     return (
-      <div className="container-fluid bg-info">
+      <div className="container-fluid bg-white">
         {/* <!-- Conteúdo principal da página --> */}
         <div className="container bg-white">
           {/* <!-- Inicio da primeira row --> */}

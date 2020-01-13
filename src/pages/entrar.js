@@ -6,7 +6,7 @@ import Btn from "../components/button.js";
 class Entrar extends Component {
   render() {
     return (
-      <div className="container-fluid bg-info">
+      <div className="container-fluid bg-white">
         {/* <!-- Conteúdo principal da página --> */}
         <div className="container bg-white px-4 pb-4 stretch">
           <h1 className="green-text text-center pt-4">Entrar</h1>

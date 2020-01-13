@@ -51,7 +51,7 @@ class Profissional extends Component {
       );
     } else {
       return (
-        <div className="container-fluid bg-info">
+        <div className="container-fluid bg-white">
           {/* <!-- Conteúdo principal da página --> */}
           <div className="container bg-white">
             {/* <!-- Inicio da primeira row --> */}

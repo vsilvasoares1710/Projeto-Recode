@@ -45,7 +45,7 @@ class RenderProfissionais extends Component {
                 const tagName = tag.charAt(0).toUpperCase() + tag.slice(1);
                 return (
                   <div
-                    className="b-info rounded green-text shadow py-1 px-2 m-1 unselectable"
+                    className="b-info rounded green-text py-1 px-2 m-1 unselectable"
                     tabIndex="-1"
                   >
                     <strong>{tagName}</strong>

@@ -9,7 +9,7 @@ import womanJumping from "../img/womanJumping.jpg";
 class DivulgueSeuTrabalho extends Component {
   render() {
     return (
-      <div className="container-fluid bg-info">
+      <div className="container-fluid bg-white">
         {/* <!-- Conteúdo principal da página --> */}
         <div className="container bg-white">
           {/* <!-- Primeira row --> */}
