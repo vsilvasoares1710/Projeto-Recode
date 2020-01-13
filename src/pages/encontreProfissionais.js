@@ -364,8 +364,6 @@ class EncontreProfissionais extends Component {
                     diversos profissionais, cadastre-se para ter acesso a mais
                     informações.
                   </h4>
-                  <br />
-                  <Btn text="Cadastre-se" lead="/cadastro" />
                 </div>
                 {/* <!-- Fim da text-box com conteúdo à direita/abaixo da primeira imagem --> */}
               </div>
