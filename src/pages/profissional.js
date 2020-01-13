@@ -60,16 +60,11 @@ class Profissional extends Component {
               <div className="col-12 mt-4">
                 {/* <!-- Inicio do jumbotron superior --> */}
                 <div className="jumbotron-clear my-auto text-center">
-                  <h1 className="green-text text-center">
-                    {JSON.stringify(this.props.match.params.id)}
-                  </h1>
                   <img
                     src={this.state.dadosProfissional.icone}
                     className="rounded-circle col-3 align-self-start"
                   />
-                  <br />
-                  <h4 className="text-content text-justify">Texto</h4>
-                  <br />
+                  <h4 className="text-content text-justify">{this.state.dadosProfissional.nome}</h4>
                   <h4 className="text-content text-justify">Texto</h4>
                 </div>
                 {/* <!-- Fim do jumbotron superior --> */}
