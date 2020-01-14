@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import User from "../services/userAuthentication";
+import isAuthenticated from "../services/userAuthentication";
 
 class Footer extends Component {
   renderOptionsSmallFooter() {
-    const user = new User();
 
-    if (user.isAuthenticated() === false) {
+
+    if (isAuthenticated() === false) {
       return (
         <div className="row mx-2">
           <Link
@@ -23,7 +23,7 @@ class Footer extends Component {
           </Link>
         </div>
       );
-    } else if (user.isAuthenticated() === true) {
+    } else if (isAuthenticated() === true) {
       return (
         <div className="row mx-2">
           <Link
@@ -37,9 +37,8 @@ class Footer extends Component {
     }
   }
   renderOptionsLargeFooter() {
-    const user = new User();
 
-    if (user.isAuthenticated() === false) {
+    if (isAuthenticated() === false) {
       return (
         <div className="col-5 d-flex text-center">
           <Link
@@ -62,7 +61,7 @@ class Footer extends Component {
           </Link>
         </div>
       );
-    } else if (user.isAuthenticated() === true) {
+    } else if (isAuthenticated() === true) {
       return (
         <div className="col-5 d-flex text-center">
           <Link

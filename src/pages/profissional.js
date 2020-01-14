@@ -37,11 +37,20 @@ class Profissional extends Component {
       return true;
     }
   }
-
+  renderTags() {
+    return this.state.dadosProfissional.tags.map(value => {
+      const tagName = value.charAt(0).toUpperCase() + value.slice(1);
+      return (
+        <div className="b-info rounded green-text py-1 px-2 m-1">
+          <strong>{tagName}</strong>
+        </div>
+      );
+    });
+  }
   render() {
     if (this.state.dadosProfissional === "Loading") {
       return (
-        <div className="container-fluid bg-info">
+        <div className="container-fluid bg-white">
           <div className="container bg-white stretch">
             <div className="col">
               <h1 className="green-text text-enter mx-auto">Carregando...</h1>
@@ -59,13 +68,22 @@ class Profissional extends Component {
               {/* <!-- Inicio do conteiner quem somos --> */}
               <div className="col-12 mt-4">
                 {/* <!-- Inicio do jumbotron superior --> */}
-                <div className="jumbotron-clear my-auto text-center">
+                <div className="jumbotron-clear  text-center my-4">
                   <img
                     src={this.state.dadosProfissional.icone}
-                    className="rounded-circle col-3 align-self-start"
+                    className="rounded-circle col-8 col-sm-7 col-md-5 col-lg-4 col-xl-3 align-self-start"
                   />
-                  <h4 className="text-content text-justify">{this.state.dadosProfissional.nome}</h4>
-                  <h4 className="text-content text-justify">Texto</h4>
+                  <h3 className="text-content text-justify">
+                    {this.state.dadosProfissional.nome}
+                  </h3>
+                  <div className="card-divider-long"></div>
+                  <h4 className="text-content text-justify">
+                    {JSON.stringify(this.state.dadosProfissional.anuncio.texto)}
+                  </h4>
+                  <div className="d-flex flex">{this.renderTags()}</div>
+                  <h4 className="text-content text-justify">
+                    {JSON.stringify(this.state.dadosProfissional.anuncio)}
+                  </h4>
                 </div>
                 {/* <!-- Fim do jumbotron superior --> */}
               </div>

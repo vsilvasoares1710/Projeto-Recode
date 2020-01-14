@@ -2,21 +2,19 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Btn from "./button.js";
 import LogoFundoEscuro from "../img/logFundoEscuro.png";
-import User from "../services/userAuthentication.js";
+import isAuthenticated from "../services/userAuthentication.js";
 
 class Navbar extends Component {
 
   renderButtons() {
-    const user = new User();
-
-    if (user.isAuthenticated() === false) {
+    if (isAuthenticated() === false) {
       return (
         <div data-toggle="collapse" data-target=".navbar-collapse.show">
           <Btn text="Entrar" lead="/entrar" />
           <Btn text="Cadastro" lead="/cadastro" />
         </div>
       );
-    } else if (user.isAuthenticated() === true) {
+    } else if (isAuthenticated() === true) {
       return (
         <div data-toggle="collapse" data-target=".navbar-collapse.show">
           <Btn text="Sair" lead="/"/>

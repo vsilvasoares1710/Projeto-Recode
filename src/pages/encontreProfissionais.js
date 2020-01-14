@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 // Components
 import Btn from "../components/button.js";
 // Services
@@ -302,7 +301,7 @@ class EncontreProfissionais extends Component {
                   <img
                     src={workers}
                     width="100%"
-                    alt="Pessoas apertano as mãos"
+                    alt="Pessoas apertando as mãos"
                   />
                 </div>
                 {/* <!-- Fim da Imagem à esquerda/baixo --> */}

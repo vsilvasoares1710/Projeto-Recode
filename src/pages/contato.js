@@ -5,8 +5,7 @@ import Btn from "../components/button.js";
 import contato from "../img/contato.svg";
 class Contato extends Component {
   enviarMensagem() {
-    const contactMail = document.getElementById("email-contato").value
-    alert("Mensagem Enviada com Sucesso")
+    setTimeout(() => alert("Mensagem Enviada com Sucesso"), 200)
   }
 
   render() {
@@ -33,7 +32,9 @@ class Contato extends Component {
                 <form>
                   <div className="form-group">
                     <label className="text-white">
-                      <strong><h5>Nome Completo</h5></strong>
+                      <strong>
+                        <h5>Nome Completo</h5>
+                      </strong>
                     </label>
                     <input
                       type="text"
@@ -44,7 +45,9 @@ class Contato extends Component {
                   </div>
                   <div className="form-group">
                     <label className="text-white">
-                      <strong><h5>E-mail</h5></strong>
+                      <strong>
+                        <h5>E-mail</h5>
+                      </strong>
                     </label>
                     <input
                       type="email"
@@ -56,7 +59,9 @@ class Contato extends Component {
                   <br />
                   <div className="form-group">
                     <label className="text-white">
-                      <strong><h5>Finalidade do Contato</h5></strong>
+                      <strong>
+                        <h5>Finalidade do Contato</h5>
+                      </strong>
                     </label>
                     <select
                       className="form-control b-info type-field"
@@ -71,7 +76,9 @@ class Contato extends Component {
                   </div>
                   <div className="form-group">
                     <label className="text-white">
-                      <strong><h5>Mensagem</h5></strong>
+                      <strong>
+                        <h5>Mensagem</h5>
+                      </strong>
                     </label>
                     <textarea
                       className="form-control b-info type-field"
@@ -80,7 +87,11 @@ class Contato extends Component {
                       placeholder="Digite sua mensagem neste campo..."
                     ></textarea>
                   </div>
-                  <Btn text="Enviar Mensagem" onClick={this.enviarMensagem} className="btn btn-dark-green shadow mt-2 mr-2" />
+                  <Btn
+                    text="Enviar Mensagem"
+                    onClick={this.enviarMensagem}
+                    className="btn btn-dark-green shadow mt-2 mr-2"
+                  />
                 </form>
               </div>
             </div>
