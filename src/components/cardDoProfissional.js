@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Btn from "./button.js";
+import filterValidation from "../services/filterValidation.js";
 
 class RenderProfissionais extends Component {
   constructor(props) {
@@ -9,6 +10,22 @@ class RenderProfissionais extends Component {
       filtrosMarcados: []
     };
   }
+
+  validateCheckbox = inputId => {
+    const filtrosMarcados = filterValidation(
+      inputId,
+      this.state.filtrosMarcados
+    );
+
+    localStorage.setItem(
+      "filtrosMarcadosFixHub",
+      JSON.stringify(filtrosMarcados)
+    );
+
+    this.setState({
+      filtrosMarcados: JSON.parse(localStorage.getItem("filtrosMarcadosFixHub"))
+    });
+  };
   render() {
     return (
       <div className="jumbotron-clear">
@@ -45,8 +62,12 @@ class RenderProfissionais extends Component {
                 const tagName = tag.charAt(0).toUpperCase() + tag.slice(1);
                 return (
                   <div
-                    className="b-info rounded green-text py-1 px-2 m-1 unselectable"
+                    className="b-info rounded green-text py-1 px-2 m-1 unselectable clickable"
                     tabIndex="-1"
+                    onClick={() => {
+                      this.validateCheckbox(tagName);
+                      this.props.tagOnClick()
+                    }}
                   >
                     <strong>{tagName}</strong>
                   </div>

@@ -6,7 +6,7 @@ import Btn from "../components/button.js";
 import search from "../services/search.js";
 import getFiltros from "../services/filters.js";
 import RenderProfissionais from "../components/cardDoProfissional";
-import filterValidation from "../services/filterValidation.js"
+import filterValidation from "../services/filterValidation.js";
 // Images
 import workers from "../img/workers.jpg";
 
@@ -25,7 +25,7 @@ class EncontreProfissionais extends Component {
     this.getProfissionais = this.getProfissionais.bind(this);
     this.limparFiltros = this.limparFiltros.bind(this);
     this.limparLista = this.limparLista.bind(this);
-    this.carregarFiltros = this.carregarFiltros.bind(this)
+    this.carregarFiltros = this.carregarFiltros.bind(this);
   }
 
   async getProfissionais() {
@@ -43,7 +43,7 @@ class EncontreProfissionais extends Component {
   async carregarFiltros() {
     const filtros = await getFiltros();
     if (typeof filtros === "object" && filtros.catregoria !== null) {
-      console.log(typeof filtros)
+      console.log(typeof filtros);
       this.setState({ filtros: filtros });
     } else {
       return;
@@ -51,7 +51,10 @@ class EncontreProfissionais extends Component {
   }
 
   validateCheckbox = inputId => {
-    const filtrosMarcados = filterValidation(inputId, this.state.filtrosMarcados)
+    const filtrosMarcados = filterValidation(
+      inputId,
+      this.state.filtrosMarcados
+    );
 
     localStorage.setItem(
       "filtrosMarcadosFixHub",
@@ -67,7 +70,9 @@ class EncontreProfissionais extends Component {
     const label = labelText.charAt(0).toUpperCase() + labelText.slice(1);
     const inputId = label + "Checkbox";
     let isChecked;
-    this.state.filtrosMarcados.indexOf(label.toLowerCase()) === -1
+    JSON.parse(localStorage.getItem("filtrosMarcadosFixHub")).indexOf(
+      label.toLowerCase()
+    ) === -1
       ? (isChecked = false)
       : (isChecked = true);
     return (
@@ -145,6 +150,16 @@ class EncontreProfissionais extends Component {
       });
     } else {
       return;
+    }
+  }
+
+  sincronizarState() {
+    if (JSON.parse(localStorage.getItem("filtrosMarcadosFixHub")) !== null) {
+      this.setState({
+        filtrosMarcados: JSON.parse(
+          localStorage.getItem("filtrosMarcadosFixHub")
+        )
+      });
     }
   }
   limparFiltros() {
@@ -267,6 +282,7 @@ class EncontreProfissionais extends Component {
                         icone={profissional.icone}
                         texto={profissional.anuncio.texto}
                         tags={profissional.tags}
+                        tagOnClick={() => this.sincronizarState()}
                       />
                     );
                   })}
