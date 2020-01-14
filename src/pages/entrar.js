@@ -5,7 +5,7 @@ import Btn from "../components/button.js";
 import loginImg from "../img/login.svg"
 
 class Entrar extends Component {
-  
+
   render() {
     return (
       <div className="container-fluid bg-white stretch ">
@@ -20,8 +20,7 @@ class Entrar extends Component {
               />
             </div>
             <div className="jumbotron-green text-center col-12 col-md-11 col-lg-6 mb-2 mt-2">
-              <h1 className="white-text">Sou Profissional</h1>
-              <div className="card-divider-long-white mb-3"></div>
+
               <div className="form-group pb-3">
                 <label className="d-flex justify-content-start text-white">
                   <h5>CPF/CNPJ</h5>

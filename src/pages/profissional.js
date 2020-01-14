@@ -68,22 +68,33 @@ class Profissional extends Component {
               {/* <!-- Inicio do conteiner quem somos --> */}
               <div className="col-12 mt-4">
                 {/* <!-- Inicio do jumbotron superior --> */}
-                <div className="jumbotron-clear  text-center my-4">
+                <div className="jumbotron-clear text-center my-4">
                   <img
                     src={this.state.dadosProfissional.icone}
-                    className="rounded-circle col-8 col-sm-7 col-md-5 col-lg-4 col-xl-3 align-self-start"
+                    className="rounded-circle col-8 col-sm-7 col-md-5 col-lg-4 col-xl-3 text-left ml-4"
                   />
                   <h3 className="text-content text-justify">
                     {this.state.dadosProfissional.nome}
                   </h3>
                   <div className="card-divider-long"></div>
+                  <div className="d-flex flex-wrap">{this.renderTags()}</div>
                   <h4 className="text-content text-justify">
                     {JSON.stringify(this.state.dadosProfissional.anuncio.texto)}
                   </h4>
-                  <div className="d-flex flex">{this.renderTags()}</div>
                   <h4 className="text-content text-justify">
-                    {JSON.stringify(this.state.dadosProfissional.anuncio)}
+                    {/* {JSON.stringify(this.state.dadosProfissional)} */}
                   </h4>
+                  <div className="row">
+                  {this.state.dadosProfissional.anuncio.imagens.map(value => {
+                    
+                    return (
+                      <div className="col-6 col-md-3 col-xl-3">
+                        <img src={value} width="100%" className="rounded m-1" />
+                      </div>
+                    )
+                  })}
+                  </div>
+
                 </div>
                 {/* <!-- Fim do jumbotron superior --> */}
               </div>
