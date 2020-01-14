@@ -22,7 +22,7 @@ class Contato extends Component {
                 src={contato}
                 width="98%"
                 className="my-auto rounded-image"
-                alt="Mão segurando celular para entrar em contato com a empresa"
+                alt="Imagem simbolizando diferentes formas de contato"
               />
             </div>
             {/* <!-- Fim da Imagem à direita/topo --> */}
@@ -91,7 +91,7 @@ class Contato extends Component {
                 src={contato}
                 width="98%"
                 className="my-auto rounded-image"
-                alt="Mão segurando celular para entrar em contato com a empresa"
+                alt="Imagem simbolizando diferentes formas de contato"
               />
             </div>
             {/* <!-- Fim da Imagem à direita/topo --> */}
