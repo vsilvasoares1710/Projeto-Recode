@@ -6,6 +6,7 @@ import Btn from "../components/button.js";
 import search from "../services/search.js";
 import getFiltros from "../services/filters.js";
 import RenderProfissionais from "../components/cardDoProfissional";
+import filterValidation from "../services/filterValidation.js"
 // Images
 import workers from "../img/workers.jpg";
 
@@ -48,71 +49,9 @@ class EncontreProfissionais extends Component {
       return;
     }
   }
-  renderProfissionais() {
-    return this.state.profissionaisEncontrados.map(value => {
-      return (
-        <div className="jumbotron-clear">
-          <div className="row">
-            <div className="col-5 col-sm-5 col-md-3 col-lg-2 mx-auto mb-2 mt-0">
-              <Link to={`/profissional/${value.id}`}>
-                <img
-                  src={value.icone}
-                  width="100%"
-                  alt={`Imagem de ${value.nome}`}
-                  className="rounded-circle"
-                />
-              </Link>
 
-              <Btn
-                text="Perfil Completo"
-                className="btn btn-info shadow py-1 px-2 m-1 mt-2 mx-auto"
-                lead={`/profissional/${value.id}`}
-              />
-            </div>
-            <div className="col-12 col-md-9 col-lg-10">
-              <div className="vertical-divider" />
-              <Link to={`/profissional/${value.id}`} className="text-link">
-                <h4 className="text-left">{value.nome}</h4>
-              </Link>
-
-              <div className="card-divider-long"></div>
-              <p className="text-left five-line-truncate">
-                {value.anuncio.texto}
-              </p>
-              <div className="d-flex flex-wrap">
-                {value.tags.map(tag => {
-                  const tagName = tag.charAt(0).toUpperCase() + tag.slice(1);
-                  return (
-                    <Btn
-                      text={tagName}
-                      className="btn btn-info shadow py-1 px-2 m-1"
-                      onClick={() => this.validateCheckbox(tag)}
-                      tabIndex="-1"
-                    />
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    });
-  }
   validateCheckbox = inputId => {
-    const input = inputId;
-    const excludedText = input.indexOf("Checkbox");
-    let tagNonFormatted = input.slice(0, excludedText);
-    if (excludedText === -1) {
-      tagNonFormatted = inputId;
-    }
-    const tag = tagNonFormatted.toLowerCase();
-
-    let filtrosMarcados = this.state.filtrosMarcados;
-    if (this.state.filtrosMarcados.indexOf(tag) === -1) {
-      filtrosMarcados.push(tag);
-    } else {
-      filtrosMarcados = filtrosMarcados.filter(value => value !== tag);
-    }
+    const filtrosMarcados = filterValidation(inputId, this.state.filtrosMarcados)
 
     localStorage.setItem(
       "filtrosMarcadosFixHub",
