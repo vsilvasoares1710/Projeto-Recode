@@ -28,9 +28,11 @@ class EncontreProfissionais extends Component {
   }
 
   async getProfissionais() {
-    const rota = `/pesquisaProfissionais/${this.state.paginas.atual}`;
+    let tags = this.state.filtrosMarcados
+    if (tags === []) tags = ""
+    const rota = `/profissionais/${this.state.paginas.atual}/${tags}/`;
     const pesquisa = await search(rota);
-    if (typeof pesquisa === "object" && pesquisa.id !== null) {
+    if (typeof pesquisa === "object" && pesquisa !== null) {
       this.setState({ profissionaisEncontrados: pesquisa.profissionais });
       localStorage.setItem(
         "profissionaisEncontradosFixHub",

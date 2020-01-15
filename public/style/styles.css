@@ -244,6 +244,11 @@ transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
   border-color: #00ceaf !important;
 }
 
+.border-white {
+  border: 5px solid white;
+  border-radius: 3.5px;
+}
+
 a.bg-info:hover,
 a.bg-info:focus,
 button.bg-info:hover,

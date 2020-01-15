@@ -41,7 +41,7 @@ class RenderProfissionais extends Component {
             </Link>
 
             <Btn
-              text="Perfil Completo"
+              text="Ver Perfil"
               className="btn btn-info shadow py-1 px-2 m-1 mt-2 mx-auto"
               lead={`/profissional/${this.props.idProfissional}`}
             />
