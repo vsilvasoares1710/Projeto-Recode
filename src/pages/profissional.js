@@ -197,10 +197,10 @@ class Profissional extends Component {
                     <div>
                       <h3 className="text-content text-left">Contato:</h3>
                       <div className="card-divider-long"></div>
-                      <div className="d-flex justify-content-center">
+                      <div className="">
                         <div className="d-flex flex-wrap justify-content-between">
                           <div className="pb-2">{this.renderContatos()}</div>
-                          <div className="text-left">
+                          <div className=" mt-2">
                             {this.renderRedesSociais()}
                           </div>
                         </div>
@@ -225,6 +225,13 @@ class Profissional extends Component {
                         );
                       }
                     )}
+                  </div>
+                  <h3 className="white-text text-left text-content mt-4">
+                    <strong>Localização: </strong>
+                  </h3>
+                  <div className="card-divider-long-white mb-4"></div>
+                  <div className="jumbotron-clear">
+
                   </div>
                 </div>
               </div>
