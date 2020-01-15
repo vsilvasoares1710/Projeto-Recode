@@ -29,8 +29,10 @@ class EncontreProfissionais extends Component {
 
   async getProfissionais() {
     let tags = this.state.filtrosMarcados
-    if (tags === []) tags = ""
-    const rota = `/profissionais/${this.state.paginas.atual}/${tags}/`;
+    if (tags.length === 0) {
+      tags = "_"
+    }
+    const rota = `/profissionais/${tags}/${this.state.paginas.atual}`;
     const pesquisa = await search(rota);
     if (typeof pesquisa === "object" && pesquisa !== null) {
       this.setState({ profissionaisEncontrados: pesquisa.profissionais });
