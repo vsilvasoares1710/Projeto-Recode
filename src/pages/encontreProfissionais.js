@@ -285,6 +285,7 @@ class EncontreProfissionais extends Component {
                         icone={profissional.icone}
                         texto={profissional.anuncio.texto}
                         tags={profissional.tags}
+                        anuncioPago={profissional.anuncio.anuncioPago}
                         tagOnClick={() => this.sincronizarState()}
                       />
                     );

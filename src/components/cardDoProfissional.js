@@ -27,6 +27,13 @@ class RenderProfissionais extends Component {
     });
   };
   render() {
+    const promovido = () => {
+      let jsx = <></>
+      if (this.props.anuncioPago === false) {
+        jsx = <h3 className="text-right">Anúncio Promovido</h3>;
+      }
+      return jsx
+    };
     return (
       <div className="jumbotron-clear">
         <div className="row">
@@ -54,7 +61,6 @@ class RenderProfissionais extends Component {
             >
               <h4 className="text-left">{this.props.nome}</h4>
             </Link>
-
             <div className="card-divider-long"></div>
             <p className="text-left five-line-truncate">{this.props.texto}</p>
             <div className="d-flex flex-wrap">
@@ -66,7 +72,7 @@ class RenderProfissionais extends Component {
                     tabIndex="-1"
                     onClick={() => {
                       this.validateCheckbox(tagName);
-                      this.props.tagOnClick()
+                      this.props.tagOnClick();
                     }}
                   >
                     <strong>{tagName}</strong>
@@ -74,6 +80,7 @@ class RenderProfissionais extends Component {
                 );
               })}
             </div>
+            {this.props.anuncioPago === true ? <h6 className="text-right green-text m-0 p-0">Anúncio Promovido</h6> : <> </>}
           </div>
         </div>
       </div>
