@@ -198,7 +198,7 @@ class Profissional extends Component {
               <div className="col-12 mt-4">
                 {/* <!-- Inicio do jumbotron superior --> */}
                 <div className="jumbotron-green text-center mt-0 mb-4">
-                  <div className="jumbotron-clear">
+                  <div className="jumbotron-clear shadow">
                     {dados.anuncio.anuncioPago === true ? (
                       <h6 className="text-right green-text m-0 p-0">
                         Anúncio Promovido
