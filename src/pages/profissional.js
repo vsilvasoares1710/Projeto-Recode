@@ -96,51 +96,68 @@ class Profissional extends Component {
     });
   }
   renderRedesSociais() {
+    if (!this.state.dadosProfissional.redes_sociais) {
+      return;
+    }
     const redes = this.state.dadosProfissional.redes_sociais;
 
-    const facebook = (
-      <div className="d-flex flex-nowrap justify-content-end text-break-all">
-        <a href={`http://www.${redes.facebook}`} className="d-flex flex-nowrap">
-          <h3 className="text-link">{redes.facebook}</h3>
-        </a>
-        <a href={`http://www.${redes.facebook}`} className="d-flex flex-nowrap">
-          <img src={facebookIcon} height="35" className="ml-2 mr-2" />
-        </a>
-      </div>
-    );
-    const linkedin = (
-      <div className="d-flex flex-nowrap justify-content-end text-break-all">
-        <a href={`http://www.${redes.linkedin}`} className="d-flex flex-nowrap">
-          <h3 className="text-link">{redes.linkedin}</h3>
-        </a>
-        <a href={`http://www.${redes.linkedin}`} className="d-flex flex-nowrap">
-          <img src={linkedinIcon} height="30" className="ml-2 mr-1" />
-        </a>
-      </div>
-    );
-    const siteOficial = (
-      <div className="d-flex flex-nowrap justify-content-end text-break-all">
-        <a
-          href={`http://www.${redes.siteOficial}`}
-          className="d-flex flex-nowrap"
-        >
-          <h3 className="text-link" width="100">
-            {redes.siteOficial}
-          </h3>
-        </a>
-        <a
-          href={`http://www.${redes.siteOficial}`}
-          className="d-flex flex-nowrap"
-        >
-          <img src={siteOficialIcon} height="35" className="ml-1" />
-        </a>
-      </div>
-    );
     const dadosARenderizar = [];
 
-    if (redes.facebook) dadosARenderizar.push(facebook);
-    if (redes.linkedin) dadosARenderizar.push(linkedin);
-    if (redes.siteOficial) dadosARenderizar.push(siteOficial);
+    if (redes.facebook)
+      dadosARenderizar.push(
+        <div className="d-flex flex-nowrap justify-content-end text-break-all">
+          <a
+            href={`http://www.${redes.facebook}`}
+            className="d-flex flex-nowrap"
+          >
+            <h3 className="text-link">{redes.facebook}</h3>
+          </a>
+          <a
+            href={`http://www.${redes.facebook}`}
+            className="d-flex flex-nowrap"
+          >
+            <img src={facebookIcon} height="35" className="ml-2 mr-2" />
+          </a>
+        </div>
+      );
+
+    if (redes.linkedin)
+      dadosARenderizar.push(
+        <div className="d-flex flex-nowrap justify-content-end text-break-all">
+          <a
+            href={`http://www.${redes.linkedin}`}
+            className="d-flex flex-nowrap"
+          >
+            <h3 className="text-link">{redes.linkedin}</h3>
+          </a>
+          <a
+            href={`http://www.${redes.linkedin}`}
+            className="d-flex flex-nowrap"
+          >
+            <img src={linkedinIcon} height="30" className="ml-2 mr-1" />
+          </a>
+        </div>
+      );
+
+    if (redes.siteOficial)
+      dadosARenderizar.push(
+        <div className="d-flex flex-nowrap justify-content-end text-break-all">
+          <a
+            href={`http://www.${redes.siteOficial}`}
+            className="d-flex flex-nowrap"
+          >
+            <h3 className="text-link" width="100">
+              {redes.siteOficial}
+            </h3>
+          </a>
+          <a
+            href={`http://www.${redes.siteOficial}`}
+            className="d-flex flex-nowrap"
+          >
+            <img src={siteOficialIcon} height="35" className="ml-1" />
+          </a>
+        </div>
+      );
 
     return dadosARenderizar.map(jsx => {
       return jsx;
@@ -218,33 +235,49 @@ class Profissional extends Component {
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <h3 className="white-text text-left text-content">
-                    <strong>Imagens: </strong>
-                  </h3>
-                  <div className="card-divider-long-white mb-4"></div>
-                  <div className="row">
-                    {this.state.dadosProfissional.anuncio.imagens.map(
-                      linkDaImagem => {
-                        return (
-                          <div className="col-6 col-md-3 col-xl-3">
-                            <img
-                              src={linkDaImagem}
-                              width="100%"
-                              className="rounded m-1 border-white"
-                            />
-                          </div>
-                        );
-                      }
+                    {dados.localização ? (
+                      <>
+                        <h3 className="text-content text-justify mt-4">
+                          Localização:
+                        </h3>
+                        <div className="card-divider-long"></div>
+                        <h3 className="text-content text-justify mb-4">
+                          {`${dados.localização.endereço}`}
+                          <br />
+                          {`${dados.localização.bairro}, ${dados.localização.cidade} - ${dados.localização.estado}`}
+                        </h3>
+                      </>
+                    ) : (
+                      <> </>
                     )}
                   </div>
-                  <h3 className="white-text text-left text-content mt-4">
-                    <strong>Localização: </strong>
-                  </h3>
-                  <div className="card-divider-long-white mb-4"></div>
-                  <div className="jumbotron-clear">
-                    <div>{JSON.stringify(this.state.dadosProfissional)}</div>
-                  </div>
+                  {dados.anuncio.imagens ? (
+                    <>
+                      <h3 className="white-text text-left text-content">
+                        <strong>Imagens: </strong>
+                      </h3>
+                      <div className="card-divider-long-white mb-4"></div>
+                      <div className="row">
+                        {this.state.dadosProfissional.anuncio.imagens.map(
+                          linkDaImagem => {
+                            return (
+                              <div className="col-6 col-md-3 col-xl-3">
+                                <a href={linkDaImagem}>
+                                  <img
+                                    src={linkDaImagem}
+                                    width="100%"
+                                    className="rounded m-1 border-white"
+                                  />
+                                </a>
+                              </div>
+                            );
+                          }
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <> </>
+                  )}
                 </div>
               </div>
             </div>
