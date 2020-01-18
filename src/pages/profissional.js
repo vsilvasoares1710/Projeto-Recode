@@ -132,7 +132,7 @@ class Profissional extends Component {
           href={`http://www.${redes.siteOficial}`}
           className="d-flex flex-nowrap"
         >
-          <img src={siteOficialIcon} height="35" className="ml-1 " />
+          <img src={siteOficialIcon} height="35" className="ml-1" />
         </a>
       </div>
     );
@@ -196,9 +196,13 @@ class Profissional extends Component {
 
                     <h3 className="text-content text-justify">{dados.nome}</h3>
                     <div className="card-divider-long"></div>
-                    <h4 className="text-content text-justify mb-4">
-                      {dados.anuncio.texto}
-                    </h4>
+                    {dados.anuncio.texto ? (
+                      <h4 className="text-content text-justify mb-4">
+                        {dados.anuncio.texto}
+                      </h4>
+                    ) : (
+                      <> </>
+                    )}
                     <div className="d-flex flex-wrap mb-3">
                       {this.renderTags()}
                     </div>
