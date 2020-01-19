@@ -80,7 +80,7 @@ class RenderProfissionais extends Component {
                 );
               })}
             </div>
-            {this.props.anuncioPago === true ? <h6 className="text-right green-text m-0 p-0">Anúncio Promovido</h6> : <> </>}
+            {/* {this.props.anuncioPago === true ? <h6 className="text-right green-text m-0 p-0">Anúncio Promovido</h6> : <> </>} */}
           </div>
         </div>
       </div>

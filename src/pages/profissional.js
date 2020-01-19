@@ -198,14 +198,14 @@ class Profissional extends Component {
               <div className="col-12 mt-4">
                 {/* <!-- Inicio do jumbotron superior --> */}
                 <div className="jumbotron-green text-center mt-0 mb-4">
-                  <div className="jumbotron-clear shadow">
-                    {dados.anuncio.anuncioPago === true ? (
+                  <div className="jumbotron-clear shadow mb-0">
+                    {/* {dados.anuncio.anuncioPago === true ? (
                       <h6 className="text-right green-text m-0 p-0">
                         Anúncio Promovido
                       </h6>
                     ) : (
                       <> </>
-                    )}
+                    )} */}
                     <img
                       src={dados.icone}
                       className="rounded-circle col-8 col-sm-7 col-md-5 col-lg-4 col-xl-3 text-left ml-4"
@@ -251,7 +251,7 @@ class Profissional extends Component {
                       <> </>
                     )}
                   </div>
-                  {dados.anuncio.imagens ? (
+                  {/* {dados.anuncio.imagens ? (
                     <>
                       <h3 className="white-text text-left text-content">
                         <strong>Imagens: </strong>
@@ -277,7 +277,7 @@ class Profissional extends Component {
                     </>
                   ) : (
                     <> </>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>
