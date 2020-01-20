@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 // Components
 import Btn from "../components/button.js";
+// Services
+import getFiltros from "../services/filters.js";
+import filterValidation from "../services/filterValidation.js";
 // Images
 
 class Cadastro extends Component {
@@ -8,8 +11,122 @@ class Cadastro extends Component {
     super();
     this.state = {
       documento: "CPF",
-      tagsDoAnuncio: []
+      tagsDoAnuncio: [],
+      filtros: [],
+      filtrosMarcados: []
     };
+  }
+
+  async carregarFiltros() {
+    const filtros = await getFiltros();
+    if (typeof filtros === "object" && filtros.catregoria !== null) {
+      console.log(typeof filtros);
+      this.setState({ filtros: filtros });
+    } else {
+      return;
+    }
+  }
+
+  validateCheckbox = inputId => {
+    const filtrosMarcados = filterValidation(
+      inputId,
+      this.state.filtrosMarcados
+    );
+
+    this.setState({
+      filtrosMarcados: filtrosMarcados
+    });
+  };
+
+  renderCheckbox = labelText => {
+    const label = labelText.charAt(0).toUpperCase() + labelText.slice(1);
+    const inputId = label + "Checkbox";
+    let isChecked;
+    this.state.filtrosMarcados.indexOf(
+      label.toLowerCase()
+    ) === -1
+      ? (isChecked = false)
+      : (isChecked = true);
+    return (
+      <div className="form-inline text-wrap bg-white">
+        <input
+          type="checkbox"
+          className="checkbox"
+          id={inputId}
+          onChange={() => this.validateCheckbox(inputId)}
+          checked={isChecked}
+        />
+        <label
+          className="form-check-label checkbox-l unselectable mb-1 ml-1"
+          onClick={() => this.validateCheckbox(inputId)}
+        >
+          <strong>{label}</strong>
+        </label>
+      </div>
+    );
+  };
+
+  renderAccordion() {
+    if (this.state.filtros) {
+      const filtros = this.state.filtros;
+
+      return filtros.map(objeto => {
+        const categoriaFormatted = objeto.categoria.replace(/ /g, "-");
+        return (
+          <div className="col-12 col-sm-6 col-md-4 col-lg-3 m-0 p-0">
+            <div className="accordion-group accordion-card b-info mr-2">
+              <div className="accordion-heading">
+                <button
+                  type="button"
+                  className="accordion-toggle"
+                  data-toggle="collapse"
+                  data-parent="#accordionFiltros"
+                  data-target={"#collapse" + categoriaFormatted}
+                >
+                  <div className="d-flex align-items-center card-heading ">
+                    <h5 className="mx-auto text-center">
+                      {objeto.categoria}
+                    </h5>
+                  </div>
+                </button>
+              </div>
+              <div
+                id={"collapse" + categoriaFormatted}
+                className="accordion-body collapse in"
+              >
+                <div className="card-divider"></div>
+              </div>
+              <div className="inner-card-accordion">
+                {objeto.tags.map((tag, index) => {
+                  let inferiorPadding;
+                  index < objeto.tags.length - 1
+                    ? (inferiorPadding = "")
+                    : (inferiorPadding = "pb-1");
+                  return (
+                    <div
+                      id={"collapse" + categoriaFormatted}
+                      className="accordion-body collapse out"
+                    >
+                      <div
+                        className={`accordion-inner card-item ${inferiorPadding}`}
+                      >
+                        {this.renderCheckbox(tag)}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        );
+      });
+    } else {
+      return;
+    }
+  }
+
+  componentDidMount() {
+    this.carregarFiltros();
   }
   render() {
     return (
@@ -232,11 +349,15 @@ class Cadastro extends Component {
                           <h4>Texto do Anúncio</h4>
                         </strong>
                       </label>
-                      <textarea className="form-control type-field" id="texto" rows="8"></textarea>
+                      <textarea
+                        className="form-control type-field"
+                        id="texto"
+                        rows="8"
+                      ></textarea>
                     </div>
                   </div>
                   <div className="row">
-                  <div className="form-group col-12">
+                    <div className="form-group col-12">
                       <label className="text-green">
                         <strong>
                           <h4>Tags do Anúncio</h4>
@@ -244,7 +365,13 @@ class Cadastro extends Component {
                       </label>
                     </div>
                   </div>
-                  <Btn text="Cadastrar" />
+                  <div
+                    className=" form-group d-flex flex-wrap mr-0"
+                    id="accordionFiltros"
+                  >
+                    {this.renderAccordion()}
+                  </div>
+                  <Btn text="Cadastrar" className="btn btn-info shadow"/>
                 </form>
               </div>
             </div>
