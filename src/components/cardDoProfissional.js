@@ -64,7 +64,7 @@ class RenderProfissionais extends Component {
             <div className="card-divider-long"></div>
             <p className="text-left five-line-truncate">{this.props.texto}</p>
             <div className="d-flex flex-wrap">
-              {this.props.tags.map(tag => {
+              {!this.props.tags ? <> </> : this.props.tags.map(tag => {
                 const tagName = tag.charAt(0).toUpperCase() + tag.slice(1);
                 return (
                   <div

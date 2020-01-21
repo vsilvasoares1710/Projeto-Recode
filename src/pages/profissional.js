@@ -49,14 +49,18 @@ class Profissional extends Component {
     }
   }
   renderTags() {
-    return this.state.dadosProfissional.tags.map(value => {
-      const tagName = value.charAt(0).toUpperCase() + value.slice(1);
-      return (
-        <div className="b-info rounded green-text py-1 px-2 m-1">
-          <strong>{tagName}</strong>
-        </div>
-      );
-    });
+    if (!this.state.dadosProfissional.tags) {
+      return <></>;
+    } else {
+      return this.state.dadosProfissional.tags.map(value => {
+        const tagName = value.charAt(0).toUpperCase() + value.slice(1);
+        return (
+          <div className="b-info rounded green-text py-1 px-2 m-1">
+            <strong>{tagName}</strong>
+          </div>
+        );
+      });
+    }
   }
   renderContatos() {
     const contato = this.state.dadosProfissional.contato;
@@ -242,8 +246,7 @@ class Profissional extends Component {
                         </h3>
                         <div className="card-divider-long"></div>
                         <h3 className="text-content text-justify mb-4">
-                          {`${dados.localização.endereço}`}
-                          <br />
+                          {!dados.localização.endereço ? <> </> : `${dados.localização.endereço}`(<br/>)}
                           {`${dados.localização.bairro}, ${dados.localização.cidade} - ${dados.localização.estado}`}
                         </h3>
                       </>
