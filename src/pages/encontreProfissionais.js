@@ -35,12 +35,11 @@ class EncontreProfissionais extends Component {
     }
     let termosPesquisados = document.querySelector("#campo-pesquisa").value;
 
-    termosPesquisados = termosPesquisados.trim()
+    termosPesquisados = termosPesquisados.trim();
 
-    if(termosPesquisados === "") {
-      termosPesquisados = "-"
+    if (termosPesquisados === "") {
+      termosPesquisados = "-";
     }
-    alert(termosPesquisados)
 
     const rota = `/profissionais/_/${tags}/${termosPesquisados}/${this.state.paginas.atual}`;
     const pesquisa = await search(rota);
@@ -330,34 +329,38 @@ class EncontreProfissionais extends Component {
             {/* <!-- Fim da primeira row --> */}
 
             {/* <!-- Inicio da segunda row --> */}
-            <div className="row mx-3">
-              <div className="row jumbotron-clear ">
-                {/* <!-- Imagem à esquerda/baixo --> */}
-                <div className="col-10 col-sm-9 col-lg-6 mx-auto">
-                  <img
-                    src={workers}
-                    width="100%"
-                    alt="Pessoas apertando as mãos"
-                  />
-                </div>
-                {/* <!-- Fim da Imagem à esquerda/baixo --> */}
+            {this.state.profissionaisEncontrados.length < 1 ? (
+              <div className="row mx-3">
+                <div className="row jumbotron-clear ">
+                  {/* <!-- Imagem à esquerda/baixo --> */}
+                  <div className="col-10 col-sm-9 col-lg-6 mx-auto">
+                    <img
+                      src={workers}
+                      width="100%"
+                      alt="Pessoas apertando as mãos"
+                    />
+                  </div>
+                  {/* <!-- Fim da Imagem à esquerda/baixo --> */}
 
-                {/* <!-- Text-box com conteúdo à direita/abaixo da primeira imagem --> */}
-                <div className="col-sm-12 col-lg-6 rounded my-auto text-center">
-                  <h1 className="green-text">
-                    A qualquer hora em qualquer lugar
-                  </h1>
-                  <br />
-                  <h4 className="text-content text-justify">
-                    Encontre o profissional adequado para as suas necessidades,
-                    realize um busca mais profunda, contate e negocie com
-                    diversos profissionais, cadastre-se para ter acesso a mais
-                    informações.
-                  </h4>
+                  {/* <!-- Text-box com conteúdo à direita/abaixo da primeira imagem --> */}
+                  <div className="col-sm-12 col-lg-6 rounded my-auto text-center">
+                    <h1 className="green-text">
+                      A qualquer hora em qualquer lugar
+                    </h1>
+                    <br />
+                    <h4 className="text-content text-justify">
+                      Encontre o profissional adequado para as suas
+                      necessidades, realize um busca mais profunda, contate e
+                      negocie com diversos profissionais, cadastre-se para ter
+                      acesso a mais informações.
+                    </h4>
+                  </div>
+                  {/* <!-- Fim da text-box com conteúdo à direita/abaixo da primeira imagem --> */}
                 </div>
-                {/* <!-- Fim da text-box com conteúdo à direita/abaixo da primeira imagem --> */}
               </div>
-            </div>
+            ) : (
+              <> </>
+            )}
 
             {/* Fim da segunda row */}
           </div>
