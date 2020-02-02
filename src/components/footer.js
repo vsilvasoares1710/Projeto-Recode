@@ -4,8 +4,6 @@ import isAuthenticated from "../services/userAuthentication";
 
 class Footer extends Component {
   renderOptionsSmallFooter() {
-
-
     if (isAuthenticated() === false) {
       return (
         <div className="row mx-2">
@@ -43,7 +41,6 @@ class Footer extends Component {
     }
   }
   renderOptionsLargeFooter() {
-
     if (isAuthenticated() === false) {
       return (
         <div className="col-5 d-flex text-center">
@@ -127,12 +124,16 @@ class Footer extends Component {
             >
               Encontre Profissionais
             </Link>
-            <Link
-              to="/divulgueSeuTrabalho"
-              className="col-6 mb-2 mt-2 text-white text-right nav-link"
-            >
-              Divulgue seu Trabalho
-            </Link>
+            {isAuthenticated() === false ? (
+              <Link
+                to="/divulgueSeuTrabalho"
+                className="col-6 mb-2 mt-2 text-white text-right nav-link"
+              >
+                Divulgue seu Trabalho
+              </Link>
+            ) : (
+              <> </>
+            )}
           </div>
           {this.renderOptionsSmallFooter()}
           <div className="green-text text-center border-top border-info">
@@ -155,12 +156,16 @@ class Footer extends Component {
               >
                 Encontre Profissionais
               </Link>
-              <Link
-                to="/divulgueSeuTrabalho"
-                className="col-4 mb-4 mt-4 text-white text-center nav-link"
-              >
-                Divulgue seu Trabalho
-              </Link>
+              {isAuthenticated() === false ? (
+                <Link
+                  to="/divulgueSeuTrabalho"
+                  className="col-4 mb-4 mt-4 text-white text-center nav-link"
+                >
+                  Divulgue seu Trabalho
+                </Link>
+              ) : (
+                <> </>
+              )}
               <Link
                 to="/quemSomos"
                 className="col-3 mb-4 mt-4 text-white text-center nav-link"

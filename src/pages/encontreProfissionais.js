@@ -33,8 +33,16 @@ class EncontreProfissionais extends Component {
     if (tags.length === 0) {
       tags = "_";
     }
+    let termosPesquisados = document.querySelector("#campo-pesquisa").value;
 
-    const rota = `/profissionais/_/${tags}/${pesquisa}/${this.state.paginas.atual}`;
+    termosPesquisados = termosPesquisados.trim()
+
+    if(termosPesquisados === "") {
+      termosPesquisados = "-"
+    }
+    alert(termosPesquisados)
+
+    const rota = `/profissionais/_/${tags}/${termosPesquisados}/${this.state.paginas.atual}`;
     const pesquisa = await search(rota);
     if (typeof pesquisa === "object" && pesquisa !== null) {
       this.setState({ profissionaisEncontrados: pesquisa.profissionais });

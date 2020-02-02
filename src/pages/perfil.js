@@ -14,7 +14,6 @@ import loadingScreen from "../img/green-white-loading.gif";
 class Perfil extends Component {
   constructor(props) {
     super(props);
-    console.log();
     this.state = {
       dadosProfissional: "Carregando..."
     };

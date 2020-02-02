@@ -5,7 +5,6 @@ import LogoFundoEscuro from "../img/logFundoEscuro.png";
 import isAuthenticated from "../services/userAuthentication.js";
 
 class Navbar extends Component {
-
   renderButtons() {
     if (isAuthenticated() === false) {
       return (
@@ -18,7 +17,7 @@ class Navbar extends Component {
       return (
         <div data-toggle="collapse" data-target=".navbar-collapse.show">
           <Btn text="Meu Perfil" lead="/perfil" />
-          <Btn text="Sair" lead="/"/>
+          <Btn text="Sair" lead="/" />
         </div>
       );
     }
@@ -69,15 +68,19 @@ class Navbar extends Component {
                 Encontre Profissionais
               </Link>
             </li>
-            <li
-              className="nav-item active my-3"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <Link to="/divulgueSeuTrabalho" className="nav-link ml-1">
-                Divulgue seu Trabalho
-              </Link>
-            </li>
+            {isAuthenticated() === false ? (
+              <li
+                className="nav-item active my-3"
+                data-toggle="collapse"
+                data-target=".navbar-collapse.show"
+              >
+                <Link to="/divulgueSeuTrabalho" className="nav-link ml-1">
+                  Divulgue seu Trabalho
+                </Link>
+              </li>
+            ) : (
+              <> </>
+            )}
             <li
               className="nav-item active my-3"
               data-toggle="collapse"
