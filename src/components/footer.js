@@ -27,8 +27,14 @@ class Footer extends Component {
       return (
         <div className="row mx-2">
           <Link
+            to="/perfil"
+            className="col-6 mb-4 mt-2 text-white text-left nav-link"
+          >
+            Meu Perfil
+          </Link>
+          <Link
             to="/"
-            className="col-12 mb-4 mt-2 text-white text-center nav-link"
+            className="col-6 mb-4 mt-2 text-white text-right nav-link"
           >
             Sair
           </Link>
@@ -66,13 +72,19 @@ class Footer extends Component {
         <div className="col-5 d-flex text-center">
           <Link
             to="/contato"
-            className="col-8 mb-4 mt-4 text-white text-center nav-link"
+            className="col-5 mb-4 mt-4 text-white text-center nav-link"
           >
             Contato
           </Link>
           <Link
+            to="/perfil"
+            className="col-3 mb-4 mt-4 text-white text-center nav-link"
+          >
+            Meu Perfil
+          </Link>
+          <Link
             to="/"
-            className="col-4 mb-4 mt-4 text-white text-left nav-link"
+            className="col-4 mb-4 mt-4 text-white text-center nav-link"
           >
             Sair
           </Link>

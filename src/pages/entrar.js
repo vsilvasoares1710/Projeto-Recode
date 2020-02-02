@@ -8,9 +8,9 @@ class Entrar extends Component {
 
   render() {
     return (
-      <div className="container-fluid bg-white stretch ">
+      <div className="container-fluid bg-white extend">
         {/* <!-- Conteúdo principal da página --> */}
-        <div className="container bg-white px-4 pb-4 stretch">
+        <div className="container bg-white my-auto">
           <h1 className="green-text text-center pt-4">Entrar</h1>
           <div className="row">
             <div className="d-none d-lg-block col-lg-6 my-auto">

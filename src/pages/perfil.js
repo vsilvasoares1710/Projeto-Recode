@@ -11,7 +11,7 @@ import linkedinIcon from "../img/linkedin-icon.svg";
 import siteOficialIcon from "../img/siteOficial-icon.svg";
 import loadingScreen from "../img/green-white-loading.gif";
 
-class Profissional extends Component {
+class Perfil extends Component {
   constructor(props) {
     super(props);
     console.log();
@@ -304,4 +304,4 @@ class Profissional extends Component {
   }
 }
 
-export default Profissional;
+export default Perfil;

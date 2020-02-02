@@ -8,6 +8,7 @@ import RenderProfissionais from "../components/cardDoProfissional";
 import filterValidation from "../services/filterValidation.js";
 // Images
 import workers from "../img/workers.jpg";
+import loadingScreen from "../img/white-green-loading.gif";
 
 class EncontreProfissionais extends Component {
   constructor() {
@@ -28,11 +29,12 @@ class EncontreProfissionais extends Component {
   }
 
   async getProfissionais() {
-    let tags = this.state.filtrosMarcados
+    let tags = this.state.filtrosMarcados;
     if (tags.length === 0) {
-      tags = "_"
+      tags = "_";
     }
-    const rota = `/profissionais/${tags}/${this.state.paginas.atual}`;
+
+    const rota = `/profissionais/_/${tags}/${pesquisa}/${this.state.paginas.atual}`;
     const pesquisa = await search(rota);
     if (typeof pesquisa === "object" && pesquisa !== null) {
       this.setState({ profissionaisEncontrados: pesquisa.profissionais });
@@ -217,6 +219,7 @@ class EncontreProfissionais extends Component {
                     <div className="form-group">
                       <input
                         type="text"
+                        id="campo-pesquisa"
                         className="form-control type-field col mr-0"
                         placeholder="Busque por termos chave..."
                       />
@@ -254,7 +257,27 @@ class EncontreProfissionais extends Component {
                             >
                               <div className={`accordion-inner card-item`}>
                                 <div className="d-flex flex-wrap mr-0">
-                                  {this.renderAccordion()}
+                                  {this.state.filtros.length === 0 ? (
+                                    <>
+                                      <div className="container-fluid bg-info">
+                                        <div className="row">
+                                          <div className="d-flex flex-column mx-auto">
+                                            <h3 className="white-text">
+                                              Carregando filtros...
+                                            </h3>
+                                            <img
+                                              src={loadingScreen}
+                                              height="100"
+                                              width="100"
+                                              className="mx-auto"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </>
+                                  ) : (
+                                    this.renderAccordion()
+                                  )}
                                 </div>
                                 <div className="card-divider-long-white mt-3"></div>
                                 <Btn
@@ -282,7 +305,7 @@ class EncontreProfissionais extends Component {
                       <RenderProfissionais
                         idProfissional={profissional.id}
                         nome={profissional.nome}
-                        icone={profissional.icone}
+                        icone={profissional.foto}
                         texto={profissional.anuncio.texto}
                         tags={profissional.tags}
                         anuncioPago={profissional.anuncio.anuncioPago}

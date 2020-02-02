@@ -17,6 +17,7 @@ class Navbar extends Component {
     } else if (isAuthenticated() === true) {
       return (
         <div data-toggle="collapse" data-target=".navbar-collapse.show">
+          <Btn text="Meu Perfil" lead="/perfil" />
           <Btn text="Sair" lead="/"/>
         </div>
       );

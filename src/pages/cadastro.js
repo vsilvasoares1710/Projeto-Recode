@@ -5,6 +5,7 @@ import Btn from "../components/button.js";
 import getFiltros from "../services/filters.js";
 import filterValidation from "../services/filterValidation.js";
 // Images
+import loadingScreen from "../img/green-white-loading.gif";
 
 class Cadastro extends Component {
   constructor() {
@@ -42,9 +43,7 @@ class Cadastro extends Component {
     const label = labelText.charAt(0).toUpperCase() + labelText.slice(1);
     const inputId = label + "Checkbox";
     let isChecked;
-    this.state.filtrosMarcados.indexOf(
-      label.toLowerCase()
-    ) === -1
+    this.state.filtrosMarcados.indexOf(label.toLowerCase()) === -1
       ? (isChecked = false)
       : (isChecked = true);
     return (
@@ -84,9 +83,7 @@ class Cadastro extends Component {
                   data-target={"#collapse" + categoriaFormatted}
                 >
                   <div className="d-flex align-items-center card-heading ">
-                    <h5 className="mx-auto text-center">
-                      {objeto.categoria}
-                    </h5>
+                    <h5 className="mx-auto text-center">{objeto.categoria}</h5>
                   </div>
                 </button>
               </div>
@@ -356,8 +353,8 @@ class Cadastro extends Component {
                       ></textarea>
                     </div>
                   </div>
-                  <div className="row">
-                    <div className="form-group col-12">
+                  <div className="row pb-0 mb-0">
+                    <div className="form-group col-12 pb-0 mb-0">
                       <label className="text-green">
                         <strong>
                           <h4>Tags do Anúncio</h4>
@@ -365,13 +362,32 @@ class Cadastro extends Component {
                       </label>
                     </div>
                   </div>
+                  <h5>Selecione abaixo as tags que serão utilizadas para encontrarem seu anúncio</h5>
                   <div
-                    className=" form-group d-flex flex-wrap mr-0"
+                    className="form-group d-flex flex-wrap mr-0"
                     id="accordionFiltros"
                   >
-                    {this.renderAccordion()}
+                    {this.state.filtros.length === 0 ? (
+                      <>
+                        <div className="container-fluid bg-white">
+                          <div className="row">
+                            <div className="d-flex flex-column mx-auto">
+                              <h3 className="green-text">Carregando tags...</h3>
+                              <img
+                                src={loadingScreen}
+                                height="100"
+                                width="100"
+                                className="mx-auto"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      this.renderAccordion()
+                    )}
                   </div>
-                  <Btn text="Cadastrar" className="btn btn-info shadow"/>
+                  <Btn text="Cadastrar" className="btn btn-info shadow" />
                 </form>
               </div>
             </div>
