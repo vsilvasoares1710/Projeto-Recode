@@ -1,6 +1,6 @@
-import axios from "axios";
+import api from "./fixhubAPI";
 export default function search(route) {
-  return axios
+  return api
     .get(route)
     .then(response => {
       return response.data;

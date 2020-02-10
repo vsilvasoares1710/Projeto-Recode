@@ -1,7 +1,7 @@
-import axios from "axios";
+import api from "./fixhubAPI";
 export default function getFiltros() {
   try {
-    return axios.get("/filtros").then(response => {
+    return api.get("/filtros").then(response => {
       return response.data;
     });
   } catch (error) {
