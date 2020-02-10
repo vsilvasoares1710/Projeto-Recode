@@ -2,7 +2,7 @@
   "name": "app01",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3333",
+  "proxy": "http://api-fixhub.tk",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.3",
