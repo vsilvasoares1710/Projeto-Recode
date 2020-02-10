@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import api from "../services/fixhubAPI";
 
 // Images
 import phoneIcon from "../img/phone-icon.svg";
@@ -22,7 +22,7 @@ class Profissional extends Component {
   }
   getProfissionaisId() {
     try {
-      axios
+      api
         .get(`/profissionais/${this.props.match.params.id}`)
         .then(response => {
           console.log(response.data);
