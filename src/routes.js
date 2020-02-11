@@ -24,6 +24,7 @@ function Routes() {
 			<Route exact path='/cadastro' component={Cadastro} />
       <Route exact path='/profissional/:id' component={Profissional} />
       <Route exact path='/perfil' component={Perfil} />
+      <Route component={Home} />
 		</Switch>
 	)
 

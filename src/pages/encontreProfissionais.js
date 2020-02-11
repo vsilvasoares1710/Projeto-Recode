@@ -4,11 +4,13 @@ import Btn from "../components/button.js";
 // Services
 import search from "../services/search.js";
 import getFiltros from "../services/filters.js";
+import getLocais from "../services/locais.js";
 import RenderProfissionais from "../components/cardDoProfissional";
 import filterValidation from "../services/filterValidation.js";
 // Images
 import workers from "../img/workers.jpg";
-import loadingScreen from "../img/white-green-loading.gif";
+import loadingScreenGreenBg from "../img/white-green-loading.gif";
+import loadingScreenWhiteBg from "../img/green-white-loading.gif";
 
 class EncontreProfissionais extends Component {
   constructor() {
@@ -20,28 +22,44 @@ class EncontreProfissionais extends Component {
       paginas: {
         atual: 1,
         total: 1
-      }
+      },
+      locais: "",
+      estado: "",
+      estadoSelecionado: "",
+      cidades: "",
+      cidadeSelecionada: "",
+      bairros: "",
+      bairroSelecionado: ""
     };
     this.getProfissionais = this.getProfissionais.bind(this);
     this.limparFiltros = this.limparFiltros.bind(this);
     this.limparLista = this.limparLista.bind(this);
     this.carregarFiltros = this.carregarFiltros.bind(this);
+    this.carregarLocais = this.carregarLocais.bind(this);
   }
 
   async getProfissionais() {
+    this.setState({ profissionaisEncontrados: "Carregando..." });
+
     let tags = this.state.filtrosMarcados;
     if (tags.length === 0) {
-      tags = "_";
+      tags = "";
     }
-    let termosPesquisados = document.querySelector("#campo-pesquisa").value;
+    let termosPesquisados = document.querySelector("#campo-pesquisa").value.trim();
 
-    termosPesquisados = termosPesquisados.trim();
+    let { estadoSelecionado, cidadeSelecionada, bairroSelecionado } = this.state
 
-    if (termosPesquisados === "") {
-      termosPesquisados = "-";
+    const searchParams = {
+      tags: tags === "" || tags === undefined || tags === null || tags === false ? "_" : tags,
+      pesquisa: termosPesquisados === "" || termosPesquisados === undefined || termosPesquisados === null || termosPesquisados === false ? "_" : termosPesquisados,
+      estado: estadoSelecionado === "" || estadoSelecionado === undefined || estadoSelecionado === null || estadoSelecionado === false ? "_" : estadoSelecionado,
+      cidade: cidadeSelecionada === "" || cidadeSelecionada === undefined || cidadeSelecionada === null || cidadeSelecionada === false ? "_" : cidadeSelecionada,
+      bairro: bairroSelecionado === "" || bairroSelecionado === undefined || bairroSelecionado === null || bairroSelecionado === false ? "_" : bairroSelecionado
     }
 
-    const rota = `/profissionais/_/${tags}/${termosPesquisados}/${this.state.paginas.atual}`;
+    console.log(searchParams)
+
+    const rota = `/profissionais/${searchParams.estado}/${searchParams.cidade}/${searchParams.bairro}/${searchParams.tags}/${searchParams.pesquisa}/${this.state.paginas.atual}`;
     const pesquisa = await search(rota);
     if (typeof pesquisa === "object" && pesquisa !== null) {
       this.setState({ profissionaisEncontrados: pesquisa.profissionais });
@@ -52,10 +70,19 @@ class EncontreProfissionais extends Component {
     }
   }
 
+  async carregarLocais() {
+    const locais = await getLocais();
+    if (typeof locais === "object") {
+      this.setState({ locais: locais });
+      console.log(this.state.locais.estados);
+    } else {
+      return;
+    }
+  }
+
   async carregarFiltros() {
     const filtros = await getFiltros();
-    if (typeof filtros === "object" && filtros.catregoria !== null) {
-      console.log(typeof filtros);
+    if (typeof filtros === "object" && filtros.categoria !== null) {
       this.setState({ filtros: filtros });
     } else {
       return;
@@ -207,6 +234,12 @@ class EncontreProfissionais extends Component {
       )
     });
     this.carregarFiltros();
+    this.carregarLocais();
+  }
+
+  componentDidUpdate() {
+    console.log(this.state);
+
   }
   render() {
     return (
@@ -262,7 +295,7 @@ class EncontreProfissionais extends Component {
                               id={"collapseConjuntoFiltros"}
                               className="accordion-body collapse out"
                             >
-                              <div className={`accordion-inner card-item`}>
+                              <div className="accordion-inner card-item">
                                 <div className="d-flex flex-wrap mr-0">
                                   {this.state.filtros.length === 0 ? (
                                     <>
@@ -273,7 +306,7 @@ class EncontreProfissionais extends Component {
                                               Carregando filtros...
                                             </h3>
                                             <img
-                                              src={loadingScreen}
+                                              src={loadingScreenGreenBg}
                                               height="100"
                                               width="100"
                                               className="mx-auto"
@@ -302,24 +335,146 @@ class EncontreProfissionais extends Component {
                           </div>
                         </div>
                       </div>
+                      <select
+                        class="custom-select custom-select-lg type-field mt-3 col-3 col-sm-2 col-lg-1"
+                        id="uf-select"
+                        onChange={() => {
+                          const { uf, cidades} = JSON.parse(document.querySelector("#uf-select").value)
+                          console.log(uf)
+                          this.setState({
+                            cidades,
+                            estadoSelecionado: uf
+                          });
+                        }}
+                      >
+                        <option selected value="">
+                          UF
+                        </option>
+                        {this.state.locais.estados === undefined ? (
+                          <option value="">Carregando estados...</option>
+                        ) : (
+                          <>
+                            {this.state.locais.estados.map(estado => {
+                              const {uf, cidades} = estado
+                              return (
+                                <option value={JSON.stringify({uf, cidades})}>
+                                  {uf}
+                                </option>
+                              );
+                            })}
+                          </>
+                        )}
+                      </select>
+                      {this.state.cidades === "" ? (
+                        <></>
+                      ) : (
+                        <select
+                          class="custom-select custom-select-lg type-field mt-3 col-9 col-sm-10 col-md-5"
+                          id="cidade-select"
+                          onChange={() => {
+                            const { nome, bairros} = JSON.parse(document.querySelector("#cidade-select").value)
+                            this.setState({
+                              bairros,
+                              cidadeSelecionada: nome
+                            });
+                          }}
+                        >
+                          <option selected value="">
+                            Cidade
+                          </option>
+                          {this.state.cidades === "" ? (
+                            <option value="">
+                              Selecione um estado primeiro
+                            </option>
+                          ) : (
+                            <>
+                              {this.state.cidades.map(cidade => {
+                                const { nome, bairros } = cidade
+                                return (
+                                  <option
+                                    value={JSON.stringify({nome, bairros})}
+                                  >
+                                    {nome}
+                                  </option>
+                                );
+                              })}
+                            </>
+                          )}
+                        </select>
+                      )}
+                      {this.state.bairros === "" ? (
+                        <></>
+                      ) : (
+                        <select
+                          class="custom-select custom-select-lg type-field mt-3 col-12 col-sm-8 col-md-5 col-xl-6"
+                          id="bairros-select"
+                          onChange={() => {
+                            this.setState({
+                              bairroSelecionado: document.querySelector("#bairros-select")
+                                .value
+                            });
+                          }}
+                        >
+                          <option selected value="">
+                            Bairro
+                          </option>
+                          {this.state.bairros === "" ? (
+                            <option value="">
+                              Selecione uma cidade primeiro
+                            </option>
+                          ) : (
+                            <>
+                              {this.state.bairros.map(bairro => {
+                                return (
+                                  <option
+                                    value={bairro}
+                                  >
+                                    {bairro}
+                                  </option>
+                                );
+                              })}
+                            </>
+                          )}
+                        </select>
+                      )}
                     </div>
                   </div>
                   {/* Fim do Jumbotron verde com filtros de pesquisa */}
 
                   {/* Inicio dos resultados de pesquisa */}
-                  {this.state.profissionaisEncontrados.map(profissional => {
-                    return (
-                      <RenderProfissionais
-                        idProfissional={profissional.id}
-                        nome={profissional.nome}
-                        icone={profissional.foto}
-                        texto={profissional.anuncio.texto}
-                        tags={profissional.tags}
-                        anuncioPago={profissional.anuncio.anuncioPago}
-                        tagOnClick={() => this.sincronizarState()}
-                      />
-                    );
-                  })}
+                  {typeof this.state.profissionaisEncontrados !== "string" ? (
+                    this.state.profissionaisEncontrados.map(profissional => {
+                      return (
+                        <RenderProfissionais
+                          idProfissional={profissional.id}
+                          nome={profissional.nome}
+                          icone={profissional.foto}
+                          texto={profissional.anuncio.texto}
+                          tags={profissional.tags}
+                          anuncioPago={profissional.anuncio.anuncioPago}
+                          tagOnClick={() => this.sincronizarState()}
+                        />
+                      );
+                    })
+                  ) : (
+                    <>
+                      <div className="container-fluid bg-white">
+                        <div className="row pb-5">
+                          <div className="d-flex flex-column mx-auto">
+                            <h3 className="green-text">
+                              Buscando Profissionais...
+                            </h3>
+                            <img
+                              src={loadingScreenWhiteBg}
+                              height="100"
+                              width="100"
+                              className="mx-auto"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  )}
                   {/* Fim dos resultados de pesquisa */}
                 </div>
 

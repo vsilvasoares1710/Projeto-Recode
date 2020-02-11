@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import api from "../services/fixhubAPI";
-
+import ReactMap from "../components/map"
 // Images
 import phoneIcon from "../img/phone-icon.svg";
 import cellphoneIcon from "../img/cellphone-icon.svg";
@@ -22,16 +22,14 @@ class Profissional extends Component {
   }
   getProfissionaisId() {
     try {
-      api
-        .get(`/profissionais/${this.props.match.params.id}`)
-        .then(response => {
-          console.log(response.data);
-          if (!response.data) {
-            this.setState({ dadosProfissional: null });
-          } else {
-            this.setState({ dadosProfissional: response.data });
-          }
-        });
+      api.get(`/profissionais/${this.props.match.params.id}`).then(response => {
+        console.log(response.data);
+        if (!response.data) {
+          this.setState({ dadosProfissional: null });
+        } else {
+          this.setState({ dadosProfissional: response.data });
+        }
+      });
     } catch (error) {
       console.error(error);
       this.setState({ dadosProfissional: null });
@@ -174,7 +172,9 @@ class Profissional extends Component {
         <div className="container-fluid bg-white">
           <div className="row extend">
             <div className="d-flex flex-column mx-auto my-auto">
-              <h3 className="green-text">Carregando dados do profissional...</h3>
+              <h3 className="green-text">
+                Carregando dados do profissional...
+              </h3>
               <img
                 src={loadingScreen}
                 height="100"
@@ -267,6 +267,7 @@ class Profissional extends Component {
                       <> </>
                     )}
                   </div>
+                  {/* <ReactMap/> */}
                   {/* {dados.anuncio.imagens ? (
                     <>
                       <h3 className="white-text text-left text-content">
