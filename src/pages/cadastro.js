@@ -132,12 +132,13 @@ class Cadastro extends Component {
           <div className="col-12 mt-4 mb-4 mx-auto">
             <div className="jumbotron-green my-auto">
               <div className="jumbotron-clear my-auto shadow">
-                <h1 className="">Cadastre-se</h1>
+                <h1 className="">Cadastro</h1>
                 <div className="card-divider-long"></div>
                 <form className="mt-3 p-0">
                   <div className="row">
                     <div className="form-group col-12 col-md-4 col-lg-2">
                       <label className="text-green">
+                        {/* inicio bloco de informações de dados prestador/empresa */}
                         <strong>
                           <h4>Documento</h4>
                         </strong>
@@ -243,6 +244,104 @@ class Cadastro extends Component {
                       />
                     </div>
                   </div>
+                  {/* fim bloco de informações de dados prestador/empresa */}
+
+                      {/* inicio bloco de informações de endereço*/}
+                  <h3 className="mt-3">Informações de Endereço:</h3>
+
+                  <div className="card-divider-long mb-3"></div>
+                  <div className="row">
+                  <div className="form-group col-12 col-md-6 col-lg-4">
+                      <label className="text-green">
+                        <strong>
+                          <h4>CEP</h4>
+                        </strong>
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control b-info type-field"
+                        id="cep"
+                        placeholder="00000-000"
+                        maxLength="10"
+                      />
+                    </div>
+                    <div className="form-group col-12 col-md-6 col-lg-4">
+                      <label className="text-green">
+                        <strong>
+                          <h4>Estado</h4>
+                        </strong>
+                      </label>
+                      <select
+                        className="form-control b-info type-field"
+                        id="estado"
+                        onChange={() =>
+                          this.setState({
+                            documento: document.getElementById("estado")
+                              .value
+                          })
+                        }
+                      >
+                        <option></option>
+                        <option>SP</option>
+                      </select>
+
+                    </div>
+                    <div className="form-group col-12 col-md-6 col-lg-4">
+                    <label className="text-green">
+                        <strong>
+                          <h4>Cidade</h4>
+                        </strong>
+                      </label>
+                        <select
+                        className="form-control b-info type-field"
+                        id="cidade"
+                        onChange={() =>
+                          this.setState({
+                            documento: document.getElementById("cidade")
+                              .value
+                          })
+                        }
+                      >
+                        <option></option>
+                        <option>ver array para cidades</option>
+                      </select>
+
+                    </div>
+
+                  </div>
+                  <div className="row mt-3">
+                    <div className="form-group col-12 col-md-10">
+                      <label className="text-green">
+                        <strong>
+                          <h4>Logradouro</h4>
+                        </strong>
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control b-info type-field"
+                        id="logradouro"
+                        placeholder="Rua / Avenida "
+                        maxLength="70"
+                      />
+                    </div>
+                    <div className="form-group col-12 col-md-2">
+                      <label className="text-green">
+                        <strong>
+                          <h4>Numero</h4>
+                        </strong>
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control b-info type-field"
+                        id="numero"
+                        placeholder="000"
+                        maxLength="5"
+                      />
+                    </div>
+                  </div>
+                  {/* fim bloco de informações de endereço*/}
+
+                {/* inicio bloco de informações de contato*/}
                   <h3 className="mt-3">Informações de contato:</h3>
                   <div className="card-divider-long mb-3"></div>
                   <div className="row">
@@ -337,6 +436,8 @@ class Cadastro extends Component {
                       />
                     </div>
                   </div>
+                  {/* fim bloco de informações de contato*/}
+                   {/* inicio bloco de informações do anuncio */}
                   <h3 className="mt-3">Informações do Anúncio:</h3>
                   <div className="card-divider-long mb-3"></div>
                   <div className="row">
@@ -388,6 +489,7 @@ class Cadastro extends Component {
                     )}
                   </div>
                   <Btn text="Cadastrar" className="btn btn-info shadow" />
+                  {/* fim bloco de informações do anuncio */}
                 </form>
               </div>
             </div>
