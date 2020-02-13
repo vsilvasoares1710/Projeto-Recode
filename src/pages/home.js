@@ -41,6 +41,8 @@ class Home extends Component {
                   mais diversos ramos, clique abaixo e descubra.
                 </h4>
                 <br />
+
+
                 <Btn
                   text="Encontre Profissionais"
                   lead="/encontreProfissionais"
@@ -51,6 +53,58 @@ class Home extends Component {
           </div>
           {/* <!-- Fim da primeira row --> */}
           <br />
+
+          {/*Inicio jornada de usuario*/}
+          <div className="row text-center">
+            <div className="col-md-3">
+
+              <img
+                src={curriculoIcon}
+                width="90px"
+                alt="currículo do profissional"
+              />
+              <h3>1º passo</h3>
+              <h4>cadastro gratuito em nossa plataforma
+              </h4>
+            </div>
+
+            <div className="col-md-3">
+              <img
+                src={divulgaIcon}
+                width="90px"
+                alt="pessoa que comunica e divulga"
+              />
+              <h3>2º passo</h3>
+              <h4>divulgação de profissionais em cada categoria
+              </h4>
+          </div>
+
+            <div className="col-md-3">
+              <img
+                src={redeIcon}
+                width="90px"
+                alt="pessoas que se encontram numa rede"
+              />
+              <h3>3º passo</h3>
+              <h4>conexão entre clientes e trabalhadores autônomos
+        </h4>
+            </div>
+
+            <div className="col-md-3">
+              <img
+                src={comunidadeLocal}
+                width="90px"
+                alt="pessoas que se encontram numa rede"
+              />
+              <h3>4º passo</h3>
+              <h4>fortalecimento dos trabalhadores autônomos em suas comunidades locais
+        </h4>
+            </div>
+
+
+
+          </div>
+
           {/* <!-- Segunda Row --> */}
           <div className="rol bg-info card-box">
             {/* <!-- Box dos cards--> */}
