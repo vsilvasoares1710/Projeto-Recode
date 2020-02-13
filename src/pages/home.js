@@ -8,7 +8,7 @@ import peopleShakingHands from "../img/peopleShakingHads.jpg";
 import curriculoIcon from "../img/curriculo.svg";
 import divulgaIcon from "../img/influenciador.svg";
 import redeIcon from "../img/networking.svg";
-import comunidadeLocal from "../img/trabalho-em-equipe.svg"
+import comunidadeLocal from "../img/trabalho-em-equipe.svg";
 
 class Home extends Component {
   render() {
