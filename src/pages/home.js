@@ -59,8 +59,8 @@ class Home extends Component {
           <br />
 
           {/*Inicio jornada de usuario*/}
-          <div className="row text-center">
-            <div className="col-md-3">
+          <div className="row text-center my-3">
+            <div className="col-md-3 my-3">
 
               <img
                 src={curriculoIcon}
@@ -72,7 +72,7 @@ class Home extends Component {
               </h4>
             </div>
 
-            <div className="col-md-3">
+            <div className="col-md-3 my-3">
               <img
                 src={divulgaIcon}
                 width="90px"
@@ -83,7 +83,7 @@ class Home extends Component {
               </h4>
             </div>
 
-            <div className="col-md-3">
+            <div className="col-md-3 my-3">
               <img
                 src={redeIcon}
                 width="90px"
@@ -94,7 +94,7 @@ class Home extends Component {
               </h4>
             </div>
 
-            <div className="col-md-3">
+            <div className="col-md-3 my-3">
               <img
                 src={comunidadeLocal}
                 width="90px"
@@ -102,7 +102,7 @@ class Home extends Component {
               />
               <h3>4º passo</h3>
               <h4>fortalecimento dos trabalhadores autônomos em suas comunidades locais
-        </h4>
+              </h4>
             </div>
 
 
