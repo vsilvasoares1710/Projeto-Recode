@@ -5,6 +5,10 @@ import Btn from "../components/button.js";
 // Images
 import carRepair from "../img/carRepair.jpg";
 import peopleShakingHands from "../img/peopleShakingHads.jpg";
+import curriculoIcon from "../img/curriculo.svg";
+import divulgaIcon from "../img/influenciador.svg";
+import redeIcon from "../img/networking.svg";
+import comunidadeLocal from "../img/trabalho-em-equipe.svg"
 
 class Home extends Component {
   render() {
@@ -77,7 +81,7 @@ class Home extends Component {
               <h3>2º passo</h3>
               <h4>divulgação de profissionais em cada categoria
               </h4>
-          </div>
+            </div>
 
             <div className="col-md-3">
               <img
@@ -87,7 +91,7 @@ class Home extends Component {
               />
               <h3>3º passo</h3>
               <h4>conexão entre clientes e trabalhadores autônomos
-        </h4>
+              </h4>
             </div>
 
             <div className="col-md-3">
