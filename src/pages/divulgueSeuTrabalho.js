@@ -13,11 +13,11 @@ class DivulgueSeuTrabalho extends Component {
         {/* <!-- Conteúdo principal da página --> */}
         <div className="container bg-white">
           {/* <!-- Primeira row --> */}
-          <div className="row">
+          <div className="row mb-4">
             {/* <!-- Text-box com conteúdo à direita/topo da primeira imagem --> */}
             <div className="col-sm-12 mt-4">
-              <div className="jumbotron-clear my-auto text-center">
-                <h1 className="green-text">Divulgue seu Trabalho</h1>
+              <div className="jumbotron-clear my-auto text-center ">
+                <h1 className="green-text"><b>Divulgue seu Trabalho</b></h1>
                 <br />
                 <h4 className="text-content text-justify">
                   O FixHub é a plataforma perfeita para a divulgação do seu
@@ -28,25 +28,7 @@ class DivulgueSeuTrabalho extends Component {
                 <Btn text="Cadastre-se" lead="/cadastro" />
               </div>
             </div>
-            {/* <!-- Fim da text-box com conteúdo à direita/topo da primeira imagem -->
-                    <!-- Imagem à direita/baixo --> */}
-            <div className="row mt-4 mx-2">
-              <div className="col-10 col-md-6 py-2 d-none d-md-block mx-auto">
-                <img
-                  src={clientes}
-                  width="100%"
-                  alt="Lupa fazendo a leitura do contrato em uma prancheta e simbolizando letras pequenas"
-                />
-              </div>
-              <div className="col-10 col-md-6 py-2 d-none d-md-block mx-auto">
-                <img
-                  src={clientes2}
-                  width="100%"
-                  alt="Assinatura do contrato, duas mãos, uma prancheta e uma uma caneta"
-                />
-              </div>
-            </div>
-            {/* <!-- Fim da Imagem à direita/baixo --> */}
+            {/* <!-- Fim da text-box com conteúdo à direita/topo da primeira imagem -*/}
           </div>
           {/* <!-- Fim da primeira row -->
 
@@ -64,7 +46,7 @@ class DivulgueSeuTrabalho extends Component {
 
             <div className="col-sm-12 col-lg-6 col-xl-7 mt-2 text-center">
               <div className="jumbotron-green my-auto">
-                <h1 className="white-text">
+                <h1 className="gray-text">
                   Encontrar, ser encontrado, negociar e vender...
                 </h1>
                 <br />
@@ -79,11 +61,7 @@ class DivulgueSeuTrabalho extends Component {
                   a esses e outros benefícios agora mesmo..
                 </h4>
                 <br />
-                <Btn
-                  text="Cadastre-se"
-                  lead="/cadastro"
-                  className="btn btn-white"
-                />
+
               </div>
             </div>
             {/* <!-- Imagem à direita/baixo -->

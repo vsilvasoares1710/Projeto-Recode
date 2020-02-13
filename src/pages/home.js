@@ -56,7 +56,6 @@ class Home extends Component {
             {/* <!-- Fim da text-box com conteúdo à direita/topo da primeira imagem --> */}
           </div>
           {/* <!-- Fim da primeira row --> */}
-          <br />
 
           {/*Inicio jornada de usuario*/}
           <div className="row text-center my-3">
@@ -67,8 +66,8 @@ class Home extends Component {
                 width="90px"
                 alt="currículo do profissional"
               />
-              <h3>1º passo</h3>
-              <h4>cadastro gratuito em nossa plataforma
+              <h3><b>1º passo</b></h3>
+              <h4>Cadastre-se gratuitamente em nossa plataforma.
               </h4>
             </div>
 
@@ -78,8 +77,8 @@ class Home extends Component {
                 width="90px"
                 alt="pessoa que comunica e divulga"
               />
-              <h3>2º passo</h3>
-              <h4>divulgação de profissionais em cada categoria
+              <h3><b>2º passo</b></h3>
+              <h4>Divulgue o seu trabalho por meio de um anúncio.
               </h4>
             </div>
 
@@ -89,8 +88,8 @@ class Home extends Component {
                 width="90px"
                 alt="pessoas que se encontram numa rede"
               />
-              <h3>3º passo</h3>
-              <h4>conexão entre clientes e trabalhadores autônomos
+              <h3><b>3º passo</b></h3>
+              <h4>Seja encontrado por clientes próximos a você.
               </h4>
             </div>
 
@@ -100,8 +99,8 @@ class Home extends Component {
                 width="90px"
                 alt="pessoas que se encontram numa rede"
               />
-              <h3>4º passo</h3>
-              <h4>fortalecimento dos trabalhadores autônomos em suas comunidades locais
+              <h3><b>4º passo</b></h3>
+              <h4>Cresça em conjunto com sua comunidade local.
               </h4>
             </div>
 

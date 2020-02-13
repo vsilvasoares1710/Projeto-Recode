@@ -7,7 +7,7 @@
 #brand-logo {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 32px;
-  color: #00ceaf;
+  color: #71bba4;
 }
 
 .nav-link {
@@ -20,7 +20,7 @@
 .nav-link:hover,
 .nav-link:focus {
   text-decoration: underline;
-  text-decoration-color: #00ceaf;
+  text-decoration-color: #71bba4;
   text-decoration-thickness: from-font;
 }
 
@@ -52,14 +52,14 @@
 .btn-info {
   color: white;
   font-weight: bold;
-  background-color: #00ceaf;
-  border-color: #00ceaf;
+  background-color: #71bba4;
+  border-color: #71bba4;
 }
 
 .btn-info:hover,
 .btn-info:focus,
 .btn-info.focus {
-  box-shadow: 1 1 1 1rem #00ceaf;
+  box-shadow: 1 1 1 1rem #71bba4;
   background-color: #138496;
   border-color: #0f6875;
 }
@@ -87,7 +87,7 @@
 }
 
 .btn-white {
-  color: #00ceaf;
+  color: #71bba4;
   font-weight: bold;
   background-color: white;
 }
@@ -102,7 +102,7 @@
 
 .btn-white.disabled,
 .btn-white:disabled {
-  color: #00ceaf;
+  color: #71bba4;
   font-weight: bold;
   background-color: #cacaca;
   border-color: #5fffe7;
@@ -122,7 +122,7 @@
   box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
 }
 .btn-outline-white {
-  color: #00ceaf;
+  color: #71bba4;
   font-weight: bold;
   background-color: white;
   background-image: none;
@@ -168,7 +168,7 @@
 .btn-dark-green:not(:disabled):not(.disabled).active,
 .show > .btn-dark-green.dropdown-toggle {
   color: #000000;
-  background-color: #00ceaf;
+  background-color: #71bba4;
   border-color: #ffffff;
 }
 
@@ -229,7 +229,7 @@
 
 .green-text,
 .green {
-  color: #00ceaf;
+  color: #71bba4;
 }
 .white-text {
   color: #ffffff;
@@ -239,14 +239,14 @@
   -webkit-text-stroke-color: rgb(0, 0, 0);
 }
 .bg-info {
-  background-color: #00ceaf !important;
+  background-color: #71bba4 !important;
 }
 .bg-black {
   background-color: #000 !important;
 }
 
 .border-info {
-  border-color: #00ceaf !important;
+  border-color: #71bba4 !important;
 }
 
 .border-white {
@@ -258,18 +258,18 @@ a.bg-info:hover,
 a.bg-info:focus,
 button.bg-info:hover,
 button.bg-info:focus {
-  background-color: #00ceaf !important;
+  background-color: #71bba4 !important;
 }
 
 .footer-dark {
-  background-color: #000000;
+  background-color: #224843;
   flex-shrink: none;
 }
 .stretch {
   min-height: 100%;
 }
 .navbar-dark {
-  background-color: #000000;
+  background-color: #223843;
 }
 
 .nav-margin {
@@ -283,7 +283,7 @@ button.bg-info:focus {
 }
 .card-content:hover,
 .card-content:focus {
-  color: #00ceaf;
+  color: #71bba4;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
@@ -293,8 +293,8 @@ a .text-link {
 }
 a .text-link:hover,
 a .text-link:focus {
-  color: #00ceaf;
-  text-decoration: underline #00ceaf;
+  color: #71bba4;
+  text-decoration: underline #71bba4;
 }
 .text-break-all {
   word-break: break-all;
@@ -304,13 +304,13 @@ a .text-link:focus {
   font-size: 22px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: bold;
-  border: solid 2px #00ceaf;
+  border: solid 2px #71bba4;
   height: 50px;
   border-radius: 7px;
 }
 .type-field:focus {
-  border: solid 2px black;
-  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5);
+  border: solid 2px #223842;
+  box-shadow: 0 0 0 0.2rem #223843;
 }
 .jumbotron {
   padding: 2rem 1rem;
@@ -324,15 +324,15 @@ a .text-link:focus {
   margin-bottom: 2rem;
   background-color: rgb(255, 255, 255);
   border-radius: 0.75rem;
-  border: solid #00ceaf 2px;
+  border: solid #71bba4 2px;
 }
 
 .jumbotron-green {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
-  background-color: #00ceaf;
+  background-color: #71bba4;
   border-radius: 0.75rem;
-  border: solid #00ceaf 2px;
+  border: solid #71bba4 2px;
 }
 
 @media (min-width: 576px) {
@@ -371,7 +371,7 @@ a .text-link:focus {
   border-radius: 0.75rem;
 }
 .b-info {
-  border: solid #00ceaf 2px;
+  border: solid #71bba4 2px;
 }
 .b-black {
   border: solid #000 2px;
@@ -389,7 +389,7 @@ a .text-link:focus {
   margin-bottom: 4px;
   -webkit-appearance: none;
   background-color: white;
-  border: 2px solid #00ceaf;
+  border: 2px solid #71bba4;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
     inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
   border-radius: 2px;
@@ -402,7 +402,7 @@ a .text-link:focus {
 }
 
 .checkbox:checked {
-  background-color: #00ceaf;
+  background-color: #71bba4;
 }
 .checkbox:checked:after {
   content: "\2713";
@@ -436,7 +436,7 @@ a .text-link:focus {
 }
 
 .checkbox-green-bg:focus {
-  background-color: #00ceaf;
+  background-color: #71bba4;
   border: 2px solid #ffffff;
   margin: 10;
 }
@@ -460,7 +460,7 @@ a .text-link:focus {
   margin-top: 8px;
 }
 .accordion-card-green {
-  background-color: #00ceaf;
+  background-color: #71bba4;
   border-radius: 5px;
   margin-top: 8px;
 }
@@ -476,7 +476,7 @@ a .text-link:focus {
   margin-right: 8px;
   margin-left: 8px;
   padding-bottom: 1px;
-  border-bottom: 2px solid #00ceaf;
+  border-bottom: 2px solid #71bba4;
   margin-bottom: 4px;
 }
 .card-divider-white {
@@ -490,7 +490,7 @@ a .text-link:focus {
   margin-top: 8px;
   margin-bottom: 8px;
   padding-left: 1px;
-  border-left: 2px solid #00ceaf;
+  border-left: 2px solid #71bba4;
   margin-left: 4px;
 }
 .vertical-divider-white {
@@ -502,7 +502,7 @@ a .text-link:focus {
 }
 .card-divider-long {
   padding-bottom: 1px;
-  border-bottom: 2px solid #00ceaf;
+  border-bottom: 2px solid #71bba4;
   margin-bottom: 4px;
 }
 .card-divider-long-white {
