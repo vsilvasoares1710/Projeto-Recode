@@ -262,7 +262,7 @@ button.bg-info:focus {
 }
 
 .footer-dark {
-  background-color: #224843;
+  background-color: #223843;
   flex-shrink: none;
 }
 .stretch {
@@ -550,4 +550,8 @@ a .text-link:focus {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.card-footer-gray{
+  background-color: #223842;
 }

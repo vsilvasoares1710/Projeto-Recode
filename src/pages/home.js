@@ -41,12 +41,10 @@ class Home extends Component {
                 </h4>
                 <br />
                 <h4 className="text-content text-justify">
-                  De mecânicos a manicures ou de pintores a DJ's, cobrimos os
-                  mais diversos ramos, clique abaixo e descubra.
+                  De mecânicos a manicures, de pintores a DJ's, cobrimos os
+                  mais diversos ramos, clique aqui e descubra.
                 </h4>
                 <br />
-
-
                 <Btn
                   text="Encontre Profissionais"
                   lead="/encontreProfissionais"
@@ -385,6 +383,45 @@ class Home extends Component {
           </div>
           <br />
           {/* <!-- Fim da terceira row --> */}
+
+        {/*
+         <div className="row">
+            <2>Titulo reportagem</2>/h
+          <div className="card-deck">
+            <div className="card">
+              <img className="card-img-top" src="..." alt="Card image cap" />
+              <div className="card-body">
+                <h5 className="card-title">Titulo reportagem</h5>
+                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+              <div className="card-footer-gray">
+                <small className="green-text text-center"><h5>Abrir Reportagem</h5></small>
+              </div>
+            </div>
+            <div className="card">
+              <img className="card-img-top" src="..." alt="Card image cap"/>
+              <div className="card-body">
+                <h5 className="card-title">Titulo reportagem</h5>
+                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+              <div className="card-footer-gray">
+                <small className="green-text text-center"><h5>Abrir Reportagem</h5></small>
+              </div>
+            </div>
+            <div className="card">
+              <img className="card-img-top" src="..." alt="Card image cap"/>
+              <div className="card-body">
+                <h5 className="card-title">Titulo reportagem</h5>
+                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              </div>
+              <div className="card-footer-gray">
+                <small className="green-text text-center"><h5>Abrir Reportagem</h5></small>
+              </div>
+            </div>
+          </div>
+
+          </div>
+          */}
         </div>
         {/* <!-- Conteúdo principal da página --> */}
       </div>

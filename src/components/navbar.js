@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Btn from "./button.js";
-import LogoFundoEscuro from "../img/logFundoEscuro.png";
+import Logo from "../img/fixhub_oficial.png";
 import isAuthenticated from "../services/userAuthentication.js";
 
 class Navbar extends Component {
@@ -29,9 +29,9 @@ class Navbar extends Component {
         <Link to="/" className="navbar-brand ml-1" id="brand-logo">
           <img
             className="mx-auto my-1"
-            src={LogoFundoEscuro}
-            height="35px"
-            width="120px"
+            src={Logo}
+            height="50px"
+            width="80px"
             alt="logo"
             align-self-start
           />

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Missao from "../img/missao.png";
 import Visao from "../img/visao.png";
 import Valores from "../img/valores.png";
-import LogoFundoClaro from "../img/logFundoClaro.png";
+import Logo from "../img/fixhub_oficial.png";
 
 class QuemSomos extends Component {
   render() {
@@ -18,9 +18,9 @@ class QuemSomos extends Component {
               <div className="row text-center mx-auto mb-2">
                 <img
                   className="mx-auto my-1 align-items-center"
-                  src={LogoFundoClaro}
-                  height="90px"
-                  width="335px"
+                  src={Logo}
+                  height="300px"
+                  width="325px"
                   alt="logo"
                 />
               </div>
@@ -30,7 +30,8 @@ class QuemSomos extends Component {
                 <br />
                 <h4 className="text-content text-justify">
                   O FixHub é uma plataforma criada no ano de 2019 na cidade de
-                  Osasco - SP por Andresa Lima, Renata Cruz e Victor Soares,
+                  Osasco - SP por Andresa Lima, Elizabete Silva, Giulianna Oliveira,
+                  Gustavo Baruc, Renata Cruz e Victor Soares,
                   operando inicialmente na cidade em que foi fundada. No período
                   em questão, os membros fundadores participavam do RecodePro,
                   um projeto social realizada pela ONG Recode, que tem como
