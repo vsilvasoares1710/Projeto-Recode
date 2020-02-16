@@ -17,7 +17,7 @@ class DivulgueSeuTrabalho extends Component {
             {/* <!-- Text-box com conteúdo à direita/topo da primeira imagem --> */}
             <div className="col-sm-12 mt-4">
               <div className="jumbotron-clear my-auto text-center ">
-                <h1 className="green-text"><b>Divulgue seu Trabalho</b></h1>
+                <h1 className="green-text">Divulgue seu Trabalho</h1>
                 <br />
                 <h4 className="text-content text-justify">
                   O FixHub é a plataforma perfeita para a divulgação do seu

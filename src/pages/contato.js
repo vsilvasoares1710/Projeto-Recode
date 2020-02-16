@@ -12,7 +12,7 @@ class Contato extends Component {
     return (
       <div className="container-fluid bg-white">
         <div className="container bg-white">
-          <h1 className="green-text text-center pt-3"><b>Contato</b></h1>
+          <h1 className="green-text text-center pt-3">Contato</h1>
           {/* <!-- Primeira row --> */}
           <div className="row">
             {/* <!-- Imagem à direita/topo --> */}
