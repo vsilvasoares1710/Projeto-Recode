@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Btn from "./button.js";
 import filterValidation from "../services/filterValidation.js";
+import defaultUser from "../img/defaultUser.png"
 
 class RenderProfissionais extends Component {
   constructor(props) {
@@ -40,7 +41,10 @@ class RenderProfissionais extends Component {
           <div className="col-5 col-sm-5 col-md-3 col-lg-2 mx-auto mb-2 mt-0">
             <Link to={`/profissional/${this.props.idProfissional}`}>
               <img
-                src={this.props.icone}
+                src={!this.props.icone ? defaultUser : this.props.icone}
+                onError={(event) => {
+                  event.target.src = defaultUser
+                }}
                 width="100%"
                 alt={`Imagem de ${this.props.nome}`}
                 className="rounded-circle"
