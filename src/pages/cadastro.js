@@ -4,6 +4,7 @@ import Btn from "../components/button.js";
 // Services
 import getFiltros from "../services/filters.js";
 import filterValidation from "../services/filterValidation.js";
+import apiCadastro from "../services/cadastro.js"
 // Images
 import loadingScreen from "../img/green-white-loading.gif";
 
@@ -11,11 +12,14 @@ class Cadastro extends Component {
   constructor() {
     super();
     this.state = {
-      documento: "CPF",
+      cpf_cnpj: "CPF",
       tagsDoAnuncio: [],
       filtros: [],
-      filtrosMarcados: []
+      filtrosMarcados: [],
+      formulario: {}
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.cadastrar = this.cadastrar.bind(this);
   }
 
   async carregarFiltros() {
@@ -37,6 +41,7 @@ class Cadastro extends Component {
     this.setState({
       filtrosMarcados: filtrosMarcados
     });
+    console.log(this.state);
   };
 
   renderCheckbox = labelText => {
@@ -122,6 +127,23 @@ class Cadastro extends Component {
     }
   }
 
+  handleChange(event) {
+    const alvoId = event.target.id;
+    const valor = event.target.value;
+    const novoFormulario = this.state.formulario;
+    novoFormulario[alvoId] = valor;
+    this.setState({ formulario: novoFormulario });
+
+    console.log(this.state);
+  }
+  async cadastrar(){
+    const formulario = this.state.formulario
+    formulario["tags"] = this.state.filtrosMarcados
+    const data = await apiCadastro(formulario)
+
+    console.log(data)
+  }
+
   componentDidMount() {
     this.carregarFiltros();
   }
@@ -145,10 +167,10 @@ class Cadastro extends Component {
                       </label>
                       <select
                         className="form-control b-info type-field"
-                        id="tipo-documento"
+                        id="tipo-cpf_cnpj"
                         onChange={() =>
                           this.setState({
-                            documento: document.getElementById("tipo-documento")
+                            cpf_cnpj: document.getElementById("tipo-cpf_cnpj")
                               .value
                           })
                         }
@@ -160,19 +182,20 @@ class Cadastro extends Component {
                     <div className="form-group col-12 col-md-8 col-lg-4 col-xl-5">
                       <label className="text-green">
                         <strong>
-                          <h4>{this.state.documento}</h4>
+                          <h4>{this.state.cpf_cnpj}</h4>
                         </strong>
                       </label>
                       <input
                         type="text"
                         className="form-control b-info type-field"
-                        id="documento"
+                        id="cpf_cnpj"
+                        onChange={this.handleChange}
                         placeholder={
-                          this.state.documento === "CPF"
+                          this.state.cpf_cnpj === "CPF"
                             ? "45678901234"
                             : "12345678000101"
                         }
-                        maxLength="15"
+                        maxLength="18"
                       />
                     </div>
                     <div className="form-group col-12 col-lg-6 col-xl-5">
@@ -184,12 +207,14 @@ class Cadastro extends Component {
                       <input
                         type="email"
                         className="form-control b-info type-field"
+                        onChange={this.handleChange}
                         id="email"
                         placeholder={
-                          this.state.documento === "CPF"
+                          this.state.cpf_cnpj === "CPF"
                             ? "joãodasilva@email.com"
                             : "email@empresa.com"
                         }
+                        value={this.state.formulario.email}
                         maxLength="128"
                       />
                     </div>
@@ -198,7 +223,7 @@ class Cadastro extends Component {
                     <label className="text-green">
                       <strong>
                         <h4>
-                          {this.state.documento === "CPF"
+                          {this.state.cpf_cnpj === "CPF"
                             ? "Nome Completo"
                             : "Nome da Empresa"}
                         </h4>
@@ -207,9 +232,10 @@ class Cadastro extends Component {
                     <input
                       type="text"
                       className="form-control b-info type-field"
+                      onChange={this.handleChange}
                       id="nome"
                       placeholder={
-                        this.state.documento === "CPF"
+                        this.state.cpf_cnpj === "CPF"
                           ? "João da Silva"
                           : "Oficina do João"
                       }
@@ -226,32 +252,20 @@ class Cadastro extends Component {
                       <input
                         type="password"
                         className="form-control b-info type-field"
-                        id="senha1"
-                        maxLength="32"
-                      />
-                    </div>
-                    <div className="form-group col-12 col-md-6">
-                      <label className="text-green">
-                        <strong>
-                          <h4>Confirmação da Senha</h4>
-                        </strong>
-                      </label>
-                      <input
-                        type="password"
-                        className="form-control b-info type-field"
-                        id="senha2"
+                        onChange={this.handleChange}
+                        id="senha"
                         maxLength="32"
                       />
                     </div>
                   </div>
                   {/* fim bloco de informações de dados prestador/empresa */}
 
-                      {/* inicio bloco de informações de endereço*/}
+                  {/* inicio bloco de informações de endereço*/}
                   <h3 className="mt-3">Informações de Endereço:</h3>
 
                   <div className="card-divider-long mb-3"></div>
                   <div className="row">
-                  <div className="form-group col-12 col-md-6 col-lg-4">
+                    <div className="form-group col-12 col-md-6 col-lg-4">
                       <label className="text-green">
                         <strong>
                           <h4>CEP</h4>
@@ -260,6 +274,7 @@ class Cadastro extends Component {
                       <input
                         type="text"
                         className="form-control b-info type-field"
+                        onChange={this.handleChange}
                         id="cep"
                         placeholder="00000-000"
                         maxLength="10"
@@ -274,40 +289,48 @@ class Cadastro extends Component {
                       <select
                         className="form-control b-info type-field"
                         id="estado"
-                        onChange={() =>
-                          this.setState({
-                            documento: document.getElementById("estado")
-                              .value
-                          })
-                        }
+                        onChange={this.handleChange}
                       >
-                        <option></option>
-                        <option>SP</option>
+                        <option selected value={null}>
+                          Selecione seu Estado
+                        </option>
+                        <option value="SP">SP</option>
                       </select>
-
                     </div>
                     <div className="form-group col-12 col-md-6 col-lg-4">
-                    <label className="text-green">
+                      <label className="text-green">
                         <strong>
                           <h4>Cidade</h4>
                         </strong>
                       </label>
-                        <select
+                      <select
                         className="form-control b-info type-field"
                         id="cidade"
-                        onChange={() =>
-                          this.setState({
-                            documento: document.getElementById("cidade")
-                              .value
-                          })
-                        }
+                        onChange={this.handleChange}
                       >
-                        <option></option>
-                        <option>ver array para cidades</option>
+                        <option selected value={null}>
+                          Selecione sua Cidade
+                        </option>
+                        <option value="Osasco">Osasco</option>
                       </select>
-
                     </div>
-
+                    <div className="form-group col-12 col-md-6 col-lg-4">
+                      <label className="text-green">
+                        <strong>
+                          <h4>Bairro</h4>
+                        </strong>
+                      </label>
+                      <select
+                        className="form-control b-info type-field"
+                        id="bairro"
+                        onChange={this.handleChange}
+                      >
+                        <option selected value={null}>
+                          Selecione seu Bairro
+                        </option>
+                        <option value="Cipava">Cipava</option>
+                      </select>
+                    </div>
                   </div>
                   <div className="row mt-3">
                     <div className="form-group col-12 col-md-10">
@@ -319,7 +342,8 @@ class Cadastro extends Component {
                       <input
                         type="text"
                         className="form-control b-info type-field"
-                        id="logradouro"
+                        id="endereco"
+                        onChange={this.handleChange}
                         placeholder="Rua / Avenida "
                         maxLength="70"
                       />
@@ -327,13 +351,14 @@ class Cadastro extends Component {
                     <div className="form-group col-12 col-md-2">
                       <label className="text-green">
                         <strong>
-                          <h4>Numero</h4>
+                          <h4>Número</h4>
                         </strong>
                       </label>
                       <input
                         type="text"
                         className="form-control b-info type-field"
                         id="numero"
+                        onChange={this.handleChange}
                         placeholder="000"
                         maxLength="5"
                       />
@@ -341,8 +366,8 @@ class Cadastro extends Component {
                   </div>
                   {/* fim bloco de informações de endereço*/}
 
-                {/* inicio bloco de informações de contato*/}
-                  <h3 className="mt-3">Informações de contato:</h3>
+                  {/* inicio bloco de informações de contato*/}
+                  <h3 className="mt-3">Informações de Contato:</h3>
                   <div className="card-divider-long mb-3"></div>
                   <div className="row">
                     <div className="form-group col-12 col-md-6 col-lg-4">
@@ -355,8 +380,9 @@ class Cadastro extends Component {
                         type="text"
                         className="form-control b-info type-field"
                         id="telefone"
+                        onChange={this.handleChange}
                         placeholder="1012345678"
-                        maxLength="10"
+                        maxLength="13"
                       />
                     </div>
                     <div className="form-group col-12 col-md-6 col-lg-4">
@@ -369,8 +395,9 @@ class Cadastro extends Component {
                         type="text"
                         className="form-control b-info type-field"
                         id="celular"
+                        onChange={this.handleChange}
                         placeholder="11912345678"
-                        maxLength="11"
+                        maxLength="14"
                       />
                     </div>
                     <div className="form-group col-12 col-md-6 col-lg-4">
@@ -383,8 +410,9 @@ class Cadastro extends Component {
                         type="text"
                         className="form-control b-info type-field"
                         id="whatsapp"
+                        onChange={this.handleChange}
                         placeholder="11912345678"
-                        maxLength="11"
+                        maxLength="14"
                       />
                     </div>
                   </div>
@@ -399,6 +427,7 @@ class Cadastro extends Component {
                         type="text"
                         className="form-control b-info type-field"
                         id="facebook"
+                        onChange={this.handleChange}
                         placeholder="facebook.com/oficinaDoJoão"
                         maxLength="128"
                       />
@@ -413,6 +442,7 @@ class Cadastro extends Component {
                         type="text"
                         className="form-control b-info type-field"
                         id="linkedin"
+                        onChange={this.handleChange}
                         placeholder="linkedin.com/oficinaDoJoão"
                         maxLength="128"
                       />
@@ -421,7 +451,7 @@ class Cadastro extends Component {
                       <label className="text-green">
                         <strong>
                           <h4>
-                            {this.state.documento === "CPF"
+                            {this.state.cpf_cnpj === "CPF"
                               ? "Site Pessoal"
                               : "Site Oficial"}
                           </h4>
@@ -431,13 +461,14 @@ class Cadastro extends Component {
                         type="text"
                         className="form-control b-info type-field"
                         id="site"
+                        onChange={this.handleChange}
                         placeholder="www.oficinadojoao.com.br"
                         maxLength="128"
                       />
                     </div>
                   </div>
                   {/* fim bloco de informações de contato*/}
-                   {/* inicio bloco de informações do anuncio */}
+                  {/* inicio bloco de informações do anuncio */}
                   <h3 className="mt-3">Informações do Anúncio:</h3>
                   <div className="card-divider-long mb-3"></div>
                   <div className="row">
@@ -449,7 +480,8 @@ class Cadastro extends Component {
                       </label>
                       <textarea
                         className="form-control type-field"
-                        id="texto"
+                        onChange={this.handleChange}
+                        id="texto_anuncio"
                         rows="8"
                       ></textarea>
                     </div>
@@ -463,7 +495,10 @@ class Cadastro extends Component {
                       </label>
                     </div>
                   </div>
-                  <h5>Selecione abaixo as tags que serão utilizadas para encontrarem seu anúncio</h5>
+                  <h5>
+                    Selecione abaixo as tags que serão utilizadas para
+                    encontrarem seu anúncio
+                  </h5>
                   <div
                     className="form-group d-flex flex-wrap mr-0"
                     id="accordionFiltros"
@@ -488,7 +523,7 @@ class Cadastro extends Component {
                       this.renderAccordion()
                     )}
                   </div>
-                  <Btn text="Cadastrar" className="btn btn-info shadow" />
+                  <Btn text="Cadastrar" className="btn btn-info shadow" onClick={this.cadastrar}/>
                   {/* fim bloco de informações do anuncio */}
                 </form>
               </div>

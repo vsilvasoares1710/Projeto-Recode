@@ -29,10 +29,10 @@ class QuemSomos extends Component {
                 <h1 className="green-text text-center">Quem Somos</h1>
                 <br />
                 <h4 className="text-content text-justify">
-                  O FixHub é uma plataforma criada no ano de 2019 na cidade de
+                  O FixHub é uma plataforma fundada no ano de 2020 na cidade de
                   Osasco - SP por Andresa Lima, Elizabete Silva, Giulianna Oliveira,
                   Gustavo Baruc, Renata Cruz e Victor Soares,
-                  operando inicialmente na cidade em que foi fundada. No período
+                  operando inicialmente na cidade em que foi criada. No período
                   em questão, os membros fundadores participavam do RecodePro,
                   um projeto social realizada pela ONG Recode, que tem como
                   objetivo a promoção do empoderamento digital.

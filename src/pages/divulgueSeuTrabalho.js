@@ -46,19 +46,18 @@ class DivulgueSeuTrabalho extends Component {
 
             <div className="col-sm-12 col-lg-6 col-xl-7 mt-2 text-center">
               <div className="jumbotron-green my-auto">
-                <h1 className="gray-text">
+                <h1 className="white-text">
                   Encontrar, ser encontrado, negociar e vender...
                 </h1>
                 <br />
-                <h4 className="text-content text-justify white-text">
+                <h4 className="text-content text-justify grey-text">
                   Serviço bem feito merece visibilidade, faça seu negócio
                   decolar conosco.
                 </h4>
                 <br />
-                <h4 className="text-content text-justify white-text">
+                <h4 className="text-content text-justify grey-text">
                   Seja visualizado e encontrado por milhares de clientes,
-                  converse, negocie e venda via chat, cadastre-se e tenha acesso
-                  a esses e outros benefícios agora mesmo..
+                  cadastre-se e tenha acesso a esses e outros benefícios agora mesmo..
                 </h4>
                 <br />
 

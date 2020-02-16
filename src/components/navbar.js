@@ -28,10 +28,12 @@ class Navbar extends Component {
       <nav className="navbar navbar-expand-xl navbar-dark">
         <Link to="/" className="navbar-brand ml-1" id="brand-logo">
           <img
+            data-toggle="collapse"
+            data-target=".navbar-collapse.show"
             className="mx-auto my-1"
             src={Logo}
             height="50px"
-            width="80px"
+            width="63px"
             alt="logo"
             align-self-start
           />

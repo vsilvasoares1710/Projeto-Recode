@@ -136,7 +136,7 @@ class Footer extends Component {
             )}
           </div>
           {this.renderOptionsSmallFooter()}
-          <div className="green-text text-center border-top border-info">
+          <div className="white-text text-center border-top border-info">
             {`© ${this.getCurrentYear()} - FixHub. Todos os direitos reservados.`}
           </div>
         </footer>
