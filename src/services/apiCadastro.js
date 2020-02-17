@@ -4,13 +4,13 @@ export default function apiCadastro(dados) {
       console.log(response)
       return response;
     }).catch( error => {
-      for (const key in error) {
-        if (error.hasOwnProperty(key)) {
-          // console.log("Chave:", key)
-          // console.log("Valor: ", error[key])
+      // for (const key in error) {
+      //   if (error.hasOwnProperty(key)) {
+      //     console.log("Chave:", key)
+      //     console.log("Valor: ", error[key])
 
-        }
-      }
+      //   }
+      // }
       return error.response
     });
 }

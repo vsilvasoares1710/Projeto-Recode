@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import api from "../services/fixhubAPI";
-import ReactMap from "../components/map"
+import ReactMap from "../components/map";
 // Images
 import phoneIcon from "../img/phone-icon.svg";
 import cellphoneIcon from "../img/cellphone-icon.svg";
@@ -170,9 +170,9 @@ class Profissional extends Component {
     if (typeof this.state.dadosProfissional === "string") {
       return (
         <div className="container-fluid bg-white">
-          <div className="row extend">
+          <div className="row extend col">
             <div className="d-flex flex-column mx-auto my-auto">
-              <h3 className="green-text">
+              <h3 className="green-text text-center">
                 Carregando dados do profissional...
               </h3>
               <img

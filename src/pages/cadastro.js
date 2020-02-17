@@ -67,6 +67,9 @@ class Cadastro extends Component {
           onClick={() => this.validateCheckbox(inputId)}
         >
           <strong>{label}</strong>
+          <label for={inputId} className="d-none">
+            {label}
+          </label>
         </label>
       </div>
     );
@@ -156,24 +159,26 @@ class Cadastro extends Component {
                 <div className="card-divider"></div>
               </div>
               <div className="inner-card-accordion">
-                {objeto.tags.map((tag, index) => {
-                  let inferiorPadding;
-                  index < objeto.tags.length - 1
-                    ? (inferiorPadding = "")
-                    : (inferiorPadding = "pb-1");
-                  return (
-                    <div
-                      id={"collapse" + categoriaFormatted}
-                      className="accordion-body collapse out"
-                    >
+                <div className="checkbox-wrapper">
+                  {objeto.tags.map((tag, index) => {
+                    let inferiorPadding;
+                    index < objeto.tags.length - 1
+                      ? (inferiorPadding = "")
+                      : (inferiorPadding = "pb-1");
+                    return (
                       <div
-                        className={`accordion-inner card-item ${inferiorPadding}`}
+                        id={"collapse" + categoriaFormatted}
+                        className="accordion-body collapse out"
                       >
-                        {this.renderCheckbox(tag)}
+                        <div
+                          className={`accordion-inner card-item ${inferiorPadding}`}
+                        >
+                          {this.renderCheckbox(tag)}
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
@@ -237,12 +242,12 @@ class Cadastro extends Component {
             <div className="col-12 mt-4 mb-4 mx-auto">
               <div className="jumbotron-green my-auto">
                 <div className="jumbotron-clear my-auto shadow">
-                  <h1 className="">Cadastro</h1>
+                  <h1>Cadastro</h1>
                   <div className="card-divider-long"></div>
                   <form className="mt-3 p-0">
                     <div className="row">
                       <div className="form-group col-12 col-md-4 col-lg-2">
-                        <label className="text-green">
+                        <label for="tipo-cpf_cnpj" className="text-green">
                           {/* inicio bloco de informações de dados prestador/empresa */}
                           <strong>
                             <h4>Documento</h4>
@@ -263,7 +268,7 @@ class Cadastro extends Component {
                         </select>
                       </div>
                       <div className="form-group col-12 col-md-8 col-lg-4 col-xl-5">
-                        <label className="text-green">
+                        <label for="cpf_cnpj" className="text-green">
                           <strong>
                             <h4>{this.state.cpf_cnpj}</h4>
                           </strong>
@@ -282,7 +287,7 @@ class Cadastro extends Component {
                         />
                       </div>
                       <div className="form-group col-12 col-lg-6 col-xl-5">
-                        <label className="text-green">
+                        <label for="email" className="text-green">
                           <strong>
                             <h4>E-mail</h4>
                           </strong>
@@ -303,7 +308,7 @@ class Cadastro extends Component {
                       </div>
                     </div>
                     <div className="form-group">
-                      <label className="text-green">
+                      <label for="nome" className="text-green">
                         <strong>
                           <h4>
                             {this.state.cpf_cnpj === "CPF"
@@ -327,7 +332,7 @@ class Cadastro extends Component {
                     </div>
                     <div className="row">
                       <div className="form-group col-12 col-md-6">
-                        <label className="text-green">
+                        <label for="senha" className="text-green">
                           <strong>
                             <h4>Senha</h4>
                           </strong>
@@ -349,7 +354,7 @@ class Cadastro extends Component {
                     <div className="card-divider-long mb-3"></div>
                     <div className="row">
                       <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label className="text-green">
+                        <label for="cep" className="text-green">
                           <strong>
                             <h4>CEP</h4>
                           </strong>
@@ -364,7 +369,7 @@ class Cadastro extends Component {
                         />
                       </div>
                       <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label className="text-green">
+                        <label for="estado" className="text-green">
                           <strong>
                             <h4>Estado</h4>
                           </strong>
@@ -381,7 +386,7 @@ class Cadastro extends Component {
                         </select>
                       </div>
                       <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label className="text-green">
+                        <label for="cidade" className="text-green">
                           <strong>
                             <h4>Cidade</h4>
                           </strong>
@@ -391,14 +396,18 @@ class Cadastro extends Component {
                           id="cidade"
                           onChange={this.handleChange}
                         >
-                          <option selected value={null}>
+                          <option
+                            selected
+                            value={null}
+                            for="option-selecione-cidade"
+                          >
                             Selecione sua Cidade
                           </option>
                           <option value="Osasco">Osasco</option>
                         </select>
                       </div>
                       <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label className="text-green">
+                        <label for="bairro" className="text-green">
                           <strong>
                             <h4>Bairro</h4>
                           </strong>
@@ -417,7 +426,7 @@ class Cadastro extends Component {
                     </div>
                     <div className="row mt-3">
                       <div className="form-group col-12 col-md-10">
-                        <label className="text-green">
+                        <label for="endereco" className="text-green">
                           <strong>
                             <h4>Logradouro</h4>
                           </strong>
@@ -432,7 +441,7 @@ class Cadastro extends Component {
                         />
                       </div>
                       <div className="form-group col-12 col-md-2">
-                        <label className="text-green">
+                        <label for="numero" className="text-green">
                           <strong>
                             <h4>Número</h4>
                           </strong>
@@ -454,7 +463,7 @@ class Cadastro extends Component {
                     <div className="card-divider-long mb-3"></div>
                     <div className="row">
                       <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label className="text-green">
+                        <label for="telefone" className="text-green">
                           <strong>
                             <h4>Telefone</h4>
                           </strong>
@@ -469,7 +478,7 @@ class Cadastro extends Component {
                         />
                       </div>
                       <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label className="text-green">
+                        <label for="celular" className="text-green">
                           <strong>
                             <h4>Celular</h4>
                           </strong>
@@ -484,7 +493,7 @@ class Cadastro extends Component {
                         />
                       </div>
                       <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label className="text-green">
+                        <label for="whatsapp" className="text-green">
                           <strong>
                             <h4>WhatsApp</h4>
                           </strong>
@@ -501,7 +510,7 @@ class Cadastro extends Component {
                     </div>
                     <div className="row mt-3">
                       <div className="form-group col-12 col-md-6">
-                        <label className="text-green">
+                        <label for="facebook" className="text-green">
                           <strong>
                             <h4>Facebook</h4>
                           </strong>
@@ -516,7 +525,7 @@ class Cadastro extends Component {
                         />
                       </div>
                       <div className="form-group col-12 col-md-6">
-                        <label className="text-green">
+                        <label for="linkedin" className="text-green">
                           <strong>
                             <h4>LinkedIn</h4>
                           </strong>
@@ -531,7 +540,7 @@ class Cadastro extends Component {
                         />
                       </div>
                       <div className="form-group col-12 col-md-6">
-                        <label className="text-green">
+                        <label for="site" className="text-green">
                           <strong>
                             <h4>
                               {this.state.cpf_cnpj === "CPF"
@@ -556,7 +565,7 @@ class Cadastro extends Component {
                     <div className="card-divider-long mb-3"></div>
                     <div className="row">
                       <div className="form-group col-12">
-                        <label className="text-green">
+                        <label for="texto_anuncio" className="text-green">
                           <strong>
                             <h4>Texto do Anúncio</h4>
                           </strong>
