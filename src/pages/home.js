@@ -330,8 +330,13 @@ class Home extends Component {
               <div className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 my-4 ix">
                 <div className="card h-100 w-100">
                   <div className="card-body shadow d-flex flex-column">
+<<<<<<< HEAD
                     <h4 className="card-title pb-1">Várias Categorias</h4>
                     <div className="card-text last-card-content text-justify pb-3">
+=======
+                    <h4 className="card-title pb-1" tabIndex="0">Várias Categorias</h4>
+                    <div className="card-text last-card-content text-justify-left pb-3">
+>>>>>>> 7f413da4579cd8d3826e84b7625d5eed1018dcc8
                       Encontre os mais diversos serviços e soluções
                       profissionais da sua região, buscando por todas as
                       categorias, no botão abaixo.
