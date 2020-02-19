@@ -381,6 +381,12 @@ a .text-link:focus {
   border-radius: 5px;
 }
 
+.checkbox-wrapper {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 144px;
+}
+
 .checkbox {
   width: 20px;
   height: 20px;
@@ -452,6 +458,119 @@ a .text-link:focus {
   left: 2px;
   color: #ffffff;
   margin: 10;
+}
+
+.radial-button {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  -webkit-appearance: none;
+  background-color: white;
+  border: 2px solid #71bba4;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.radial-button:focus {
+  border: 2px solid black;
+}
+
+.radial-button:checked {
+  background-color: #71bba4;
+}
+.radial-button:checked:after {
+  content: "\2713";
+  font-size: 16px;
+  position: relative;
+  bottom: 4px;
+  left: 2px;
+  color: #ffffff;
+  margin: 10;
+}
+.radial-button-label {
+  cursor: pointer;
+  position: relative;
+  top: 2px;
+  left: 4px;
+}
+.radial-button-green-bg {
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  -webkit-appearance: none;
+  background-color: white;
+  border: 3px solid #000000;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+}
+
+.radial-button-green-bg:focus {
+  background-color: #71bba4;
+  border: 2px solid #ffffff;
+  margin: 10;
+}
+
+.radial-button-green-bg:checked {
+  background-color: #000000;
+}
+.radial-button-green-bg:checked:after {
+  content: "\2713";
+  font-size: 16px;
+  position: relative;
+  bottom: 4px;
+  left: 2px;
+  color: #ffffff;
+  margin: 10;
+}
+
+.panel-title-card {
+  position: relative;
+}
+
+.panel-title-card::after {
+  content: "\23F7";
+	color: #71bba4;
+	top: 20px;
+	right: 10px;
+	position: absolute;
+}
+
+.panel-title-card[aria-expanded="true"]::after {
+  top: 20px;
+  right: 10px;
+  color: #71bba4;
+	position: absolute;
+  content: "\23F6";
+}
+
+.panel-title-button {
+  position: relative;
+}
+
+.panel-title-button::after {
+  content: "\23F7";
+	color: #000000;
+	top: 13px;
+	right: 0px;
+	position: absolute;
+}
+
+.panel-title-button[aria-expanded="true"]::after {
+  top: 13px;
+  right: 0px;
+  color: #000000;
+	position: absolute;
+  content: "\23F6";
 }
 
 .accordion-card {

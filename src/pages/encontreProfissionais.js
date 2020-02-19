@@ -24,11 +24,10 @@ class EncontreProfissionais extends Component {
         total: 1
       },
       locais: "",
-      estado: "",
       estadoSelecionado: "",
       cidades: "",
       cidadeSelecionada: "",
-      bairros: "",
+      bairros: [],
       bairroSelecionado: ""
     };
     this.getProfissionais = this.getProfissionais.bind(this);
@@ -45,21 +44,54 @@ class EncontreProfissionais extends Component {
     if (tags.length === 0) {
       tags = "";
     }
-    let termosPesquisados = document.querySelector("#campo-pesquisa").value.trim();
+    let termosPesquisados = document
+      .querySelector("#campo-pesquisa")
+      .value.trim();
 
-    let { estadoSelecionado, cidadeSelecionada, bairroSelecionado } = this.state
+    let {
+      estadoSelecionado,
+      cidadeSelecionada,
+      bairros
+    } = this.state;
 
     const searchParams = {
-      tags: tags === "" || tags === undefined || tags === null || tags === false ? "_" : tags,
-      pesquisa: termosPesquisados === "" || termosPesquisados === undefined || termosPesquisados === null || termosPesquisados === false ? "_" : termosPesquisados,
-      estado: estadoSelecionado === "" || estadoSelecionado === undefined || estadoSelecionado === null || estadoSelecionado === false ? "_" : estadoSelecionado,
-      cidade: cidadeSelecionada === "" || cidadeSelecionada === undefined || cidadeSelecionada === null || cidadeSelecionada === false ? "_" : cidadeSelecionada,
-      bairro: bairroSelecionado === "" || bairroSelecionado === undefined || bairroSelecionado === null || bairroSelecionado === false ? "_" : bairroSelecionado
-    }
+      tags:
+        tags === "" || tags === undefined || tags === null || tags === false
+          ? "_"
+          : tags,
+      pesquisa:
+        termosPesquisados === "" ||
+        termosPesquisados === undefined ||
+        termosPesquisados === null ||
+        termosPesquisados === false
+          ? "_"
+          : termosPesquisados,
+      estado:
+        estadoSelecionado === "" ||
+        estadoSelecionado === undefined ||
+        estadoSelecionado === null ||
+        estadoSelecionado === false
+          ? "_"
+          : estadoSelecionado,
+      cidade:
+        cidadeSelecionada === "" ||
+        cidadeSelecionada === undefined ||
+        cidadeSelecionada === null ||
+        cidadeSelecionada === false
+          ? "_"
+          : cidadeSelecionada,
+      bairros:
+        bairros === "" ||
+        bairros === undefined ||
+        bairros === null ||
+        bairros === false
+          ? "_"
+          : bairros
+    };
 
-    console.log(searchParams)
+    // console.log(searchParams);
 
-    const rota = `/profissionais/${searchParams.estado}/${searchParams.cidade}/${searchParams.bairro}/${searchParams.tags}/${searchParams.pesquisa}/${this.state.paginas.atual}`;
+    const rota = `/profissionais/${searchParams.estado}/${searchParams.cidade}/${searchParams.bairros}/${searchParams.tags}/${searchParams.pesquisa}/${this.state.paginas.atual}`;
     const pesquisa = await search(rota);
     if (typeof pesquisa === "object" && pesquisa !== null) {
       this.setState({ profissionaisEncontrados: pesquisa.profissionais });
@@ -74,7 +106,7 @@ class EncontreProfissionais extends Component {
     const locais = await getLocais();
     if (typeof locais === "object") {
       this.setState({ locais: locais });
-      console.log(this.state.locais.estados);
+      // console.log(this.state.locais.estados);
     } else {
       return;
     }
@@ -127,7 +159,10 @@ class EncontreProfissionais extends Component {
           className="form-check-label checkbox-label unselectable"
           onClick={() => this.validateCheckbox(inputId)}
         >
-          {label}
+          <strong>{label}</strong>
+          <label for={inputId} className="d-none">
+            {label}
+          </label>
         </label>
       </div>
     );
@@ -145,12 +180,12 @@ class EncontreProfissionais extends Component {
               <div className="accordion-heading">
                 <button
                   type="button"
-                  className="accordion-toggle"
+                  className="accordion-toggle panel-title-card"
                   data-toggle="collapse"
                   data-parent="#accordionFiltros"
                   data-target={"#collapse" + categoriaFormatted}
                 >
-                  <div className="d-flex align-items-center card-heading ">
+                  <div className="d-flex align-items-center card-heading">
                     <h5 className="green-text mx-auto text-center">
                       {objeto.categoria}
                     </h5>
@@ -164,9 +199,119 @@ class EncontreProfissionais extends Component {
                 <div className="card-divider"></div>
               </div>
               <div className="inner-card-accordion">
-                {objeto.tags.map((tag, index) => {
+                <div className="checkbox-wrapper">
+                  {objeto.tags.map((tag, index) => {
+                    let inferiorPadding;
+                    index < objeto.tags.length - 1
+                      ? (inferiorPadding = "")
+                      : (inferiorPadding = "pb-1");
+                    return (
+                      <div
+                        id={"collapse" + categoriaFormatted}
+                        className="accordion-body collapse out"
+                      >
+                        <div
+                          className={`accordion-inner card-item ${inferiorPadding}`}
+                        >
+                          {this.renderCheckbox(tag)}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      });
+    } else {
+      return;
+    }
+  }
+  validateCitiesCheckbox = bairro => {
+    const estado = this.state.bairros;
+    if (this.state.bairros.indexOf(bairro) == -1) {
+      estado.push(bairro);
+      this.setState({ bairros: estado });
+    } else {
+      const novoEstado = this.state.bairros.filter(bairroEstado => {
+        return bairroEstado !== bairro;
+      });
+      this.setState({ bairros: novoEstado });
+    }
+    // console.log(this.state)
+  };
+
+  renderCitiesCheckbox = labelText => {
+    const label = labelText;
+    const inputId = label + "Checkbox";
+    let isChecked;
+    this.state.bairros.indexOf(label) === -1
+      ? (isChecked = false)
+      : (isChecked = true);
+    return (
+      <div className="form-inline text-wrap">
+        <input
+          type="checkbox"
+          className="checkbox"
+          id={inputId}
+          onChange={() => this.validateCitiesCheckbox(label)}
+          checked={isChecked}
+        />
+        <label
+          className="form-check-label checkbox-label unselectable"
+          onClick={() => this.validateCitiesCheckbox(label)}
+        >
+          <strong>{label}</strong>
+          <label for={inputId} className="d-none">
+            {label}
+          </label>
+        </label>
+      </div>
+    );
+  };
+
+  renderCitiesAccordion() {
+    if (this.state.cidadeSelecionada.length > 3) {
+      console.log("Estados:", this.state.locais.estados);
+      console.log("estadoSelecionado:", this.state.estadoSelecionado);
+      const estado = this.state.locais.estados.find(estado => {
+        return estado.uf === this.state.estadoSelecionado;
+      });
+      const cidade = estado.cidades.find(cidade => {
+        return cidade.nome === this.state.cidadeSelecionada;
+      });
+
+      const categoriaFormatted = cidade.nome.replace(/ /g, "-");
+      return (
+        <div className="col-12 col-sm-6 col-md-4 col-lg-3 m-0 p-0">
+          <div className="accordion-group accordion-card shadow mr-2">
+            <div className="accordion-heading">
+              <button
+                type="button"
+                className="accordion-toggle panel-title-card"
+                data-toggle="collapse"
+                data-parent="#accordionFiltros"
+                data-target={"#collapse" + categoriaFormatted}
+              >
+                <div className="d-flex align-items-center card-heading">
+                  <h5 className="green-text mx-auto text-center">
+                    {this.state.cidadeSelecionada}
+                  </h5>
+                </div>
+              </button>
+            </div>
+            <div
+              id={"collapse" + categoriaFormatted}
+              className="accordion-body collapse in"
+            >
+              <div className="card-divider"></div>
+            </div>
+            <div className="inner-card-accordion">
+              <div className="checkbox-wrapper">
+                {cidade.bairros.map((bairro, index) => {
                   let inferiorPadding;
-                  index < objeto.tags.length - 1
+                  index < cidade.bairros.length - 1
                     ? (inferiorPadding = "")
                     : (inferiorPadding = "pb-1");
                   return (
@@ -177,11 +322,119 @@ class EncontreProfissionais extends Component {
                       <div
                         className={`accordion-inner card-item ${inferiorPadding}`}
                       >
-                        {this.renderCheckbox(tag)}
+                        {this.renderCitiesCheckbox(bairro)}
                       </div>
                     </div>
                   );
                 })}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return;
+    }
+  }
+
+  validateEstadoCidade = estadoCidade => {
+    this.setState({
+      estadoSelecionado: estadoCidade.estado,
+      cidadeSelecionada: estadoCidade.cidade
+    });
+    // console.log(this.state)
+  };
+
+  renderRadialButton = labelText => {
+    // console.log(labelText)
+
+    const label = labelText.cidade;
+    const inputId = label + "RadialButton";
+
+    let isChecked;
+    this.state.cidadeSelecionada.indexOf(label) === -1
+      ? (isChecked = false)
+      : (isChecked = true);
+    return (
+      <div className="form-inline text-wrap">
+        <input
+          type="radio"
+          className="radial-button"
+          id={inputId}
+          name="cidade"
+          tabIndex="1"
+          onChange={() => this.validateEstadoCidade(labelText)}
+          checked={isChecked}
+        />
+        <label
+          className="form-check-label radial-button-label unselectable"
+          onClick={() => this.validateEstadoCidade(labelText)}
+        >
+          <strong>{label}</strong>
+          <label for={inputId} className="d-none">
+            {label}
+          </label>
+        </label>
+      </div>
+    );
+  };
+
+  renderScrollBoxes() {
+    if (this.state.locais.estados) {
+      // console.log(this.state.locais.estados);
+      const estados = this.state.locais.estados;
+
+      return estados.map(estado => {
+        const estadoFormatted = estado.uf.replace(/ /g, "-");
+        return (
+          <div className="col-12 col-sm-6 col-md-4 col-lg-3 m-0 p-0">
+            <div className="accordion-group accordion-card shadow mr-2">
+              <div className="accordion-heading">
+                <button
+                  type="button"
+                  className="accordion-toggle"
+                  data-toggle="collapse"
+                  data-parent="#accordionFiltros"
+                  data-target={"#collapse" + estadoFormatted}
+                  tabIndex="0"
+                >
+                  <div className="d-flex align-items-center card-heading ">
+                    <h5 className="green-text mx-auto text-center">
+                      {estado.uf}
+                    </h5>
+                  </div>
+                </button>
+              </div>
+              <div
+                id={"collapse" + estadoFormatted}
+                className="accordion-body collapse in"
+              >
+                <div className="card-divider"></div>
+              </div>
+              <div className="inner-card-accordion">
+                <div className="checkbox-wrapper">
+                  {estado.cidades.map((cidade, index) => {
+                    let inferiorPadding;
+                    index < estado.cidades.length - 1
+                      ? (inferiorPadding = "")
+                      : (inferiorPadding = "pb-1");
+                    return (
+                      <div
+                        id={"collapse" + estadoFormatted}
+                        className="accordion-body collapse out"
+                      >
+                        <div
+                          className={`accordion-inner card-item ${inferiorPadding}`}
+                        >
+                          {this.renderRadialButton({
+                            estado: estado.uf,
+                            cidade: cidade.nome
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
@@ -239,7 +492,6 @@ class EncontreProfissionais extends Component {
 
   componentDidUpdate() {
     console.log(this.state);
-
   }
   render() {
     return (
@@ -269,17 +521,16 @@ class EncontreProfissionais extends Component {
                             <div className="accordion-heading">
                               <button
                                 type="button"
-                                className="accordion-toggle col-1"
+                                className="mt-2"
                                 data-toggle="collapse"
                                 data-parent="#accordionFiltros"
                                 data-target={"#collapseConjuntoFiltros"}
                               >
-                                <div className="btn btn-white shadow my-2">
-                                  Filtros
+                                <div className="btn btn-white shadow">
+                                  <h5 className="mt-1 mb-1">Filtros</h5>
                                 </div>
                               </button>
                             </div>
-
                             <Btn
                               text="Pesquisar"
                               className="btn btn-white shadow my-2 mr-1"
@@ -335,108 +586,122 @@ class EncontreProfissionais extends Component {
                           </div>
                         </div>
                       </div>
-                      <select
-                        class="custom-select custom-select-lg type-field mt-3 col-3 col-sm-2 col-lg-1"
-                        id="uf-select"
-                        onChange={() => {
-                          const { uf, cidades} = JSON.parse(document.querySelector("#uf-select").value)
-                          console.log(uf)
-                          this.setState({
-                            cidades,
-                            estadoSelecionado: uf
-                          });
-                        }}
-                      >
-                        <option selected value="">
-                          UF
-                        </option>
-                        {this.state.locais.estados === undefined ? (
-                          <option value="">Carregando estados...</option>
+                      <div className="accordion-inner card-item">
+                        <div className="d-flex flex-wrap mr-0">
+                          {this.renderScrollBoxes()}
+                        </div>
+
+                        {/* <select
+                          class="custom-select custom-select-lg type-field mt-3 col-3 col-sm-2 col-lg-1"
+                          id="uf-select"
+                          onChange={() => {
+                            const { uf, cidades } = JSON.parse(
+                              document.querySelector("#uf-select").value
+                            );
+                            console.log(uf);
+                            this.setState({
+                              cidades,
+                              estadoSelecionado: uf
+                            });
+                          }}
+                        >
+                          <option selected value="">
+                            UF
+                          </option>
+                          {this.state.locais.estados === undefined ? (
+                            <option value="">Carregando estados...</option>
+                          ) : (
+                            <>
+                              {this.state.locais.estados.map(estado => {
+                                const { uf, cidades } = estado;
+                                return (
+                                  <option
+                                    value={JSON.stringify({ uf, cidades })}
+                                  >
+                                    {uf}
+                                  </option>
+                                );
+                              })}
+                            </>
+                          )}
+                        </select>
+                        {this.state.cidades === "" ? (
+                          <></>
                         ) : (
-                          <>
-                            {this.state.locais.estados.map(estado => {
-                              const {uf, cidades} = estado
-                              return (
-                                <option value={JSON.stringify({uf, cidades})}>
-                                  {uf}
-                                </option>
+                          <select
+                            class="custom-select custom-select-lg type-field mt-3 col-9 col-sm-10 col-md-5"
+                            id="cidade-select"
+                            onChange={() => {
+                              const { nome, bairros } = JSON.parse(
+                                document.querySelector("#cidade-select").value
                               );
-                            })}
-                          </>
+                              this.setState({
+                                bairros,
+                                cidadeSelecionada: nome
+                              });
+                            }}
+                          >
+                            <option selected value="">
+                              Cidade
+                            </option>
+                            {this.state.cidades === "" ? (
+                              <option value="">
+                                Selecione um estado primeiro
+                              </option>
+                            ) : (
+                              <>
+                                {this.state.cidades.map(cidade => {
+                                  const { nome, bairros } = cidade;
+                                  return (
+                                    <option
+                                      value={JSON.stringify({ nome, bairros })}
+                                    >
+                                      {nome}
+                                    </option>
+                                  );
+                                })}
+                              </>
+                            )}
+                          </select>
                         )}
-                      </select>
-                      {this.state.cidades === "" ? (
-                        <></>
-                      ) : (
-                        <select
-                          class="custom-select custom-select-lg type-field mt-3 col-9 col-sm-10 col-md-5"
-                          id="cidade-select"
-                          onChange={() => {
-                            const { nome, bairros} = JSON.parse(document.querySelector("#cidade-select").value)
-                            this.setState({
-                              bairros,
-                              cidadeSelecionada: nome
-                            });
-                          }}
-                        >
-                          <option selected value="">
-                            Cidade
-                          </option>
-                          {this.state.cidades === "" ? (
-                            <option value="">
-                              Selecione um estado primeiro
+                        {this.state.bairros === "" ? (
+                          <></>
+                        ) : (
+                          <select
+                            class="custom-select custom-select-lg type-field mt-3 col-12 col-sm-8 col-md-5 col-xl-6"
+                            id="bairros-select"
+                            onChange={() => {
+                              this.setState({
+                                bairroSelecionado: document.querySelector(
+                                  "#bairros-select"
+                                ).value
+                              });
+                            }}
+                          >
+                            <option selected value="">
+                              Bairro
                             </option>
-                          ) : (
-                            <>
-                              {this.state.cidades.map(cidade => {
-                                const { nome, bairros } = cidade
-                                return (
-                                  <option
-                                    value={JSON.stringify({nome, bairros})}
-                                  >
-                                    {nome}
-                                  </option>
-                                );
-                              })}
-                            </>
-                          )}
-                        </select>
-                      )}
-                      {this.state.bairros === "" ? (
-                        <></>
-                      ) : (
-                        <select
-                          class="custom-select custom-select-lg type-field mt-3 col-12 col-sm-8 col-md-5 col-xl-6"
-                          id="bairros-select"
-                          onChange={() => {
-                            this.setState({
-                              bairroSelecionado: document.querySelector("#bairros-select")
-                                .value
-                            });
-                          }}
-                        >
-                          <option selected value="">
-                            Bairro
-                          </option>
-                          {this.state.bairros === "" ? (
-                            <option value="">
-                              Selecione uma cidade primeiro
-                            </option>
-                          ) : (
-                            <>
-                              {this.state.bairros.map(bairro => {
-                                return (
-                                  <option
-                                    value={bairro}
-                                  >
-                                    {bairro}
-                                  </option>
-                                );
-                              })}
-                            </>
-                          )}
-                        </select>
-                      )}
+                            {this.state.bairros === "" ? (
+                              <option value="">
+                                Selecione uma cidade primeiro
+                              </option>
+                            ) : (
+                              <>
+                                {this.state.bairros.map(bairro => {
+                                  return (
+                                    <option value={bairro}>{bairro}</option>
+                                  );
+                                })}
+                              </>
+                            )}
+                          </select>
+                        )} */}
+                      </div>
+                      <div className="accordion-inner card-item">
+                        <div className="d-flex flex-wrap mr-0">
+                          {this.renderCitiesAccordion()}
+                        </div>
+                      </div>
                     </div>
                   </div>
                   {/* Fim do Jumbotron verde com filtros de pesquisa */}
@@ -477,7 +742,6 @@ class EncontreProfissionais extends Component {
                   )}
                   {/* Fim dos resultados de pesquisa */}
                 </div>
-
                 {/* Fim do Jumbotron de borda verde que engloba toda a seção de pesquisa */}
               </form>
             </div>
