@@ -25,7 +25,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-xl navbar-dark">
+      <nav className="navbar sticky-top navbar-expand-xl navbar-dark">
         <Link to="/" className="navbar-brand ml-1" id="brand-logo">
           <img
             data-toggle="collapse"
