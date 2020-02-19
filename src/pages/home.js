@@ -57,7 +57,7 @@ class Home extends Component {
 
           {/*Inicio jornada de usuario*/}
           <div className="row text-center my-3">
-            <div className="col-md-3 my-3">
+            <div className="col-md-4 my-4">
 
               <img
                 src={curriculoIcon}
@@ -69,7 +69,7 @@ class Home extends Component {
               </h4>
             </div>
 
-            <div className="col-md-3 my-3">
+            <div className="col-md-4 my-4">
               <img
                 src={divulgaIcon}
                 width="90px"
@@ -80,7 +80,7 @@ class Home extends Component {
               </h4>
             </div>
 
-            <div className="col-md-3 my-3">
+            <div className="col-md-4 my-4">
               <img
                 src={redeIcon}
                 width="90px"
@@ -90,19 +90,6 @@ class Home extends Component {
               <h4>Seja encontrado por clientes próximos a você.
               </h4>
             </div>
-
-            <div className="col-md-3 my-3">
-              <img
-                src={comunidadeLocal}
-                width="90px"
-                alt="pessoas que se encontram numa rede"
-              />
-              <h3><b>4º passo</b></h3>
-              <h4>Cresça em conjunto com sua comunidade local.
-              </h4>
-            </div>
-
-
 
           </div>
 
