@@ -35,12 +35,12 @@ class Home extends Component {
                 <h1 className="green-text">Profissionais diversos;</h1>
                 <h1 className="green-text">Soluções simples...</h1>
                 <br />
-                <h4 className="text-content text-justify">
+                <h4 className="text-content text-left">
                   Pintou aquele problema? Fica tranquilo, o FixHub te ajuda a
                   encontrar a solução profissional mais próxima de você.
                 </h4>
                 <br />
-                <h4 className="text-content text-justify">
+                <h4 className="text-content text-left">
                   De mecânicos a manicures, de pintores a DJ's, cobrimos os
                   mais diversos ramos, clique aqui e descubra.
                 </h4>
@@ -318,7 +318,7 @@ class Home extends Component {
                 <div className="card h-100 w-100">
                   <div className="card-body shadow d-flex flex-column">
                     <h4 className="card-title pb-1">Várias Categorias</h4>
-                    <div className="card-text last-card-content text-justify pb-3">
+                    <div className="card-text last-card-content text-left pb-3">
                       Encontre os mais diversos serviços e soluções
                       profissionais da sua região, buscando por todas as
                       categorias, no botão abaixo.
@@ -344,12 +344,12 @@ class Home extends Component {
               <div className="jumbotron-clear my-auto text-center">
                 <h1 className="green-text">Clientes à vista</h1>
                 <br />
-                <h4 className="text-content text-justify">
+                <h4 className="text-content text-left">
                   Prestador de serviços, profissional liberal, trabalhador
                   autônomo, micro-empreendedor, free-lancer...
                 </h4>
                 <br />
-                <h4 className="text-content text-justify">
+                <h4 className="text-content text-left">
                   São tantos os nomes, mas seja como for, aqui no FixHub, você
                   encontra um espaço para divulgação do seu trabalho,
                   cadastre-se gratuitamente e comece a angariar mais clientes.
