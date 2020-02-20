@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Btn from "../components/button.js";
 // Images
 import carRepair from "../img/carRepair.jpg";
-import peopleShakingHands from "../img/peopleShakingHads.jpg";
+import peopleShakingHands from "../img/acordo.PNG";
 import curriculoIcon from "../img/curriculo.svg";
 import divulgaIcon from "../img/influenciador.svg";
 import redeIcon from "../img/networking.svg";
