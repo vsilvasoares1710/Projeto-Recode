@@ -130,7 +130,7 @@ class QuemSomos extends Component {
                   </h3>
                   <br />
                   <h5 className="text-content text-left white-text">
-                    Simplicidade, Segurança, eficiência e transparência total entre clientes e
+                    Simplicidade, segurança, eficiência e transparência total entre clientes e
                     profissionais. 
                   </h5>
                 </div>
