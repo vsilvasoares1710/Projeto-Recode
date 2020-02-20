@@ -674,3 +674,7 @@ a .text-link:focus {
 .card-footer-gray{
   background-color: #223842;
 }
+
+.color-inverted {
+	filter: invert(100%);
+}

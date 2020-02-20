@@ -26,7 +26,7 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar sticky-top navbar-expand-xl navbar-dark">
-        <Link to="/" className="navbar-brand ml-1" id="brand-logo">
+        <Link to="/" className="navbar-brand ml-1" id="brand-logo" tabIndex="0">
           <img
             data-toggle="collapse"
             data-target=".navbar-collapse.show"
@@ -57,7 +57,7 @@ class Navbar extends Component {
               data-toggle="collapse"
               data-target=".navbar-collapse.show"
             >
-              <Link to="/" className="nav-link ml-1" tabIndex="0">
+              <Link to="/" className="nav-link ml-1">
                 Home
               </Link>
             </li>

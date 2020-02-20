@@ -12,7 +12,7 @@ class Entrar extends Component {
         {/* <!-- Conteúdo principal da página --> */}
         <div className="container bg-white my-auto">
           <h1 className="green-text text-center pt-4">Entrar</h1>
-          <div className="row">
+          <div className="row mx-1">
             <div className="d-none d-lg-block col-lg-6 my-auto">
               <img src={loginImg}
                 width="90%"
@@ -20,7 +20,6 @@ class Entrar extends Component {
               />
             </div>
             <div className="jumbotron-green text-center col-12 col-md-11 col-lg-6 mb-2 mt-2">
-
               <div className="form-group pb-3">
                 <label className="d-flex justify-content-start text-white">
                   <h5>CPF/CNPJ</h5>
