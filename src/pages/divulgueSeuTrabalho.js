@@ -5,6 +5,7 @@ import Btn from "../components/button.js";
 import clientes from "../img/clientes.jpg";
 import clientes2 from "../img/clientes2.png";
 import womanJumping from "../img/womanJumping.jpg";
+import Divulgue from "../img/divulgar.jpg";
 
 class DivulgueSeuTrabalho extends Component {
   render() {
@@ -37,9 +38,9 @@ class DivulgueSeuTrabalho extends Component {
             {/* <!-- Text-box com conteúdo à esquerda/abaixo da primeira imagem --> */}
             <div className="col-sm-12 col-md-8 col-lg-6 col-xl-5 my-auto mx-auto">
               <img
-                src={womanJumping}
+                src={Divulgue}
                 width="100%"
-                alt="Uma mulher segurando um trofeu, pulando de felicidade e uma seta simbolizando o aumento das vendas"
+                alt="pessoas que conversam e se encontram com engrenagens e ferramentas"
               />
             </div>
             {/* <!-- Fim da text-box com conteúdo à esquerda/abaixo da primeira imagem --> */}
