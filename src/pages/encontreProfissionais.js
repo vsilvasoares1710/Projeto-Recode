@@ -767,7 +767,7 @@ class EncontreProfissionais extends Component {
                       A qualquer hora em qualquer lugar
                     </h1>
                     <br />
-                    <h4 className="text-content text-justify">
+                    <h4 className="text-content text-left">
                       Encontre o profissional adequado para as suas
                       necessidades, realize um busca mais profunda, contate e
                       negocie com diversos profissionais, cadastre-se para ter
