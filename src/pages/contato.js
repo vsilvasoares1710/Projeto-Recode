@@ -103,15 +103,15 @@ class Contato extends Component {
             <div className="jumbotron-clear my-auto text-center ">
             <h1 className="green-text">Fale Conosco!</h1>
                 <br />
-                <h4 className="text-content text-justify">
+                <h4 className="text-content text-left">
                   Tem algum elogio, sujestão ou reclamação?
                 </h4>
                 <br />
-                <h4 className="text-content text-justify">
+                <h4 className="text-content text-left">
                   Conte-nos! Ficamos felizes com seu feedback.
                 </h4>
                 <br />
-                <h4 className="text-content text-justify">
+                <h4 className="text-content text-left">
                   Acreditamos que uma comunicação eficaz, gera um melhor relacionamento.
                 </h4>
               </div>
