@@ -39,7 +39,7 @@ class DivulgueSeuTrabalho extends Component {
             <div className="col-sm-12 col-md-8 col-lg-6 col-xl-5 my-auto mx-auto">
               <img
                 src={Divulgue}
-                width="100%"
+                width="111%"
                 alt="pessoas que conversam e se encontram com engrenagens e ferramentas"
               />
             </div>
