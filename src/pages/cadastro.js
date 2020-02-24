@@ -229,7 +229,9 @@ class Cadastro extends Component {
         const labelId = `${inputId}-label`;
         const label = document.getElementById(labelId);
         if (label) {
-          label.innerHTML = label.innerHTML + erro;
+          if(!label.innerHTML.endsWith(erro)){
+            label.innerHTML = label.innerHTML + erro;
+          }
         }
       });
     }
