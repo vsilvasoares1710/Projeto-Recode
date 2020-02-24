@@ -210,7 +210,11 @@ class Cadastro extends Component {
     const alvoId = event.target.id;
     const valor = event.target.value;
     const novoFormulario = this.state.formulario;
-    novoFormulario[alvoId] = valor;
+    if(valor === "" | valor === null | valor === undefined) {
+      novoFormulario[alvoId] = undefined;
+    } else {
+      novoFormulario[alvoId] = valor;
+    }
     this.setState({ formulario: novoFormulario });
 
     // console.log(this.state);
