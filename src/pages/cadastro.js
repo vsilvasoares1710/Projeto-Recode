@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import InputMask from "react-input-mask";
 // Components
 import Btn from "../components/button.js";
 // Services
 import getFiltros from "../services/filters.js";
+import getLocais from "../services/locais.js";
 import filterValidation from "../services/filterValidation.js";
 import apiCadastro from "../services/apiCadastro.js";
 // Images
@@ -18,10 +20,26 @@ class Cadastro extends Component {
       filtrosMarcados: [],
       formulario: {},
       cadastro: "Não Feito",
-      mensagensDeErro: undefined
+      mensagensDeErro: undefined,
+      locais: "",
+      estadoSelecionado: "",
+      cidades: "",
+      cidadeSelecionada: "",
+      bairros: [],
+      bairroSelecionado: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.cadastrar = this.cadastrar.bind(this);
+  }
+
+  async carregarLocais() {
+    const locais = await getLocais();
+    if (typeof locais === "object") {
+      this.setState({ locais: locais });
+      // console.log(this.state.locais.estados);
+    } else {
+      return;
+    }
   }
 
   async carregarFiltros() {
@@ -99,10 +117,9 @@ class Cadastro extends Component {
           <div className="container-fluid bg-white">
             <div className="row mb-0 pb-0 mt-3 mx-1">
               <div className="d-flex flex-column mx-auto">
-                {console.log(typeof this.state.mensagensDeErro)}
-                {typeof this.state.mensagensDeErro === "array" ? (
+                {this.state.mensagensDeErro !== undefined ? (
                   this.state.mensagensDeErro.map(mensagem => {
-                    return <h5 className="green-text">{mensagem}</h5>;
+                    return <h5 className="green-text">{`${mensagem}\n`}</h5>;
                   })
                 ) : (
                   <h5 className="green-text my-1">
@@ -196,8 +213,24 @@ class Cadastro extends Component {
     novoFormulario[alvoId] = valor;
     this.setState({ formulario: novoFormulario });
 
-    console.log(this.state);
+    // console.log(this.state);
   }
+
+  validarInputs() {
+    const { mensagensDeErro } = this.state;
+    if (mensagensDeErro !== undefined) {
+      mensagensDeErro.map(erro => {
+        const parts = erro.split("'");
+        const inputId = parts[1];
+        const labelId = `${inputId}-label`;
+        const label = document.getElementById(labelId);
+        if (label) {
+          label.innerHTML = label.innerHTML + erro;
+        }
+      });
+    }
+  }
+
   async cadastrar() {
     this.setState({ cadastro: "Carregando" });
     const formulario = this.state.formulario;
@@ -229,11 +262,238 @@ class Cadastro extends Component {
         `Falha no cadastro\nErro: ${response.status}\n${response.data.erro}`
       );
     }
+    this.validarInputs();
+  }
+
+  validateCitiesRadialButton = bairro => {
+    const novoFormulario = this.state.formulario;
+    novoFormulario["bairro"] = bairro;
+    this.setState({ formulario: novoFormulario });
+
+    // console.log(this.state)
+  };
+
+  renderCitiesRadialButtons = labelText => {
+    const label = labelText;
+    const inputId = label + "RadialButton";
+
+    return (
+      <div className="form-inline text-wrap">
+        <input
+          type="radio"
+          className="radial-button"
+          id={inputId}
+          name="bairro"
+          onChange={() => this.validateCitiesRadialButton(label)}
+        />
+        <label
+          className="form-check-label checkbox-label unselectable"
+          onClick={() => this.validateCitiesRadialButton(label)}
+        >
+          <strong>{label}</strong>
+          <label for={inputId} className="d-none">
+            {label}
+          </label>
+        </label>
+      </div>
+    );
+  };
+
+  renderCitiesAccordion() {
+    if (this.state.cidadeSelecionada.length > 3) {
+      console.log("Estados:", this.state.locais.estados);
+      console.log("estadoSelecionado:", this.state.estadoSelecionado);
+      const estado = this.state.locais.estados.find(estado => {
+        return estado.uf === this.state.estadoSelecionado;
+      });
+      const cidade = estado.cidades.find(cidade => {
+        return cidade.nome === this.state.cidadeSelecionada;
+      });
+
+      const categoriaFormatted = cidade.nome.replace(/ /g, "-");
+      return (
+        <div className="form-group col-12 col-md-6 col-lg-4">
+          <label for="bairro" className="text-green" id="bairro-label">
+            <strong>
+              <h4>Bairro</h4>
+            </strong>
+          </label>
+          <div className="col-12 m-0 p-0">
+            <div className="accordion-group accordion-card shadow mr-2 b-info">
+              <div className="accordion-heading">
+                <button
+                  type="button"
+                  className="accordion-toggle panel-title-card"
+                  data-toggle="collapse"
+                  data-parent="#accordionFiltros"
+                  data-target={"#collapse" + categoriaFormatted}
+                >
+                  <div className="d-flex align-items-center card-heading">
+                    <h5 className="green-text mx-auto text-center">
+                      Selecione um bairro
+                    </h5>
+                  </div>
+                </button>
+              </div>
+              <div
+                id={"collapse" + categoriaFormatted}
+                className="accordion-body collapse in"
+              >
+                <div className="card-divider"></div>
+              </div>
+              <div className="inner-card-accordion">
+                <div className="checkbox-wrapper">
+                  {cidade.bairros.map((bairro, index) => {
+                    let inferiorPadding;
+                    index < cidade.bairros.length - 1
+                      ? (inferiorPadding = "")
+                      : (inferiorPadding = "pb-1");
+                    return (
+                      <div
+                        id={"collapse" + categoriaFormatted}
+                        className="accordion-body collapse out"
+                      >
+                        <div
+                          className={`accordion-inner card-item ${inferiorPadding}`}
+                        >
+                          {this.renderCitiesRadialButtons(bairro)}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return;
+    }
+  }
+
+  validateEstadoCidade = estadoCidade => {
+    const novoFormulario = this.state.formulario;
+    novoFormulario["estado"] = estadoCidade.estado;
+    novoFormulario["cidade"] = estadoCidade.cidade;
+
+    this.setState({ formulario: novoFormulario });
+    this.setState({
+      estadoSelecionado: estadoCidade.estado,
+      cidadeSelecionada: estadoCidade.cidade
+    });
+    // console.log(this.state)
+  };
+
+  renderRadialButton = labelText => {
+    // console.log(labelText)
+
+    const label = labelText.cidade;
+    const inputId = label + "RadialButton";
+
+    let isChecked;
+    this.state.cidadeSelecionada.indexOf(label) === -1
+      ? (isChecked = false)
+      : (isChecked = true);
+    return (
+      <div className="form-inline text-wrap">
+        <input
+          type="radio"
+          className="radial-button"
+          id={inputId}
+          name="cidade"
+          tabIndex="1"
+          onChange={() => this.validateEstadoCidade(labelText)}
+          checked={isChecked}
+        />
+        <label
+          className="form-check-label radial-button-label unselectable"
+          onClick={() => this.validateEstadoCidade(labelText)}
+        >
+          <strong>{label}</strong>
+          <label for={inputId} className="d-none">
+            {label}
+          </label>
+        </label>
+      </div>
+    );
+  };
+
+  renderScrollBoxes() {
+    if (this.state.locais.estados) {
+      // console.log(this.state.locais.estados);
+      const estados = this.state.locais.estados;
+
+      return estados.map(estado => {
+        const estadoFormatted = estado.uf.replace(/ /g, "-");
+        return (
+          <div className="col-12 m-0 p-0">
+            <div className="accordion-group accordion-card shadow mr-2 b-info">
+              <div className="accordion-heading">
+                <button
+                  type="button"
+                  className="accordion-toggle"
+                  data-toggle="collapse"
+                  data-parent="#accordionFiltros"
+                  data-target={"#collapse" + estadoFormatted}
+                  tabIndex="0"
+                >
+                  <div className="d-flex align-items-center card-heading ">
+                    <h5 className="green-text mx-auto text-center">
+                      Selecione uma Cidade
+                    </h5>
+                  </div>
+                </button>
+              </div>
+              <div
+                id={"collapse" + estadoFormatted}
+                className="accordion-body collapse in"
+              >
+                <div className="card-divider"></div>
+              </div>
+              <div className="inner-card-accordion">
+                <div className="checkbox-wrapper">
+                  {estado.cidades.map((cidade, index) => {
+                    let inferiorPadding;
+                    index < estado.cidades.length - 1
+                      ? (inferiorPadding = "")
+                      : (inferiorPadding = "pb-1");
+                    return (
+                      <div
+                        id={"collapse" + estadoFormatted}
+                        className="accordion-body collapse out"
+                      >
+                        <div
+                          className={`accordion-inner card-item ${inferiorPadding}`}
+                        >
+                          {this.renderRadialButton({
+                            estado: estado.uf,
+                            cidade: cidade.nome
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      });
+    } else {
+      return;
+    }
   }
 
   componentDidMount() {
+    console.log(this.state);
     this.carregarFiltros();
+    this.carregarLocais();
   }
+  componentDidUpdate() {
+    console.log(this.state);
+  }
+
   render() {
     return (
       <div className="container-fluid bg-white">
@@ -244,57 +504,102 @@ class Cadastro extends Component {
                 <div className="jumbotron-clear my-auto shadow">
                   <h1>Cadastro</h1>
                   <div className="card-divider-long"></div>
-                  <form className="mt-3 p-0">
+                  <p>Campos marcados com * são requeridos</p>
+                  <form
+                    className="mt-3 p-0"
+                    onSubmit={event => {
+                      event.preventDefault();
+                      this.cadastrar();
+                    }}
+                  >
                     <div className="row">
-                      <div className="form-group col-12 col-md-4 col-lg-2">
-                        <label for="tipo-cpf_cnpj" className="text-green">
+                      <div className="form-group col-6 col-md-2 col-lg-1">
+                        <label for="documento-cpf" className="text-green">
                           {/* inicio bloco de informações de dados prestador/empresa */}
                           <strong>
-                            <h4>Documento</h4>
-                          </strong>
-                        </label>
-                        <select
-                          className="form-control b-info type-field"
-                          id="tipo-cpf_cnpj"
-                          onChange={() =>
-                            this.setState({
-                              cpf_cnpj: document.getElementById("tipo-cpf_cnpj")
-                                .value
-                            })
-                          }
-                        >
-                          <option>CPF</option>
-                          <option>CNPJ</option>
-                        </select>
-                      </div>
-                      <div className="form-group col-12 col-md-8 col-lg-4 col-xl-5">
-                        <label for="cpf_cnpj" className="text-green">
-                          <strong>
-                            <h4>{this.state.cpf_cnpj}</h4>
+                            <h4>CPF</h4>
                           </strong>
                         </label>
                         <input
-                          type="text"
-                          className="form-control b-info type-field"
+                          type="radio"
+                          className="form-control"
+                          id="documento-cpf"
+                          name="documento"
+                          onClick={() =>
+                            this.setState({
+                              cpf_cnpj: "CPF"
+                            })
+                          }
+                          checked={this.state.cpf_cnpj === "CPF" ? true : false}
+                        />
+                      </div>
+                      <div className="form-group col-6 col-md-2 col-lg-1">
+                        <label for="documento-cnpj" className="text-green">
+                          {/* inicio bloco de informações de dados prestador/empresa */}
+                          <strong>
+                            <h4>CNPJ</h4>
+                          </strong>
+                        </label>
+                        <input
+                          type="radio"
+                          className="form-control"
+                          id="documento-cnpj"
+                          name="documento"
+                          onClick={() =>
+                            this.setState({
+                              cpf_cnpj: "CNPJ"
+                            })
+                          }
+                          checked={
+                            this.state.cpf_cnpj === "CNPJ" ? true : false
+                          }
+                        />
+                      </div>
+                      <div className="form-group col-12 col-md-8 col-lg-4 col-xl-5">
+                        <label
+                          for="cpf_cnpj"
+                          className="text-green"
+                          id="cpf_cnpj-label"
+                        >
+                          <strong>
+                            <h4>Número do Documento *</h4>
+                          </strong>
+                        </label>
+                        <InputMask
+                          mask={
+                            this.state.cpf_cnpj === "CPF"
+                              ? "999.999.999-99"
+                              : "99.999.999/9999-99"
+                          }
+                          className="form-control type-field"
                           id="cpf_cnpj"
                           onChange={this.handleChange}
                           placeholder={
                             this.state.cpf_cnpj === "CPF"
-                              ? "45678901234"
-                              : "12345678000101"
+                              ? "456.789.012-34"
+                              : "12.345.678/0001-01"
                           }
-                          maxLength="18"
+                          pattern={
+                            this.state.cpf_cnpj === "CPF"
+                              ? "[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"
+                              : "[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}"
+                          }
+                          required
                         />
                       </div>
                       <div className="form-group col-12 col-lg-6 col-xl-5">
-                        <label for="email" className="text-green">
+                        <label
+                          for="email"
+                          className="text-green"
+                          id="email-label"
+                        >
                           <strong>
-                            <h4>E-mail</h4>
+                            <h4>E-mail *</h4>
                           </strong>
                         </label>
                         <input
                           type="email"
-                          className="form-control b-info type-field"
+                          className="form-control type-field"
                           onChange={this.handleChange}
                           id="email"
                           placeholder={
@@ -302,25 +607,25 @@ class Cadastro extends Component {
                               ? "joãodasilva@email.com"
                               : "email@empresa.com"
                           }
-                          value={this.state.formulario.email}
-                          maxLength="128"
+                          required
                         />
                       </div>
                     </div>
                     <div className="form-group">
-                      <label for="nome" className="text-green">
+                      <label for="nome" className="text-green" id="nome-label">
                         <strong>
                           <h4>
                             {this.state.cpf_cnpj === "CPF"
-                              ? "Nome Completo"
-                              : "Nome da Empresa"}
+                              ? "Nome Completo *"
+                              : "Nome da Empresa *"}
                           </h4>
                         </strong>
                       </label>
                       <input
                         type="text"
-                        className="form-control b-info type-field"
+                        className="form-control type-field"
                         onChange={this.handleChange}
+                        onBlur={this.checkRequiredInput}
                         id="nome"
                         placeholder={
                           this.state.cpf_cnpj === "CPF"
@@ -328,21 +633,28 @@ class Cadastro extends Component {
                             : "Oficina do João"
                         }
                         maxLength="128"
+                        required
                       />
                     </div>
                     <div className="row">
                       <div className="form-group col-12 col-md-6">
-                        <label for="senha" className="text-green">
+                        <label
+                          for="senha"
+                          className="text-green"
+                          id="senha-label"
+                        >
                           <strong>
-                            <h4>Senha</h4>
+                            <h4>Senha *</h4>
                           </strong>
                         </label>
                         <input
                           type="password"
-                          className="form-control b-info type-field"
+                          className="form-control type-field"
                           onChange={this.handleChange}
                           id="senha"
+                          minLength="6"
                           maxLength="32"
+                          required
                         />
                       </div>
                     </div>
@@ -354,104 +666,72 @@ class Cadastro extends Component {
                     <div className="card-divider-long mb-3"></div>
                     <div className="row">
                       <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label for="cep" className="text-green">
-                          <strong>
-                            <h4>CEP</h4>
-                          </strong>
-                        </label>
-                        <input
-                          type="text"
-                          className="form-control b-info type-field"
-                          onChange={this.handleChange}
-                          id="cep"
-                          placeholder="00000-000"
-                          maxLength="10"
-                        />
-                      </div>
-                      <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label for="estado" className="text-green">
-                          <strong>
-                            <h4>Estado</h4>
-                          </strong>
-                        </label>
-                        <select
-                          className="form-control b-info type-field"
-                          id="estado"
-                          onChange={this.handleChange}
+                        <label
+                          for="cidade"
+                          className="text-green"
+                          id="cidade-label"
                         >
-                          <option selected value={null}>
-                            Selecione seu Estado
-                          </option>
-                          <option value="SP">SP</option>
-                        </select>
-                      </div>
-                      <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label for="cidade" className="text-green">
                           <strong>
                             <h4>Cidade</h4>
                           </strong>
                         </label>
-                        <select
-                          className="form-control b-info type-field"
-                          id="cidade"
-                          onChange={this.handleChange}
-                        >
-                          <option
-                            selected
-                            value={null}
-                            for="option-selecione-cidade"
-                          >
-                            Selecione sua Cidade
-                          </option>
-                          <option value="Osasco">Osasco</option>
-                        </select>
+                        {this.renderScrollBoxes()}
                       </div>
+                      {this.renderCitiesAccordion()}
                       <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label for="bairro" className="text-green">
+                        <label for="cep" className="text-green" id="cep-label">
                           <strong>
-                            <h4>Bairro</h4>
+                            <h4>CEP</h4>
                           </strong>
                         </label>
-                        <select
-                          className="form-control b-info type-field"
-                          id="bairro"
+                        <InputMask
+                          mask={"99999-999"}
                           onChange={this.handleChange}
-                        >
-                          <option selected value={null}>
-                            Selecione seu Bairro
-                          </option>
-                          <option value="Cipava">Cipava</option>
-                        </select>
+                          className="form-control type-field"
+                          id="cep"
+                          placeholder="78123-456"
+                          pattern="[0-9]{5}-[0-9]{3}"
+                          required
+                        />
                       </div>
                     </div>
                     <div className="row mt-3">
                       <div className="form-group col-12 col-md-10">
-                        <label for="endereco" className="text-green">
+                        <label
+                          for="endereco"
+                          className="text-green"
+                          id="endereco-label"
+                        >
                           <strong>
                             <h4>Logradouro</h4>
                           </strong>
                         </label>
                         <input
                           type="text"
-                          className="form-control b-info type-field"
+                          className="form-control type-field"
                           id="endereco"
                           onChange={this.handleChange}
-                          placeholder="Rua / Avenida "
+                          placeholder="Rua João dos Reis"
                           maxLength="70"
                         />
                       </div>
                       <div className="form-group col-12 col-md-2">
-                        <label for="numero" className="text-green">
+                        <label
+                          for="numero"
+                          className="text-green"
+                          id="numero-label"
+                        >
                           <strong>
                             <h4>Número</h4>
                           </strong>
                         </label>
                         <input
                           type="text"
-                          className="form-control b-info type-field"
+                          className="form-control type-field"
                           id="numero"
                           onChange={this.handleChange}
                           placeholder="000"
+                          pattern="[a-zA-Z0-9]{0,5}"
                           maxLength="5"
                         />
                       </div>
@@ -463,84 +743,115 @@ class Cadastro extends Component {
                     <div className="card-divider-long mb-3"></div>
                     <div className="row">
                       <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label for="telefone" className="text-green">
+                        <label
+                          for="telefone"
+                          className="text-green"
+                          id="telefone-label"
+                        >
                           <strong>
                             <h4>Telefone</h4>
                           </strong>
                         </label>
-                        <input
-                          type="text"
-                          className="form-control b-info type-field"
+                        <InputMask
+                          mask={"(99) 9999-9999"}
+                          className="form-control type-field"
                           id="telefone"
                           onChange={this.handleChange}
-                          placeholder="1012345678"
-                          maxLength="13"
+                          placeholder="(11) 3456-7891"
+                          pattern="^\([0-9]{2,3}\) [0-9]{4}-[0-9]{4}?"
                         />
                       </div>
                       <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label for="celular" className="text-green">
+                        <label
+                          for="celular"
+                          className="text-green"
+                          id="celular-label"
+                        >
                           <strong>
-                            <h4>Celular</h4>
+                            <h4>Celular *</h4>
                           </strong>
                         </label>
-                        <input
-                          type="text"
-                          className="form-control b-info type-field"
+                        <InputMask
+                          mask={"(99) 99999-9999"}
+                          className="form-control type-field"
                           id="celular"
                           onChange={this.handleChange}
-                          placeholder="11912345678"
-                          maxLength="14"
+                          pattern="^\([0-9]{2,3}\) [0-9]{5}-[0-9]{4}?"
+                          placeholder="(11) 93456-7891"
+                          required
                         />
                       </div>
                       <div className="form-group col-12 col-md-6 col-lg-4">
-                        <label for="whatsapp" className="text-green">
+                        <label
+                          for="whatsapp"
+                          className="text-green"
+                          id="whatsapp-label"
+                        >
                           <strong>
                             <h4>WhatsApp</h4>
                           </strong>
                         </label>
-                        <input
-                          type="text"
-                          className="form-control b-info type-field"
+                        <InputMask
+                          mask={"(99) 99999-9999"}
+                          className="form-control type-field"
                           id="whatsapp"
+                          pattern="^\([0-9]{2,3}\) [0-9]{5}-[0-9]{4}?"
                           onChange={this.handleChange}
-                          placeholder="11912345678"
-                          maxLength="14"
+                          placeholder="(11) 93456-7891"
                         />
                       </div>
                     </div>
                     <div className="row mt-3">
                       <div className="form-group col-12 col-md-6">
-                        <label for="facebook" className="text-green">
+                        <label
+                          for="facebook"
+                          className="text-green"
+                          id="facebook-label"
+                        >
                           <strong>
                             <h4>Facebook</h4>
                           </strong>
                         </label>
-                        <input
-                          type="text"
-                          className="form-control b-info type-field"
+                        <InputMask
+                          mask={
+                            "f\\acebook.com/****************************************"
+                          }
+                          className="form-control type-field"
                           id="facebook"
                           onChange={this.handleChange}
                           placeholder="facebook.com/oficinaDoJoão"
-                          maxLength="128"
+                          pattern="facebook\.com\/.{0,}"
+                          maskChar={null}
                         />
                       </div>
                       <div className="form-group col-12 col-md-6">
-                        <label for="linkedin" className="text-green">
+                        <label
+                          for="linkedin"
+                          className="text-green"
+                          id="linkedin-label"
+                        >
                           <strong>
                             <h4>LinkedIn</h4>
                           </strong>
                         </label>
-                        <input
-                          type="text"
-                          className="form-control b-info type-field"
+                        <InputMask
+                          mask={
+                            "linkedin.com/in/****************************************"
+                          }
+                          className="form-control type-field"
                           id="linkedin"
                           onChange={this.handleChange}
-                          placeholder="linkedin.com/oficinaDoJoão"
-                          maxLength="128"
+                          placeholder="linkedin.com/in/oficinaDoJoão"
+                          pattern="linkedin\.com\/in\/.{0,}"
+                          maskChar={null}
                         />
                       </div>
                       <div className="form-group col-12 col-md-6">
-                        <label for="site" className="text-green">
+                        <label
+                          for="site"
+                          className="text-green"
+                          id="site-label"
+                        >
                           <strong>
                             <h4>
                               {this.state.cpf_cnpj === "CPF"
@@ -551,7 +862,7 @@ class Cadastro extends Component {
                         </label>
                         <input
                           type="text"
-                          className="form-control b-info type-field"
+                          className="form-control type-field"
                           id="site"
                           onChange={this.handleChange}
                           placeholder="www.oficinadojoao.com.br"
@@ -565,7 +876,11 @@ class Cadastro extends Component {
                     <div className="card-divider-long mb-3"></div>
                     <div className="row">
                       <div className="form-group col-12">
-                        <label for="texto_anuncio" className="text-green">
+                        <label
+                          for="texto_anuncio"
+                          className="text-green"
+                          id="texto_anuncio-label"
+                        >
                           <strong>
                             <h4>Texto do Anúncio</h4>
                           </strong>
@@ -617,11 +932,19 @@ class Cadastro extends Component {
                         this.renderAccordion()
                       )}
                     </div>
-                    <Btn
+                    <button
+                      type="submit"
+                      className="btn btn-info shadow"
+                      id="btn-cadastro"
+                    >
+                      Cadastrar
+                    </button>
+                    {/* <Btn
+                      type="button"
                       text="Cadastrar"
                       className="btn btn-info shadow"
                       onClick={this.cadastrar}
-                    />
+                    /> */}
                     {/* fim bloco de informações do anuncio */}
                     {this.renderResult()}
                   </form>

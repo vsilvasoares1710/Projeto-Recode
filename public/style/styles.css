@@ -312,6 +312,19 @@ a .text-link:focus {
   border: solid 2px #223842;
   box-shadow: 0 0 0 0.2rem #223843;
 }
+.type-field-wrong {
+  color: black;
+  font-size: 22px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: bold;
+  border: solid 2px red;
+  height: 50px;
+  border-radius: 7px;
+}
+.type-field-wrong:focus {
+  border: solid 2px #223842;
+  box-shadow: 0 0 0 0.2rem #223843;
+}
 .jumbotron {
   padding: 2rem 1rem;
   margin-bottom: 2rem;
@@ -677,4 +690,9 @@ a .text-link:focus {
 
 .color-inverted {
 	filter: invert(100%);
+}
+
+input[type="radio"]:focus {
+  outline: none;
+  box-shadow: none;
 }
