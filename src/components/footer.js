@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import isAuthenticated from "../services/userAuthentication";
+import logout from "../services/logout";
 import Logo from "../img/fixhub_oficial.png";
 import facebookIcon from "../img/footerFacebookIcon.png";
 import mailIcon from "../img/footerMailIcon.png";
@@ -37,6 +38,7 @@ class Footer extends Component {
           </Link>
           <Link
             to="/"
+            onClick={logout}
             className="col-6 mb-4 mt-2 text-white text-right nav-link"
           >
             Sair
@@ -84,7 +86,11 @@ class Footer extends Component {
           >
             Meu Perfil
           </Link>
-          <Link to="/" className="col-4 mb-4 text-white text-center nav-link">
+          <Link
+            to="/"
+            onClick={logout}
+            className="col-4 mb-4 text-white text-center nav-link"
+          >
             Sair
           </Link>
         </div>

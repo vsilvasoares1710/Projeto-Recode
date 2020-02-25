@@ -51,12 +51,12 @@ class DivulgueSeuTrabalho extends Component {
                   Encontrar, ser encontrado, negociar e vender...
                 </h1>
                 <br />
-                <h4 className="text-content text-justify grey-text">
+                <h4 className="text-content text-justify white-text">
                   Serviço bem feito merece visibilidade, faça seu negócio
                   decolar conosco.
                 </h4>
                 <br />
-                <h4 className="text-content text-justify grey-text">
+                <h4 className="text-content text-justify white-text">
                   Seja visualizado e encontrado por milhares de clientes,
                   cadastre-se e tenha acesso a esses e outros benefícios agora mesmo..
                 </h4>

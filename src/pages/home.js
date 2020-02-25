@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import isAuthenticated from "../services/userAuthentication";
 // Components
 import Btn from "../components/button.js";
 // Images
@@ -41,8 +42,8 @@ class Home extends Component {
                 </h4>
                 <br />
                 <h4 className="text-content text-left">
-                  De mecânicos a manicures, de pintores a DJ's, cobrimos os
-                  mais diversos ramos, clique aqui e descubra.
+                  De mecânicos a manicures, de pintores a DJ's, cobrimos os mais
+                  diversos ramos, clique aqui e descubra.
                 </h4>
                 <br />
                 <Btn
@@ -58,15 +59,15 @@ class Home extends Component {
           {/*Inicio jornada de usuario*/}
           <div className="row text-center my-3">
             <div className="col-md-4 my-4">
-
               <img
                 src={curriculoIcon}
                 width="90px"
                 alt="currículo do profissional"
               />
-              <h3><b>1º passo</b></h3>
-              <h4>Cadastre-se gratuitamente em nossa plataforma.
-              </h4>
+              <h3>
+                <b>1º passo</b>
+              </h3>
+              <h4>Cadastre-se gratuitamente em nossa plataforma.</h4>
             </div>
 
             <div className="col-md-4 my-4">
@@ -75,9 +76,10 @@ class Home extends Component {
                 width="90px"
                 alt="pessoa que comunica e divulga"
               />
-              <h3><b>2º passo</b></h3>
-              <h4>Divulgue o seu trabalho por meio de um anúncio.
-              </h4>
+              <h3>
+                <b>2º passo</b>
+              </h3>
+              <h4>Divulgue o seu trabalho por meio de um anúncio.</h4>
             </div>
 
             <div className="col-md-4 my-4">
@@ -86,11 +88,11 @@ class Home extends Component {
                 width="90px"
                 alt="pessoas que se encontram numa rede"
               />
-              <h3><b>3º passo</b></h3>
-              <h4>Seja encontrado por clientes próximos a você.
-              </h4>
+              <h3>
+                <b>3º passo</b>
+              </h3>
+              <h4>Seja encontrado por clientes próximos a você.</h4>
             </div>
-
           </div>
 
           {/* <!-- Segunda Row --> */}
@@ -100,8 +102,13 @@ class Home extends Component {
               {/* <!-- Card de Reparos --> */}
               <div className="col-md-6 col-lg-4 col-xl-3 my-4 d-none d-md-block">
                 <div className="card h-100 w-100">
-                  <div className="card-body shadow d-flex flex-column" tabIndex="0">
-                    <h4 className="card-title pb-1" tabIndex="-1">Reparos em Geral</h4>
+                  <div
+                    className="card-body shadow d-flex flex-column"
+                    tabIndex="0"
+                  >
+                    <h4 className="card-title pb-1" tabIndex="-1">
+                      Reparos em Geral
+                    </h4>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
@@ -173,7 +180,9 @@ class Home extends Component {
               <div className="col-lg-4 my-4 col-xl-3 d-none d-lg-block">
                 <div className="card h-100 w-100">
                   <div className="card-body shadow d-flex flex-column">
-                    <h4 className="card-title pb-1" tabIndex="-1">Estética</h4>
+                    <h4 className="card-title pb-1" tabIndex="-1">
+                      Estética
+                    </h4>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
@@ -245,7 +254,9 @@ class Home extends Component {
               <div className="col-xl-3 my-4 d-none d-xl-block">
                 <div className="card h-100 w-100">
                   <div className="card-body shadow d-flex flex-column">
-                    <h4 className="card-title pb-1" tabIndex="-1">Aulas</h4>
+                    <h4 className="card-title pb-1" tabIndex="-1">
+                      Aulas
+                    </h4>
                     <Link
                       to="/encontreProfissionais"
                       className="card-text card-content"
@@ -355,8 +366,17 @@ class Home extends Component {
                   cadastre-se gratuitamente e comece a angariar mais clientes.
                 </h4>
                 <br />
-                <Btn text="Divulgue Seu Trabalho" lead="/divulgueSeuTrabalho" />
-                <Btn text="Cadastre-se" lead="/cadastro" />
+                {isAuthenticated() ? (
+                  <> </>
+                ) : (
+                  <>
+                    <Btn
+                      text="Divulgue Seu Trabalho"
+                      lead="/divulgueSeuTrabalho"
+                    />
+                    <Btn text="Cadastre-se" lead="/cadastro" />
+                  </>
+                )}
               </div>
             </div>
             {/* <!-- Fim da text-box com conteúdo à esquerda/abaixo da primeira imagem --> */}
@@ -374,7 +394,7 @@ class Home extends Component {
           <br />
           {/* <!-- Fim da terceira row --> */}
 
-        {/*
+          {/*
          <div className="row">
             <2>Titulo reportagem</2>/h
           <div className="card-deck">

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Btn from "./button.js";
 import Logo from "../img/fixhub_oficial.png";
 import isAuthenticated from "../services/userAuthentication.js";
+import logout from "../services/logout";
 
 class Navbar extends Component {
   renderButtons() {
@@ -17,7 +18,7 @@ class Navbar extends Component {
       return (
         <div data-toggle="collapse" data-target=".navbar-collapse.show">
           <Btn text="Meu Perfil" lead="/perfil" />
-          <Btn text="Sair" lead="/" />
+          <Btn text="Sair" lead="/" onClick={logout}/>
         </div>
       );
     }

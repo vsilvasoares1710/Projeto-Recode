@@ -48,11 +48,7 @@ class EncontreProfissionais extends Component {
       .querySelector("#campo-pesquisa")
       .value.trim();
 
-    let {
-      estadoSelecionado,
-      cidadeSelecionada,
-      bairros
-    } = this.state;
+    let { estadoSelecionado, cidadeSelecionada, bairros } = this.state;
 
     const searchParams = {
       tags:
@@ -93,6 +89,7 @@ class EncontreProfissionais extends Component {
 
     const rota = `/profissionais/${searchParams.estado}/${searchParams.cidade}/${searchParams.bairros}/${searchParams.tags}/${searchParams.pesquisa}/${this.state.paginas.atual}`;
     const pesquisa = await search(rota);
+    console.log(pesquisa)
     if (typeof pesquisa === "object" && pesquisa !== null) {
       this.setState({ profissionaisEncontrados: pesquisa.profissionais });
       localStorage.setItem(
@@ -180,7 +177,7 @@ class EncontreProfissionais extends Component {
               <div className="accordion-heading">
                 <button
                   type="button"
-                  className="accordion-toggle panel-title-card"
+                  className="accordion-toggle"
                   data-toggle="collapse"
                   data-parent="#accordionFiltros"
                   data-target={"#collapse" + categoriaFormatted}
@@ -284,19 +281,20 @@ class EncontreProfissionais extends Component {
 
       const categoriaFormatted = cidade.nome.replace(/ /g, "-");
       return (
-        <div className="col-12 col-sm-6 col-md-4 col-lg-3 m-0 p-0">
+        <div className="col-12 col-sm-6 col-md-4 m-0 p-0">
           <div className="accordion-group accordion-card shadow mr-2">
             <div className="accordion-heading">
               <button
                 type="button"
-                className="accordion-toggle panel-title-card"
+                className="accordion-toggle"
                 data-toggle="collapse"
                 data-parent="#accordionFiltros"
                 data-target={"#collapse" + categoriaFormatted}
               >
                 <div className="d-flex align-items-center card-heading">
                   <h5 className="green-text mx-auto text-center">
-                    {this.state.cidadeSelecionada}
+                    Selecione os bairros
+                    {/* {this.state.cidadeSelecionada} */}
                   </h5>
                 </div>
               </button>
@@ -387,7 +385,7 @@ class EncontreProfissionais extends Component {
       return estados.map(estado => {
         const estadoFormatted = estado.uf.replace(/ /g, "-");
         return (
-          <div className="col-12 col-sm-6 col-md-4 col-lg-3 m-0 p-0">
+          <div className="col-12 col-sm-6 col-md-4 m-0 p-0">
             <div className="accordion-group accordion-card shadow mr-2">
               <div className="accordion-heading">
                 <button
@@ -400,7 +398,8 @@ class EncontreProfissionais extends Component {
                 >
                   <div className="d-flex align-items-center card-heading ">
                     <h5 className="green-text mx-auto text-center">
-                      {estado.uf}
+                      Selecione uma Cidade
+                      {/* {estado.uf} */}
                     </h5>
                   </div>
                 </button>
@@ -547,6 +546,18 @@ class EncontreProfissionais extends Component {
                               className="accordion-body collapse out"
                             >
                               <div className="accordion-inner card-item">
+                                <h3 className="white-text mb-0 pb-0 mt-4">
+                                  Localização
+                                </h3>
+                                <div className="card-divider-long-white"></div>
+                                <div className="d-flex flex-wrap mr-0">
+                                  {this.renderScrollBoxes()}
+                                  {this.renderCitiesAccordion()}
+                                </div>
+                                <h3 className="white-text mt-1 mb-0 pb-0 mt-4">
+                                  Categorias
+                                </h3>
+                                <div className="card-divider-long-white"></div>
                                 <div className="d-flex flex-wrap mr-0">
                                   {this.state.filtros.length === 0 ? (
                                     <>
@@ -570,136 +581,23 @@ class EncontreProfissionais extends Component {
                                     this.renderAccordion()
                                   )}
                                 </div>
-                                <div className="card-divider-long-white mt-3"></div>
-                                <Btn
-                                  text="Limpar Filtros"
-                                  className="btn btn-dark-green shadow mt-2 mr-2"
-                                  onClick={this.limparFiltros}
-                                />
-                                <Btn
-                                  text="Limpar Lista"
-                                  className="btn btn-dark-green shadow mt-2"
-                                  onClick={this.limparLista}
-                                />
+                                <div className="card-divider-long-white mt-2"></div>
+                                <div className="text-right">
+                                  {" "}
+                                  <Btn
+                                    text="Limpar Filtros"
+                                    className="btn btn-dark-green shadow mt-2 mr-2"
+                                    onClick={this.limparFiltros}
+                                  />
+                                  <Btn
+                                    text="Limpar Lista"
+                                    className="btn btn-dark-green shadow mt-2"
+                                    onClick={this.limparLista}
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      <div className="accordion-inner card-item">
-                        <div className="d-flex flex-wrap mr-0">
-                          {this.renderScrollBoxes()}
-                        </div>
-
-                        {/* <select
-                          class="custom-select custom-select-lg type-field mt-3 col-3 col-sm-2 col-lg-1"
-                          id="uf-select"
-                          onChange={() => {
-                            const { uf, cidades } = JSON.parse(
-                              document.querySelector("#uf-select").value
-                            );
-                            console.log(uf);
-                            this.setState({
-                              cidades,
-                              estadoSelecionado: uf
-                            });
-                          }}
-                        >
-                          <option selected value="">
-                            UF
-                          </option>
-                          {this.state.locais.estados === undefined ? (
-                            <option value="">Carregando estados...</option>
-                          ) : (
-                            <>
-                              {this.state.locais.estados.map(estado => {
-                                const { uf, cidades } = estado;
-                                return (
-                                  <option
-                                    value={JSON.stringify({ uf, cidades })}
-                                  >
-                                    {uf}
-                                  </option>
-                                );
-                              })}
-                            </>
-                          )}
-                        </select>
-                        {this.state.cidades === "" ? (
-                          <></>
-                        ) : (
-                          <select
-                            class="custom-select custom-select-lg type-field mt-3 col-9 col-sm-10 col-md-5"
-                            id="cidade-select"
-                            onChange={() => {
-                              const { nome, bairros } = JSON.parse(
-                                document.querySelector("#cidade-select").value
-                              );
-                              this.setState({
-                                bairros,
-                                cidadeSelecionada: nome
-                              });
-                            }}
-                          >
-                            <option selected value="">
-                              Cidade
-                            </option>
-                            {this.state.cidades === "" ? (
-                              <option value="">
-                                Selecione um estado primeiro
-                              </option>
-                            ) : (
-                              <>
-                                {this.state.cidades.map(cidade => {
-                                  const { nome, bairros } = cidade;
-                                  return (
-                                    <option
-                                      value={JSON.stringify({ nome, bairros })}
-                                    >
-                                      {nome}
-                                    </option>
-                                  );
-                                })}
-                              </>
-                            )}
-                          </select>
-                        )}
-                        {this.state.bairros === "" ? (
-                          <></>
-                        ) : (
-                          <select
-                            class="custom-select custom-select-lg type-field mt-3 col-12 col-sm-8 col-md-5 col-xl-6"
-                            id="bairros-select"
-                            onChange={() => {
-                              this.setState({
-                                bairroSelecionado: document.querySelector(
-                                  "#bairros-select"
-                                ).value
-                              });
-                            }}
-                          >
-                            <option selected value="">
-                              Bairro
-                            </option>
-                            {this.state.bairros === "" ? (
-                              <option value="">
-                                Selecione uma cidade primeiro
-                              </option>
-                            ) : (
-                              <>
-                                {this.state.bairros.map(bairro => {
-                                  return (
-                                    <option value={bairro}>{bairro}</option>
-                                  );
-                                })}
-                              </>
-                            )}
-                          </select>
-                        )} */}
-                      </div>
-                      <div className="accordion-inner card-item">
-                        <div className="d-flex flex-wrap mr-0">
-                          {this.renderCitiesAccordion()}
                         </div>
                       </div>
                     </div>

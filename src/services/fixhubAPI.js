@@ -4,3 +4,6 @@ const api = axios.create({
 });
 
 export default api;
+
+// BaseURL produção: "https://api-fixhub.tk/"
+// BaseURL dev: "http://localhost:3000/"

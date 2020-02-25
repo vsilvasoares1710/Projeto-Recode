@@ -693,7 +693,7 @@ class Cadastro extends Component {
                         <InputMask
                           mask={"99999-999"}
                           onChange={this.handleChange}
-                          className="form-control type-field"
+                          className="form-control type-field mt-2"
                           id="cep"
                           placeholder="78123-456"
                           pattern="[0-9]{5}-[0-9]{3}"
@@ -945,12 +945,6 @@ class Cadastro extends Component {
                     >
                       Cadastrar
                     </button>
-                    {/* <Btn
-                      type="button"
-                      text="Cadastrar"
-                      className="btn btn-info shadow"
-                      onClick={this.cadastrar}
-                    /> */}
                     {/* fim bloco de informações do anuncio */}
                     {this.renderResult()}
                   </form>
