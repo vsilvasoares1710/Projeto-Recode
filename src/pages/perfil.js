@@ -23,22 +23,20 @@ class Perfil extends Component {
   getProfissionaisId() {
     const tokenLocalStorage = localStorage.getItem("token");
     const idLocalStorage = localStorage.getItem("id");
-    const idProfisional = JSON.parse(idLocalStorage)
+    const idProfisional = JSON.parse(idLocalStorage);
     if (!idLocalStorage | !tokenLocalStorage) {
       logout();
       return;
     } else {
       try {
-        api
-          .get(`/profissionais/${idProfisional}`)
-          .then(response => {
-            console.log(response.data);
-            if (!response.data) {
-              this.setState({ dadosProfissional: null });
-            } else {
-              this.setState({ dadosProfissional: response.data });
-            }
-          });
+        api.get(`/profissionais/${idProfisional}`).then(response => {
+          console.log(response.data);
+          if (!response.data) {
+            this.setState({ dadosProfissional: null });
+          } else {
+            this.setState({ dadosProfissional: response.data });
+          }
+        });
       } catch (error) {
         console.error(error);
         this.setState({ dadosProfissional: null });
@@ -209,6 +207,8 @@ class Perfil extends Component {
       );
     } else {
       const dados = this.state.dadosProfissional;
+      const local = dados.localização;
+      console.log(dados);
       return (
         <div className="container-fluid bg-white">
           {/* <!-- Conteúdo principal da página --> */}
@@ -256,18 +256,17 @@ class Perfil extends Component {
                         </div>
                       </div>
                     </div>
-                    {dados.localização ? (
+                    {local ? (
                       <>
                         <h3 className="text-content text-justify mt-4">
                           Localização:
                         </h3>
                         <div className="card-divider-long"></div>
                         <h3 className="text-content text-justify mb-4">
-                          {!dados.localização.endereço ? (
-                            <> </>
-                          ) : (
-                            `${dados.localização.endereço}`(<br />)
-                          )}
+                          {local.endereco ? <> {local.endereco}</> : <> </>}
+                          {local.endereco && local.numero ? <>, </> : <> </>}
+                          {local.numero ? <> {local.numero}</> : <> </>}
+                          {local.cep? <> - CEP: {local.cep}<br /></> : <> </>}
                           {`${dados.localização.bairro}, ${
                             dados.localização.cidade
                           } - ${dados.localização.estado.toUpperCase()}`}

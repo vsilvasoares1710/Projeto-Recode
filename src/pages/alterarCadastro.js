@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import InputMask from "react-input-mask";
-import logout from "../services/logout";
 // Components
 import Btn from "../components/button.js";
 // Services
 import getFiltros from "../services/filters.js";
 import getLocais from "../services/locais.js";
 import filterValidation from "../services/filterValidation.js";
-import apiCadastro from "../services/apiCadastro.js";
+import apiAtualizaçãoCadastro from "../services/apiAtualizaçãoCadastro.js";
+import logout from "../services/logout";
+import dadosCadastrais from "../services/dadosCadastrais";
 // Images
 import loadingScreen from "../img/green-white-loading.gif";
 
@@ -27,10 +28,11 @@ class AlterarCadastro extends Component {
       cidades: "",
       cidadeSelecionada: "",
       bairros: [],
-      bairroSelecionado: ""
+      bairroSelecionado: "",
+      idProfissional: ""
     };
     this.handleChange = this.handleChange.bind(this);
-    this.cadastrar = this.cadastrar.bind(this);
+    this.atualizarCadastro = this.atualizarCadastro.bind(this);
   }
 
   checarLogin() {
@@ -42,12 +44,68 @@ class AlterarCadastro extends Component {
       logout();
       return;
     } else {
-      this.buscarDadosProfissional()
+      console.log("estou logado");
+      this.setarInputs();
     }
   }
 
-  buscarDadosProfissional() {
-    console.log("Buscar dados funcionou")
+  async setarInputs() {
+    function atribuirValor(inputId, valor) {
+      document.getElementById(inputId).value = valor;
+    }
+
+    const items = await this.buscarDadosProfissional();
+  }
+
+  async buscarDadosProfissional() {
+    await this.carregarLocais();
+    const dados = await dadosCadastrais();
+    console.log("Dados da requisição: ", dados);
+    const {
+      id,
+      nome,
+      cpf_cnpj,
+      icone,
+      contato: { telefone, whatsapp, celular, email },
+      tags,
+      localização: { estado, cidade, bairro, endereco, numero, cep },
+      redes_sociais: { linkedin, facebook, siteOficial },
+      anuncio: { texto, imagens }
+    } = dados;
+
+    if (cpf_cnpj.length === 14) {
+      this.setState({ cpf_cnpj: "CPF" });
+    } else {
+      this.setState({ cpf_cnpj: "CNPJ" });
+    }
+    console.log(endereco);
+    this.setState({
+      filtrosMarcados: tags,
+      estadoSelecionado: estado,
+      cidadeSelecionada: cidade,
+      idProfissional: id,
+      formulario: {
+        nome,
+        cep,
+        cpf_cnpj,
+        email,
+        telefone,
+        whatsapp,
+        celular,
+        estado,
+        cidade,
+        bairro,
+        endereco,
+        numero,
+        cep,
+        linkedin,
+        facebook,
+        site: siteOficial,
+        texto_anuncio: texto,
+        imagens,
+        icone
+      }
+    });
   }
 
   async carregarLocais() {
@@ -117,7 +175,7 @@ class AlterarCadastro extends Component {
           <div className="container-fluid bg-white">
             <div className="row pb-5">
               <div className="d-flex flex-column mx-auto">
-                <h3 className="green-text">Efetuando Cadastro...</h3>
+                <h3 className="green-text">Efetuando Alterações...</h3>
                 <img
                   src={loadingScreen}
                   height="100"
@@ -155,7 +213,7 @@ class AlterarCadastro extends Component {
           <div className="container-fluid bg-white">
             <div className="row mb-0 pb-0 mt-3 mx-1">
               <div className="d-flex flex-column mx-auto">
-                <h3 className="green-text">Usuário Cadastrado com Sucesso</h3>
+                <h3 className="green-text">Alterações Cadastrais Realizadas com Sucesso</h3>
               </div>
             </div>
           </div>
@@ -240,7 +298,7 @@ class AlterarCadastro extends Component {
 
   validarInputs() {
     const { mensagensDeErro } = this.state;
-    if (mensagensDeErro !== undefined) {
+    if (mensagensDeErro !== undefined && typeof mensagensDeErro === "array") {
       mensagensDeErro.map(erro => {
         const parts = erro.split("'");
         const inputId = parts[1];
@@ -255,13 +313,12 @@ class AlterarCadastro extends Component {
     }
   }
 
-  async cadastrar() {
+  async atualizarCadastro() {
     this.setState({ cadastro: "Carregando" });
     const formulario = this.state.formulario;
     formulario["tags"] = this.state.filtrosMarcados;
-    const response = await apiCadastro(formulario);
+    const response = await apiAtualizaçãoCadastro(formulario);
     if (response.status === 200) {
-      alert(`Usuário de id: ${response.data.id} cadastrado com sucesso`);
       this.setState({ cadastro: "Ok" });
     } else {
       this.setState({ cadastro: "Falhou" });
@@ -282,9 +339,6 @@ class AlterarCadastro extends Component {
       } else {
         this.setState({ mensagensDeErro: [response.data.erro] });
       }
-      alert(
-        `Falha no cadastro\nErro: ${response.status}\n${response.data.erro}`
-      );
     }
     this.validarInputs();
   }
@@ -292,7 +346,7 @@ class AlterarCadastro extends Component {
   validateCitiesRadialButton = bairro => {
     const novoFormulario = this.state.formulario;
     novoFormulario["bairro"] = bairro;
-    this.setState({ formulario: novoFormulario });
+    this.setState({ formulario: novoFormulario, bairroSelecionado: bairro });
 
     // console.log(this.state)
   };
@@ -300,7 +354,10 @@ class AlterarCadastro extends Component {
   renderCitiesRadialButtons = labelText => {
     const label = labelText;
     const inputId = label + "RadialButton";
-
+    let isChecked;
+    this.state.formulario.bairro === label
+      ? (isChecked = true)
+      : (isChecked = false);
     return (
       <div className="form-inline text-wrap">
         <input
@@ -309,6 +366,7 @@ class AlterarCadastro extends Component {
           id={inputId}
           name="bairro"
           onChange={() => this.validateCitiesRadialButton(label)}
+          checked={isChecked}
         />
         <label
           className="form-check-label checkbox-label unselectable"
@@ -347,7 +405,7 @@ class AlterarCadastro extends Component {
               <div className="accordion-heading">
                 <button
                   type="button"
-                  className="accordion-toggle panel-title-card"
+                  className="accordion-toggle"
                   data-toggle="collapse"
                   data-parent="#accordionFiltros"
                   data-target={"#collapse" + categoriaFormatted}
@@ -510,10 +568,9 @@ class AlterarCadastro extends Component {
   }
 
   componentDidMount() {
-    this.checarLogin()
+    this.checarLogin();
     console.log(this.state);
     this.carregarFiltros();
-    this.carregarLocais();
   }
   componentDidUpdate() {
     console.log(this.state);
@@ -534,50 +591,26 @@ class AlterarCadastro extends Component {
                     className="mt-3 p-0"
                     onSubmit={event => {
                       event.preventDefault();
-                      this.cadastrar();
+                      this.atualizarCadastro();
                     }}
                   >
                     <div className="row">
                       <div className="form-group col-6 col-md-2 col-lg-1">
-                        <label for="documento-cpf" className="text-green">
-                          {/* inicio bloco de informações de dados prestador/empresa */}
+                        <label
+                          for="idProfissional"
+                          className="text-green"
+                          id="idProfissional-label"
+                        >
                           <strong>
-                            <h4>CPF</h4>
+                            <h4>ID</h4>
                           </strong>
                         </label>
                         <input
-                          type="radio"
-                          className="form-control"
-                          id="documento-cpf"
-                          name="documento"
-                          onClick={() =>
-                            this.setState({
-                              cpf_cnpj: "CPF"
-                            })
-                          }
-                          checked={this.state.cpf_cnpj === "CPF" ? true : false}
-                        />
-                      </div>
-                      <div className="form-group col-6 col-md-2 col-lg-1">
-                        <label for="documento-cnpj" className="text-green">
-                          {/* inicio bloco de informações de dados prestador/empresa */}
-                          <strong>
-                            <h4>CNPJ</h4>
-                          </strong>
-                        </label>
-                        <input
-                          type="radio"
-                          className="form-control"
-                          id="documento-cnpj"
-                          name="documento"
-                          onClick={() =>
-                            this.setState({
-                              cpf_cnpj: "CNPJ"
-                            })
-                          }
-                          checked={
-                            this.state.cpf_cnpj === "CNPJ" ? true : false
-                          }
+                          type="idProfissional"
+                          className="form-control type-field"
+                          id="idProfissional"
+                          value={this.state.idProfissional}
+                          readOnly
                         />
                       </div>
                       <div className="form-group col-12 col-md-8 col-lg-4 col-xl-5">
@@ -590,26 +623,12 @@ class AlterarCadastro extends Component {
                             <h4>Número do Documento *</h4>
                           </strong>
                         </label>
-                        <InputMask
-                          mask={
-                            this.state.cpf_cnpj === "CPF"
-                              ? "999.999.999-99"
-                              : "99.999.999/9999-99"
-                          }
+                        <input
                           className="form-control type-field"
                           id="cpf_cnpj"
                           onChange={this.handleChange}
-                          placeholder={
-                            this.state.cpf_cnpj === "CPF"
-                              ? "456.789.012-34"
-                              : "12.345.678/0001-01"
-                          }
-                          pattern={
-                            this.state.cpf_cnpj === "CPF"
-                              ? "[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}"
-                              : "[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}"
-                          }
-                          required
+                          value={this.state.formulario.cpf_cnpj}
+                          readOnly
                         />
                       </div>
                       <div className="form-group col-12 col-lg-6 col-xl-5">
@@ -626,13 +645,9 @@ class AlterarCadastro extends Component {
                           type="email"
                           className="form-control type-field"
                           onChange={this.handleChange}
+                          value={this.state.formulario.email}
                           id="email"
-                          placeholder={
-                            this.state.cpf_cnpj === "CPF"
-                              ? "joãodasilva@email.com"
-                              : "email@empresa.com"
-                          }
-                          required
+                          readOnly
                         />
                       </div>
                     </div>
@@ -651,6 +666,7 @@ class AlterarCadastro extends Component {
                         className="form-control type-field"
                         onChange={this.handleChange}
                         onBlur={this.checkRequiredInput}
+                        value={this.state.formulario.nome}
                         id="nome"
                         placeholder={
                           this.state.cpf_cnpj === "CPF"
@@ -658,6 +674,7 @@ class AlterarCadastro extends Component {
                             : "Oficina do João"
                         }
                         maxLength="128"
+                        value={this.state.formulario.nome}
                         required
                       />
                     </div>
@@ -679,7 +696,6 @@ class AlterarCadastro extends Component {
                           id="senha"
                           minLength="6"
                           maxLength="32"
-                          required
                         />
                       </div>
                     </div>
@@ -712,6 +728,7 @@ class AlterarCadastro extends Component {
                         <InputMask
                           mask={"99999-999"}
                           onChange={this.handleChange}
+                          value={this.state.formulario.cep}
                           className="form-control type-field mt-2"
                           id="cep"
                           placeholder="78123-456"
@@ -736,6 +753,7 @@ class AlterarCadastro extends Component {
                           className="form-control type-field"
                           id="endereco"
                           onChange={this.handleChange}
+                          value={this.state.formulario.endereco}
                           placeholder="Rua João dos Reis"
                           maxLength="70"
                         />
@@ -755,6 +773,7 @@ class AlterarCadastro extends Component {
                           className="form-control type-field"
                           id="numero"
                           onChange={this.handleChange}
+                          value={this.state.formulario.numero}
                           placeholder="000"
                           pattern="[a-zA-Z0-9]{0,5}"
                           maxLength="5"
@@ -782,6 +801,7 @@ class AlterarCadastro extends Component {
                           className="form-control type-field"
                           id="telefone"
                           onChange={this.handleChange}
+                          value={this.state.formulario.telefone}
                           placeholder="(11) 3456-7891"
                           pattern="^\([0-9]{2,3}\) [0-9]{4}-[0-9]{4}?"
                         />
@@ -801,6 +821,7 @@ class AlterarCadastro extends Component {
                           className="form-control type-field"
                           id="celular"
                           onChange={this.handleChange}
+                          value={this.state.formulario.celular}
                           pattern="^\([0-9]{2,3}\) [0-9]{5}-[0-9]{4}?"
                           placeholder="(11) 93456-7891"
                           required
@@ -822,6 +843,7 @@ class AlterarCadastro extends Component {
                           id="whatsapp"
                           pattern="^\([0-9]{2,3}\) [0-9]{5}-[0-9]{4}?"
                           onChange={this.handleChange}
+                          value={this.state.formulario.whatsapp}
                           placeholder="(11) 93456-7891"
                         />
                       </div>
@@ -844,6 +866,7 @@ class AlterarCadastro extends Component {
                           className="form-control type-field"
                           id="facebook"
                           onChange={this.handleChange}
+                          value={this.state.formulario.facebook}
                           placeholder="facebook.com/oficinaDoJoão"
                           pattern="facebook\.com\/.{0,}"
                           maskChar={null}
@@ -866,6 +889,7 @@ class AlterarCadastro extends Component {
                           className="form-control type-field"
                           id="linkedin"
                           onChange={this.handleChange}
+                          value={this.state.formulario.linkedin}
                           placeholder="linkedin.com/in/oficinaDoJoão"
                           pattern="linkedin\.com\/in\/.{0,}"
                           maskChar={null}
@@ -890,6 +914,7 @@ class AlterarCadastro extends Component {
                           className="form-control type-field"
                           id="site"
                           onChange={this.handleChange}
+                          value={this.state.formulario.site}
                           placeholder="www.oficinadojoao.com.br"
                           maxLength="128"
                         />
@@ -913,6 +938,7 @@ class AlterarCadastro extends Component {
                         <textarea
                           className="form-control type-field"
                           onChange={this.handleChange}
+                          value={this.state.formulario.texto_anuncio}
                           id="texto_anuncio"
                           rows="8"
                         ></textarea>
@@ -962,7 +988,7 @@ class AlterarCadastro extends Component {
                       className="btn btn-info shadow"
                       id="btn-cadastro"
                     >
-                      Cadastrar
+                      Alterar Cadastro
                     </button>
                     {/* fim bloco de informações do anuncio */}
                     {this.renderResult()}

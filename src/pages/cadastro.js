@@ -325,7 +325,7 @@ class Cadastro extends Component {
               <div className="accordion-heading">
                 <button
                   type="button"
-                  className="accordion-toggle panel-title-card"
+                  className="accordion-toggle"
                   data-toggle="collapse"
                   data-parent="#accordionFiltros"
                   data-target={"#collapse" + categoriaFormatted}
