@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
-
+import api from "../services/fixhubAPI";
+import logout from "../services/logout";
 // Images
 import phoneIcon from "../img/phone-icon.svg";
 import cellphoneIcon from "../img/cellphone-icon.svg";
@@ -14,26 +14,35 @@ import loadingScreen from "../img/green-white-loading.gif";
 class Perfil extends Component {
   constructor(props) {
     super(props);
+    console.log();
     this.state = {
       dadosProfissional: "Carregando..."
     };
     // this.getProfissionaisId = this.getProfissionaisId.bind(this)
   }
   getProfissionaisId() {
-    try {
-      axios
-        .get(`/profissionais/${this.props.match.params.id}`)
-        .then(response => {
-          console.log(response.data);
-          if (!response.data) {
-            this.setState({ dadosProfissional: null });
-          } else {
-            this.setState({ dadosProfissional: response.data });
-          }
-        });
-    } catch (error) {
-      console.error(error);
-      this.setState({ dadosProfissional: null });
+    const tokenLocalStorage = localStorage.getItem("token");
+    const idLocalStorage = localStorage.getItem("id");
+    const idProfisional = JSON.parse(idLocalStorage)
+    if (!idLocalStorage | !tokenLocalStorage) {
+      logout();
+      return;
+    } else {
+      try {
+        api
+          .get(`/profissionais/${idProfisional}`)
+          .then(response => {
+            console.log(response.data);
+            if (!response.data) {
+              this.setState({ dadosProfissional: null });
+            } else {
+              this.setState({ dadosProfissional: response.data });
+            }
+          });
+      } catch (error) {
+        console.error(error);
+        this.setState({ dadosProfissional: null });
+      }
     }
   }
 
@@ -171,9 +180,11 @@ class Perfil extends Component {
     if (typeof this.state.dadosProfissional === "string") {
       return (
         <div className="container-fluid bg-white">
-          <div className="row extend">
+          <div className="row extend col">
             <div className="d-flex flex-column mx-auto my-auto">
-              <h3 className="green-text">Carregando dados do profissional...</h3>
+              <h3 className="green-text text-center">
+                Carregando dados do profissional...
+              </h3>
               <img
                 src={loadingScreen}
                 height="100"
@@ -266,6 +277,7 @@ class Perfil extends Component {
                       <> </>
                     )}
                   </div>
+                  {/* <ReactMap/> */}
                   {/* {dados.anuncio.imagens ? (
                     <>
                       <h3 className="white-text text-left text-content">

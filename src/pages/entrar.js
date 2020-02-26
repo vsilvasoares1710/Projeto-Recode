@@ -27,7 +27,12 @@ class Entrar extends Component {
   async entrar() {
     const response = await login(this.state.formulario);
     if (response.status === 200) {
-      localStorage.setItem("token", JSON.stringify(response.data));
+      if(response.data.token) {
+        localStorage.setItem("token", JSON.stringify(response.data.token));
+      }
+      if(response.data.id) {
+        localStorage.setItem("id", JSON.stringify(response.data.id));
+      }
       window.location.reload();
     } else if (response.status === 400) {
       this.setState({

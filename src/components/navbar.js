@@ -17,8 +17,8 @@ class Navbar extends Component {
     } else if (isAuthenticated() === true) {
       return (
         <div data-toggle="collapse" data-target=".navbar-collapse.show">
-          <Btn text="Meu Perfil" lead="/perfil" />
-          <Btn text="Sair" lead="/" onClick={logout}/>
+          <Btn text="Alterar Cadastro" lead="/alterarCadastro" />
+          <Btn text="Sair" lead="/" onClick={logout} />
         </div>
       );
     }
@@ -41,7 +41,7 @@ class Navbar extends Component {
         </Link>
 
         <button
-          className="navbar-toggler"
+          className="navbar-toggler no-outline"
           type="button"
           data-toggle="collapse"
           data-target="#navbarTogglerDemo"
@@ -82,7 +82,15 @@ class Navbar extends Component {
                 </Link>
               </li>
             ) : (
-              <> </>
+              <li
+                className="nav-item active my-3"
+                data-toggle="collapse"
+                data-target=".navbar-collapse.show"
+              >
+                <Link to="/perfil" className="nav-link ml-1">
+                  Meu Perfil
+                </Link>
+              </li>
             )}
             <li
               className="nav-item active my-3"

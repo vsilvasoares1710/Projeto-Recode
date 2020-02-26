@@ -31,10 +31,10 @@ class Footer extends Component {
       return (
         <div className="row mx-2">
           <Link
-            to="/perfil"
+            to="/alterarCadastro"
             className="col-6 mb-4 mt-2 text-white text-left nav-link"
           >
-            Meu Perfil
+            Alterar Cadastro
           </Link>
           <Link
             to="/"
@@ -81,15 +81,15 @@ class Footer extends Component {
             Contato
           </Link>
           <Link
-            to="/perfil"
-            className="col-3 mb-4 text-white text-center nav-link"
+            to="/alterarCadastro"
+            className="col-5 mb-4 text-white text-center nav-link"
           >
-            Meu Perfil
+            Alterar Cadastro
           </Link>
           <Link
             to="/"
             onClick={logout}
-            className="col-4 mb-4 text-white text-center nav-link"
+            className="col-2 mb-4 text-white text-center nav-link"
           >
             Sair
           </Link>
@@ -177,7 +177,12 @@ class Footer extends Component {
                 Divulgue seu Trabalho
               </Link>
             ) : (
-              <> </>
+              <Link
+                to="/perfil"
+                className="col-6 mb-2 mt-2 text-white text-right nav-link"
+              >
+                Meu Perfil
+              </Link>
             )}
           </div>
           {this.renderOptionsSmallFooter()}
@@ -249,7 +254,12 @@ class Footer extends Component {
                   Divulgue seu Trabalho
                 </Link>
               ) : (
-                <> </>
+                <Link
+                to="/perfil"
+                className="col-4 mb-4 text-white text-center nav-link"
+              >
+                Meu Perfil
+              </Link>
               )}
               <Link
                 to="/quemSomos"

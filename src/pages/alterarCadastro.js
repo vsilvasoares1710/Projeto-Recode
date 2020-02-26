@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import InputMask from "react-input-mask";
+import logout from "../services/logout";
 // Components
 import Btn from "../components/button.js";
 // Services
@@ -10,7 +11,7 @@ import apiCadastro from "../services/apiCadastro.js";
 // Images
 import loadingScreen from "../img/green-white-loading.gif";
 
-class Cadastro extends Component {
+class AlterarCadastro extends Component {
   constructor() {
     super();
     this.state = {
@@ -30,6 +31,23 @@ class Cadastro extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.cadastrar = this.cadastrar.bind(this);
+  }
+
+  checarLogin() {
+    const tokenLocalStorage = localStorage.getItem("token");
+    const idLocalStorage = localStorage.getItem("id");
+    const idProfisional = JSON.parse(idLocalStorage);
+    const tokenLogin = JSON.parse(tokenLocalStorage);
+    if (!idLocalStorage | !tokenLocalStorage) {
+      logout();
+      return;
+    } else {
+      this.buscarDadosProfissional()
+    }
+  }
+
+  buscarDadosProfissional() {
+    console.log("Buscar dados funcionou")
   }
 
   async carregarLocais() {
@@ -119,10 +137,10 @@ class Cadastro extends Component {
               <div className="d-flex flex-column mx-auto">
                 {this.state.mensagensDeErro !== undefined ? (
                   this.state.mensagensDeErro.map(mensagem => {
-                    return <h5 className="red-text">{`${mensagem}\n`}</h5>;
+                    return <h5 className="green-text">{`${mensagem}\n`}</h5>;
                   })
                 ) : (
-                  <h5 className="red-text my-1">
+                  <h5 className="green-text my-1">
                     {this.state.mensagensDeErro}
                   </h5>
                 )}
@@ -210,7 +228,7 @@ class Cadastro extends Component {
     const alvoId = event.target.id;
     const valor = event.target.value;
     const novoFormulario = this.state.formulario;
-    if(valor === "" | valor === null | valor === undefined) {
+    if ((valor === "") | (valor === null) | (valor === undefined)) {
       novoFormulario[alvoId] = undefined;
     } else {
       novoFormulario[alvoId] = valor;
@@ -229,7 +247,7 @@ class Cadastro extends Component {
         const labelId = `${inputId}-label`;
         const label = document.getElementById(labelId);
         if (label) {
-          if(!label.innerHTML.endsWith(erro)){
+          if (!label.innerHTML.endsWith(erro)) {
             label.innerHTML = label.innerHTML + erro;
           }
         }
@@ -243,6 +261,7 @@ class Cadastro extends Component {
     formulario["tags"] = this.state.filtrosMarcados;
     const response = await apiCadastro(formulario);
     if (response.status === 200) {
+      alert(`Usuário de id: ${response.data.id} cadastrado com sucesso`);
       this.setState({ cadastro: "Ok" });
     } else {
       this.setState({ cadastro: "Falhou" });
@@ -263,6 +282,9 @@ class Cadastro extends Component {
       } else {
         this.setState({ mensagensDeErro: [response.data.erro] });
       }
+      alert(
+        `Falha no cadastro\nErro: ${response.status}\n${response.data.erro}`
+      );
     }
     this.validarInputs();
   }
@@ -317,7 +339,7 @@ class Cadastro extends Component {
         <div className="form-group col-12 col-md-6 col-lg-4">
           <label for="bairro" className="text-green" id="bairro-label">
             <strong>
-              <h4>Bairro *</h4>
+              <h4>Bairro</h4>
             </strong>
           </label>
           <div className="col-12 m-0 p-0">
@@ -488,6 +510,7 @@ class Cadastro extends Component {
   }
 
   componentDidMount() {
+    this.checarLogin()
     console.log(this.state);
     this.carregarFiltros();
     this.carregarLocais();
@@ -504,7 +527,7 @@ class Cadastro extends Component {
             <div className="col-12 mt-4 mb-4 mx-auto">
               <div className="jumbotron-green my-auto">
                 <div className="jumbotron-clear my-auto shadow">
-                  <h1>Cadastro</h1>
+                  <h1>Alterar Cadastro</h1>
                   <div className="card-divider-long"></div>
                   <p>Campos marcados com * são requeridos</p>
                   <form
@@ -674,7 +697,7 @@ class Cadastro extends Component {
                           id="cidade-label"
                         >
                           <strong>
-                            <h4>Cidade *</h4>
+                            <h4>Cidade</h4>
                           </strong>
                         </label>
                         {this.renderScrollBoxes()}
@@ -693,6 +716,7 @@ class Cadastro extends Component {
                           id="cep"
                           placeholder="78123-456"
                           pattern="[0-9]{5}-[0-9]{3}"
+                          required
                         />
                       </div>
                     </div>
@@ -898,7 +922,7 @@ class Cadastro extends Component {
                       <div className="form-group col-12 pb-0 mb-0">
                         <label className="text-green">
                           <strong>
-                            <h4>Tags do Anúncio *</h4>
+                            <h4>Tags do Anúncio</h4>
                           </strong>
                         </label>
                       </div>
@@ -953,4 +977,4 @@ class Cadastro extends Component {
   }
 }
 
-export default Cadastro;
+export default AlterarCadastro;

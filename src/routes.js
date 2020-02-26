@@ -12,6 +12,7 @@ import Entrar from "./pages/entrar";
 import Cadastro from "./pages/cadastro";
 import Profissional from "./pages/profissional";
 import Perfil from "./pages/perfil";
+import AlterarCadastro from "./pages/alterarCadastro";
 
 function Routes() {
   if (isAuthenticated()) {
@@ -27,6 +28,7 @@ function Routes() {
         <Route exact path="/quemSomos" component={QuemSomos} />
         <Route exact path="/profissional/:id" component={Profissional} />
         <Route exact path="/perfil" component={Perfil} />
+        <Route exact path="/alterarCadastro" component={AlterarCadastro} />
         <Route component={Home} />
       </Switch>
     );
