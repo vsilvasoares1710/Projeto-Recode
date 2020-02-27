@@ -199,7 +199,7 @@ class Profissional extends Component {
       );
     } else {
       const dados = this.state.dadosProfissional;
-      const local = dados.localização
+      const local = dados.localização;
       return (
         <div className="container-fluid bg-white">
           {/* <!-- Conteúdo principal da página --> */}
@@ -257,7 +257,15 @@ class Profissional extends Component {
                           {local.endereco ? <> {local.endereco}</> : <> </>}
                           {local.endereco && local.numero ? <>, </> : <> </>}
                           {local.numero ? <> {local.numero}</> : <> </>}
-                          {local.cep? <> - CEP: {local.cep}<br /></> : <> </>}
+                          {local.cep ? (
+                            <>
+                              {" "}
+                              - CEP: {local.cep}
+                              <br />
+                            </>
+                          ) : (
+                            <> </>
+                          )}
                           {`${dados.localização.bairro}, ${
                             dados.localização.cidade
                           } - ${dados.localização.estado.toUpperCase()}`}
@@ -267,34 +275,72 @@ class Profissional extends Component {
                       <> </>
                     )}
                   </div>
-                  {/* <ReactMap/> */}
-                  {/* {dados.anuncio.imagens ? (
+                  {!dados.anuncio.imagens ? (
+                    <> </>
+                  ) : typeof dados.anuncio.imagens === "string" ? (
                     <>
                       <h3 className="white-text text-left text-content">
                         <strong>Imagens: </strong>
                       </h3>
                       <div className="card-divider-long-white mb-4"></div>
                       <div className="row">
-                        {this.state.dadosProfissional.anuncio.imagens.map(
-                          linkDaImagem => {
-                            return (
+                        <div className="col-6 col-md-3 col-xl-3">
+                          <a href={dados.anuncio.imagens}>
+                            <img
+                              src={dados.anuncio.imagens}
+                              width="100%"
+                              className="rounded m-1 border-white"
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <h3 className="white-text text-left text-content">
+                        <strong>Imagens: </strong>
+                      </h3>
+                      <div className="card-divider-long-white mb-4"></div>
+                      <div className="row">
+                        {dados.anuncio.imagens.map(imagem => {
+                          return (
+                            <>
                               <div className="col-6 col-md-3 col-xl-3">
-                                <a href={linkDaImagem}>
+                                <a href={imagem}>
                                   <img
-                                    src={linkDaImagem}
+                                    src={imagem}
                                     width="100%"
                                     className="rounded m-1 border-white"
                                   />
                                 </a>
                               </div>
-                            );
-                          }
-                        )}
+                            </>
+                          );
+                        })}
                       </div>
                     </>
-                  ) : (
+                  )}
+                  {!dados.anuncio.imagems ? (
                     <> </>
-                  )} */}
+                  ) : (
+                    <>
+                      <h3 className="white-text text-left text-content">
+                        <strong>Imagens: </strong>
+                      </h3>
+                      <div className="card-divider-long-white mb-4"></div>
+                      <div className="row">
+                        <div className="col-6 col-md-3 col-xl-3">
+                          <a href={dados.anuncio.imagens}>
+                            <img
+                              src={dados.anuncio.imagens}
+                              width="100%"
+                              className="rounded m-1 border-white"
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

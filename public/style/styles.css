@@ -706,3 +706,18 @@ input[type="radio"]:focus,
 .red-text {
   color: rgb(230, 52, 52);
 }
+
+.input-file-label {
+  cursor: pointer;
+  /* Style as you please, it will become the visible UI component. */
+}
+
+.input-file {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.rounded-img {
+  border-radius: 1%;
+}

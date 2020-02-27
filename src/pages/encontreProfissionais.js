@@ -611,7 +611,7 @@ class EncontreProfissionais extends Component {
                         <RenderProfissionais
                           idProfissional={profissional.id}
                           nome={profissional.nome}
-                          icone={profissional.foto}
+                          icone={profissional.icone}
                           texto={profissional.anuncio.texto}
                           tags={profissional.tags}
                           anuncioPago={profissional.anuncio.anuncioPago}

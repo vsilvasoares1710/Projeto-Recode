@@ -11,6 +11,7 @@ import logout from "../services/logout";
 import dadosCadastrais from "../services/dadosCadastrais";
 // Images
 import loadingScreen from "../img/green-white-loading.gif";
+import defaultUser from "../img/defaultUser.png";
 
 class AlterarCadastro extends Component {
   constructor() {
@@ -29,7 +30,8 @@ class AlterarCadastro extends Component {
       cidadeSelecionada: "",
       bairros: [],
       bairroSelecionado: "",
-      idProfissional: ""
+      idProfissional: "",
+      loading: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.atualizarCadastro = this.atualizarCadastro.bind(this);
@@ -103,7 +105,7 @@ class AlterarCadastro extends Component {
         site: siteOficial,
         texto_anuncio: texto,
         imagens,
-        icone
+        foto: icone
       }
     });
   }
@@ -213,7 +215,9 @@ class AlterarCadastro extends Component {
           <div className="container-fluid bg-white">
             <div className="row mb-0 pb-0 mt-3 mx-1">
               <div className="d-flex flex-column mx-auto">
-                <h3 className="green-text">Alterações Cadastrais Realizadas com Sucesso</h3>
+                <h3 className="green-text">
+                  Alterações Cadastrais Realizadas com Sucesso
+                </h3>
               </div>
             </div>
           </div>
@@ -315,11 +319,15 @@ class AlterarCadastro extends Component {
 
   async atualizarCadastro() {
     this.setState({ cadastro: "Carregando" });
-    const formulario = this.state.formulario;
-    formulario["tags"] = this.state.filtrosMarcados;
-    const response = await apiAtualizaçãoCadastro(formulario);
+    const form = this.state.formulario;
+    const arrayImagens = this.state.formulario.imagens;
+    const stringImagens = JSON.stringify(this.state.formulario.imagens);
+    form["imagens"] = stringImagens;
+    form["tags"] = this.state.filtrosMarcados;
+    const response = await apiAtualizaçãoCadastro(form);
     if (response.status === 200) {
-      this.setState({ cadastro: "Ok" });
+      form["imagens"] = arrayImagens;
+      this.setState({ cadastro: "Ok", formulario: form });
     } else {
       this.setState({ cadastro: "Falhou" });
       if (typeof response.data.erro === "array") {
@@ -567,13 +575,97 @@ class AlterarCadastro extends Component {
     }
   }
 
+  async selecionarFoto(e) {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "ml_default");
+    this.setState({ loading: true });
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/fixhub/image/upload",
+      {
+        method: "POST",
+        body: data
+      }
+    );
+    const file = await res.json();
+    if (file) {
+      const { formulario } = this.state;
+
+      formulario.foto = file.secure_url;
+
+      this.setState({ formulario });
+    }
+    this.setState({ loading: false });
+  }
+
+  async selecionarImagem(e) {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "ml_default");
+    this.setState({ loading: true });
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/fixhub/image/upload",
+      {
+        method: "POST",
+        body: data
+      }
+    );
+    const file = await res.json();
+    if (file) {
+      const { formulario } = this.state;
+
+      let { imagens } = formulario;
+
+      const url = file.secure_url;
+
+      console.log(imagens, url);
+      if (imagens) {
+        console.log(typeof imagens);
+        if (typeof imagens === "object") {
+          imagens.push(url);
+        } else {
+          imagens = [imagens, url];
+        }
+      } else {
+        imagens = url;
+      }
+
+      formulario.imagens = imagens;
+      console.log(formulario);
+      this.setState({ formulario });
+    }
+    this.setState({ loading: false });
+  }
+
+  deletarImagem(imagemADeletar){
+
+    const imagens = this.state.formulario.imagens
+
+    const formulario = this.state.formulario
+
+
+    if(typeof imagens === "string"){
+      formulario.imagens = null
+      this.setState({ formulario })
+    } else {
+      const novasImagens = imagens.filter(imagem => {
+        return imagem !== imagemADeletar
+      })
+      formulario.imagens = novasImagens
+      this.setState({ formulario })
+    }
+
+  }
+
   componentDidMount() {
     this.checarLogin();
     console.log(this.state);
     this.carregarFiltros();
   }
   componentDidUpdate() {
-    console.log(this.state);
+    console.log("ESTADO:", this.state);
   }
 
   render() {
@@ -594,6 +686,48 @@ class AlterarCadastro extends Component {
                       this.atualizarCadastro();
                     }}
                   >
+                    {" "}
+                    <div className="row">
+                      <div className="form-group col-12 text-center">
+                        <div className="d-flex flex-column text-center mx-auto">
+                          <label
+                            for="foto"
+                            className="text-green"
+                            id="foto-label"
+                          >
+                            <strong>
+                              <h4>Foto de Perfil</h4>
+                            </strong>
+                          </label>
+                          {this.state.formulario.foto ? (
+                            <img
+                              id="foto"
+                              src={this.state.formulario.foto}
+                              className="rounded-circle col-8 col-sm-7 col-md-5 col-lg-4 col-xl-3 text-center mx-auto"
+                            />
+                          ) : (
+                            <img
+                              id="foto"
+                              src={defaultUser}
+                              className="rounded-circle col-8 col-sm-7 col-md-5 col-lg-4 col-xl-3 text-center mx-auto"
+                            />
+                          )}
+                          <label
+                            for="file-foto"
+                            className="btn btn-info btn-sm mt-2 col-2 text-center mx-auto"
+                          >
+                            Alterar foto
+                          </label>
+                          <input
+                            name="file"
+                            type="file"
+                            id="file-foto"
+                            className="input-file"
+                            onChange={e => this.selecionarFoto(e)}
+                          />
+                        </div>
+                      </div>
+                    </div>
                     <div className="row">
                       <div className="form-group col-6 col-md-2 col-lg-1">
                         <label
@@ -631,7 +765,7 @@ class AlterarCadastro extends Component {
                           readOnly
                         />
                       </div>
-                      <div className="form-group col-12 col-lg-6 col-xl-5">
+                      <div className="form-group col-12 col-lg-6 col-xl-6">
                         <label
                           for="email"
                           className="text-green"
@@ -700,10 +834,8 @@ class AlterarCadastro extends Component {
                       </div>
                     </div>
                     {/* fim bloco de informações de dados prestador/empresa */}
-
                     {/* inicio bloco de informações de endereço*/}
                     <h3 className="mt-3">Informações de Endereço:</h3>
-
                     <div className="card-divider-long mb-3"></div>
                     <div className="row">
                       <div className="form-group col-12 col-md-6 col-lg-4">
@@ -781,7 +913,6 @@ class AlterarCadastro extends Component {
                       </div>
                     </div>
                     {/* fim bloco de informações de endereço*/}
-
                     {/* inicio bloco de informações de contato*/}
                     <h3 className="mt-3">Informações de Contato:</h3>
                     <div className="card-divider-long mb-3"></div>
@@ -983,13 +1114,90 @@ class AlterarCadastro extends Component {
                         this.renderAccordion()
                       )}
                     </div>
-                    <button
-                      type="submit"
-                      className="btn btn-info shadow"
-                      id="btn-cadastro"
-                    >
-                      Alterar Cadastro
-                    </button>
+                    <div className="row">
+                      <div className="form-group col-12">
+                        <label
+                          for="texto_anuncio"
+                          className="text-green"
+                          id="texto_anuncio-label"
+                        >
+                          <strong>
+                            <h4>Imagens do Anúncio</h4>
+                          </strong>
+                        </label>
+                        <br />
+                        <div className="d-flex flex-row flex-wrap">
+                          {!this.state.formulario.imagens ? (
+                            <> </>
+                          ) : typeof this.state.formulario.imagens ===
+                            "string" ? (
+                            <>
+                              <div className="jumbotron-clear p-0 m-2 text-center">
+                                <a
+                                  href={this.state.formulario.imagens}
+                                  target="_blank"
+                                >
+                                  <img
+                                    src={this.state.formulario.imagens}
+                                    className="rounded-img"
+                                    width="100%"
+                                  />
+                                </a>
+                                <button className="btn btn-info my-1" onClick={() => this.deletarImagem(this.state.formulario.imagens)}>
+                                  Deletar Imagem
+                                </button>
+                              </div>
+                            </>
+                          ) : (
+                            this.state.formulario.imagens.map(imagem => {
+                              return (
+                                <>
+                                  <div className="p-0 mt-5 text-center mx-auto">
+                                    <a href={imagem} target="_blank">
+                                      <img
+                                        src={imagem}
+                                        className="rounded-img"
+                                        width="100%"
+                                      />
+                                    </a>
+                                    <button className="btn btn-info my-1" onClick={() => this.deletarImagem(imagem)}>
+                                      Deletar Imagem
+                                    </button>
+                                  </div>
+                                </>
+                              );
+                            })
+                          )}
+                        </div>
+                        <br />
+                      </div>
+                    </div>
+                    <div className="d-flex justify-content-between flex-wrap">
+                      <div>
+                        <label
+                          for="file-imagens"
+                          className="btn btn-info btn-sm text-center mx-auto"
+                        >
+                          Adicionar Nova Imagem
+                        </label>
+                        <input
+                          name="file"
+                          type="file"
+                          id="file-imagens"
+                          className="input-file"
+                          onChange={e => this.selecionarImagem(e)}
+                        />
+                      </div>
+                      <div>
+                        <button
+                          type="submit"
+                          className="btn btn-info btn-sm shadow"
+                          id="btn-cadastro"
+                        >
+                          Salvar Alterações
+                        </button>
+                      </div>
+                    </div>
                     {/* fim bloco de informações do anuncio */}
                     {this.renderResult()}
                   </form>
