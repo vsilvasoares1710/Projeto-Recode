@@ -491,6 +491,7 @@ class Cadastro extends Component {
     console.log(this.state);
     this.carregarFiltros();
     this.carregarLocais();
+    document.getElementById("top-of-root").scrollIntoView(true)
   }
   componentDidUpdate() {
     console.log(this.state);

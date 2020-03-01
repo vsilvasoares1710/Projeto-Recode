@@ -487,6 +487,7 @@ class EncontreProfissionais extends Component {
     });
     this.carregarFiltros();
     this.carregarLocais();
+    document.getElementById("top-of-root").scrollIntoView(true);
   }
 
   componentDidUpdate() {
@@ -545,8 +546,20 @@ class EncontreProfissionais extends Component {
                               id={"collapseConjuntoFiltros"}
                               className="accordion-body collapse out"
                             >
+                              <div className="mt-2 text-center mx-auto">
+                                <Btn
+                                  text="Limpar Filtros"
+                                  className="btn btn-dark-green shadow mt-2 mr-2"
+                                  onClick={this.limparFiltros}
+                                />
+                                <Btn
+                                  text="Limpar Lista"
+                                  className="btn btn-dark-green shadow mt-2"
+                                  onClick={this.limparLista}
+                                />
+                              </div>
                               <div className="accordion-inner card-item">
-                                <h3 className="white-text mb-0 pb-0 mt-4">
+                                <h3 className="white-text mb-0 pb-0 mt-2">
                                   Localização
                                 </h3>
                                 <div className="card-divider-long-white"></div>
@@ -582,26 +595,13 @@ class EncontreProfissionais extends Component {
                                   )}
                                 </div>
                                 <div className="card-divider-long-white mt-2"></div>
-                                <div className="d-flex flex-wrap justify-content-between text-center mx-auto">
-                                  <div className="">
-                                    <Btn
-                                      text="Limpar Filtros"
-                                      className="btn btn-dark-green shadow mt-2 mr-2"
-                                      onClick={this.limparFiltros}
-                                    />
-                                    <Btn
-                                      text="Limpar Lista"
-                                      className="btn btn-dark-green shadow mt-2"
-                                      onClick={this.limparLista}
-                                    />
-                                  </div>
-                                  <div className="text-right align-self-end">
-                                    <Btn
-                                      text="Pesquisar"
-                                      className="btn btn-white shadow my-2 mr-1"
-                                      onClick={this.getProfissionais}
-                                    />
-                                  </div>
+
+                                <div className="text-center mx-auto">
+                                  <Btn
+                                    text="Pesquisar"
+                                    className="btn btn-white shadow my-2 mr-1"
+                                    onClick={this.getProfissionais}
+                                  />
                                 </div>
                               </div>
                             </div>

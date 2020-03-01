@@ -9,9 +9,7 @@ import instagramIcon from "../img/footerInstagramIcon.png";
 import githubIcon from "../img/footerGitHubIcon.png";
 
 class Footer extends Component {
-  scrollToTheTop() {
-    window.scrollTo(0, 0);
-  }
+
   renderOptionsSmallFooter() {
     if (isAuthenticated() === false) {
       return (
@@ -19,14 +17,12 @@ class Footer extends Component {
           <Link
             to="/entrar"
             className="col-6 mb-4 mt-2 text-white text-left nav-link"
-            onClick={this.scrollToTheTop}
           >
             Entrar
           </Link>
           <Link
             to="/cadastro"
             className="col-6 mb-4 mt-2 text-white text-right nav-link"
-            onClick={this.scrollToTheTop}
           >
             Cadastro
           </Link>
@@ -38,7 +34,6 @@ class Footer extends Component {
           <Link
             to="/alterarCadastro"
             className="col-6 mb-4 mt-2 text-white text-left nav-link"
-            onClick={this.scrollToTheTop}
           >
             Alterar Cadastro
           </Link>
@@ -46,7 +41,6 @@ class Footer extends Component {
             to="/"
             onClick={logout}
             className="col-6 mb-4 mt-2 text-white text-right nav-link"
-            onClick={this.scrollToTheTop}
           >
             Sair
           </Link>
@@ -61,21 +55,18 @@ class Footer extends Component {
           <Link
             to="/contato"
             className="col-5 mb-4 text-white text-center nav-link"
-            onClick={this.scrollToTheTop}
           >
             Contato
           </Link>
           <Link
             to="/entrar"
             className="col-3 mb-4 text-white text-center nav-link"
-            onClick={this.scrollToTheTop}
           >
             Entrar
           </Link>
           <Link
             to="/cadastro"
             className="col-4 mb-4 text-white text-center nav-link"
-            onClick={this.scrollToTheTop}
           >
             Cadastro
           </Link>
@@ -87,14 +78,12 @@ class Footer extends Component {
           <Link
             to="/contato"
             className="col-5 mb-4 text-white text-center nav-link"
-            onClick={this.scrollToTheTop}
           >
             Contato
           </Link>
           <Link
             to="/alterarCadastro"
             className="col-5 mb-4 text-white text-center nav-link"
-            onClick={this.scrollToTheTop}
           >
             Alterar Cadastro
           </Link>
@@ -102,7 +91,6 @@ class Footer extends Component {
             to="/"
             onClick={logout}
             className="col-2 mb-4 text-white text-center nav-link"
-            onClick={this.scrollToTheTop}
           >
             Sair
           </Link>
@@ -121,13 +109,7 @@ class Footer extends Component {
           <div className="row mx-2 d-flex justify-content-around">
             <div className="px-4 pt-5 text-center">
               <Link to="/">
-                <img
-                  src={Logo}
-                  height="100px"
-                  width="126px"
-                  alt="logo"
-                  onClick={this.scrollToTheTop}
-                />
+                <img src={Logo} height="100px" width="126px" alt="logo" />
               </Link>
               <p className="white-text">
                 A solução profissional <br />
@@ -165,24 +147,18 @@ class Footer extends Component {
           </div>
           <h4 className="green-text text-center pb-2">Mapa do Site</h4>
           <div className="row mx-2">
-            <Link
-              to="/"
-              className="col-4 mb-2 text-white text-left nav-link"
-              onClick={this.scrollToTheTop}
-            >
+            <Link to="/" className="col-4 mb-2 text-white text-left nav-link">
               Home
             </Link>
             <Link
               to="/quemSomos"
               className="col-4 mb-2 text-white text-center nav-link"
-              onClick={this.scrollToTheTop}
             >
               Quem Somos
             </Link>
             <Link
               to="/contato"
               className="col-4 mb-2 text-white text-right nav-link"
-              onClick={this.scrollToTheTop}
             >
               Contato
             </Link>
@@ -191,7 +167,6 @@ class Footer extends Component {
             <Link
               to="encontreProfissionais"
               className="col-6 mb-2 mt-2 text-white text-left nav-link"
-              onClick={this.scrollToTheTop}
             >
               Encontre Profissionais
             </Link>
@@ -199,7 +174,6 @@ class Footer extends Component {
               <Link
                 to="/divulgueSeuTrabalho"
                 className="col-6 mb-2 mt-2 text-white text-right nav-link"
-                onClick={this.scrollToTheTop}
               >
                 Divulgue seu Trabalho
               </Link>
@@ -207,7 +181,6 @@ class Footer extends Component {
               <Link
                 to="/perfil"
                 className="col-6 mb-2 mt-2 text-white text-right nav-link"
-                onClick={this.scrollToTheTop}
               >
                 Meu Perfil
               </Link>
@@ -223,7 +196,7 @@ class Footer extends Component {
           <div className="row mx-2">
             <div className="col ml-2 mt-5 pb-0 mb-0">
               <Link to="/">
-                <img src={Logo} height="100px" width="126px" alt="logo" onClick={this.scrollToTheTop} />
+                <img src={Logo} height="100px" width="126px" alt="logo" />
               </Link>
               <p className="white-text pt-2">
                 A solução profissional <br />
@@ -265,14 +238,12 @@ class Footer extends Component {
               <Link
                 to="/"
                 className="col-2 mb-4 text-white text-center nav-link"
-                onClick={this.scrollToTheTop}
               >
                 Home
               </Link>
               <Link
                 to="/encontreProfissionais"
                 className="col-4 mb-4 text-white text-center nav-link"
-                onClick={this.scrollToTheTop}
               >
                 Encontre Profissionais
               </Link>
@@ -280,7 +251,6 @@ class Footer extends Component {
                 <Link
                   to="/divulgueSeuTrabalho"
                   className="col-4 mb-4 text-white text-center nav-link"
-                  onClick={this.scrollToTheTop}
                 >
                   Divulgue seu Trabalho
                 </Link>
@@ -288,7 +258,6 @@ class Footer extends Component {
                 <Link
                   to="/perfil"
                   className="col-4 mb-4 text-white text-center nav-link"
-                  onClick={this.scrollToTheTop}
                 >
                   Meu Perfil
                 </Link>
@@ -296,7 +265,6 @@ class Footer extends Component {
               <Link
                 to="/quemSomos"
                 className="col-3 mb-4 text-white text-center nav-link"
-                onClick={this.scrollToTheTop}
               >
                 Quem Somos
               </Link>

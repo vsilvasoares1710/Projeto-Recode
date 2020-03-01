@@ -9,8 +9,8 @@ class Imagem extends Component {
     this.goBack = this.goBack.bind(this);
   }
 
-  scrollToTheTop() {
-    window.scrollTo(0, 0);
+  componentDidMount(){
+    document.getElementById("top-of-root").scrollIntoView(true)
   }
   goBack() {
     this.props.history.goBack();

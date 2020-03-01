@@ -663,6 +663,7 @@ class AlterarCadastro extends Component {
     this.checarLogin();
     console.log(this.state);
     this.carregarFiltros();
+    document.getElementById("top-of-root").scrollIntoView(true)
   }
   componentDidUpdate() {
     console.log("ESTADO:", this.state);

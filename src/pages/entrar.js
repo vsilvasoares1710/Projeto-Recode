@@ -57,6 +57,9 @@ class Entrar extends Component {
       );
     }
   }
+  componentDidMount(){
+    document.getElementById("top-of-root").scrollIntoView(true)
+  }
 
   render() {
     return (

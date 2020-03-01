@@ -8,6 +8,9 @@ import womanJumping from "../img/womanJumping.jpg";
 import Divulgue from "../img/divulgar.jpg";
 
 class DivulgueSeuTrabalho extends Component {
+  componentDidMount() {
+    document.getElementById("top-of-root").scrollIntoView(true);
+  }
   render() {
     return (
       <div className="container-fluid bg-white">
@@ -26,7 +29,7 @@ class DivulgueSeuTrabalho extends Component {
                   vender cada vez mais.
                 </h4>
                 <br />
-                <Btn text="Cadastre-se" lead="/cadastro" onClick={this.scrollToTheTop} />
+                <Btn text="Cadastre-se" lead="/cadastro" />
               </div>
             </div>
             {/* <!-- Fim da text-box com conteúdo à direita/topo da primeira imagem -*/}
@@ -58,10 +61,10 @@ class DivulgueSeuTrabalho extends Component {
                 <br />
                 <h4 className="text-content text-justify white-text">
                   Seja visualizado e encontrado por milhares de clientes,
-                  cadastre-se e tenha acesso a esses e outros benefícios agora mesmo..
+                  cadastre-se e tenha acesso a esses e outros benefícios agora
+                  mesmo..
                 </h4>
                 <br />
-
               </div>
             </div>
             {/* <!-- Imagem à direita/baixo -->

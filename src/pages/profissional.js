@@ -38,6 +38,8 @@ class Profissional extends Component {
 
   componentDidMount() {
     this.getProfissionaisId();
+
+    document.getElementById("top-of-root").scrollIntoView(true);
   }
 
   shouldComponentUpdate() {

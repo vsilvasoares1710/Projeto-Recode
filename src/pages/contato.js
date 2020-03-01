@@ -7,6 +7,9 @@ class Contato extends Component {
   enviarMensagem() {
     setTimeout(() => alert("Mensagem Enviada com Sucesso"), 200)
   }
+  componentDidMount(){
+    document.getElementById("top-of-root").scrollIntoView(true)
+  }
 
   render() {
     return (

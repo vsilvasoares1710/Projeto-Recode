@@ -6,22 +6,18 @@ import isAuthenticated from "../services/userAuthentication.js";
 import logout from "../services/logout";
 
 class Navbar extends Component {
-
-  scrollToTheTop(){
-    window.scrollTo(0,0)
-  }
   renderButtons() {
     if (isAuthenticated() === false) {
       return (
         <div data-toggle="collapse" data-target=".navbar-collapse.show">
-          <Btn text="Entrar" lead="/entrar" onClick={this.scrollToTheTop} />
-          <Btn text="Cadastro" lead="/cadastro" onClick={this.scrollToTheTop} />
+          <Btn text="Entrar" lead="/entrar" />
+          <Btn text="Cadastro" lead="/cadastro" />
         </div>
       );
     } else if (isAuthenticated() === true) {
       return (
         <div data-toggle="collapse" data-target=".navbar-collapse.show">
-          <Btn text="Alterar Cadastro" lead="/alterarCadastro" onClick={this.scrollToTheTop} />
+          <Btn text="Alterar Cadastro" lead="/alterarCadastro" />
           <Btn text="Sair" lead="/" onClick={logout} />
         </div>
       );
@@ -31,7 +27,12 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar sticky-top navbar-expand-xl navbar-dark">
-        <Link to="/" className="navbar-brand ml-1 no-outline" id="brand-logo" tabIndex="0">
+        <Link
+          to="/"
+          className="navbar-brand ml-1 no-outline"
+          id="brand-logo"
+          tabIndex="0"
+        >
           <img
             data-toggle="collapse"
             data-target=".navbar-collapse.show"
@@ -40,7 +41,6 @@ class Navbar extends Component {
             height="50px"
             width="63px"
             alt="logo"
-            onClick={this.scrollToTheTop}
           />
         </Link>
 
@@ -62,7 +62,7 @@ class Navbar extends Component {
               data-toggle="collapse"
               data-target=".navbar-collapse.show"
             >
-              <Link to="/" className="nav-link ml-1" onClick={this.scrollToTheTop} >
+              <Link to="/" className="nav-link ml-1">
                 Home
               </Link>
             </li>
@@ -71,7 +71,7 @@ class Navbar extends Component {
               data-toggle="collapse"
               data-target=".navbar-collapse.show"
             >
-              <Link to="/encontreProfissionais" className="nav-link ml-1" onClick={this.scrollToTheTop} >
+              <Link to="/encontreProfissionais" className="nav-link ml-1">
                 Encontre Profissionais
               </Link>
             </li>
@@ -81,7 +81,7 @@ class Navbar extends Component {
                 data-toggle="collapse"
                 data-target=".navbar-collapse.show"
               >
-                <Link to="/divulgueSeuTrabalho" className="nav-link ml-1" onClick={this.scrollToTheTop} >
+                <Link to="/divulgueSeuTrabalho" className="nav-link ml-1">
                   Divulgue seu Trabalho
                 </Link>
               </li>
@@ -91,7 +91,7 @@ class Navbar extends Component {
                 data-toggle="collapse"
                 data-target=".navbar-collapse.show"
               >
-                <Link to="/perfil" className="nav-link ml-1" onClick={this.scrollToTheTop} >
+                <Link to="/perfil" className="nav-link ml-1">
                   Meu Perfil
                 </Link>
               </li>
@@ -101,7 +101,7 @@ class Navbar extends Component {
               data-toggle="collapse"
               data-target=".navbar-collapse.show"
             >
-              <Link to="/quemSomos" className="nav-link ml-1" onClick={this.scrollToTheTop} >
+              <Link to="/quemSomos" className="nav-link ml-1">
                 Quem Somos
               </Link>
             </li>
@@ -110,7 +110,7 @@ class Navbar extends Component {
               data-toggle="collapse"
               data-target=".navbar-collapse.show"
             >
-              <Link to="/contato" className="nav-link ml-1" onClick={this.scrollToTheTop} >
+              <Link to="/contato" className="nav-link ml-1">
                 Contato
               </Link>
             </li>

@@ -47,6 +47,7 @@ class Perfil extends Component {
 
   componentDidMount() {
     this.getProfissionaisId();
+    document.getElementById("top-of-root").scrollIntoView(true);
   }
 
   shouldComponentUpdate() {
@@ -267,7 +268,15 @@ class Perfil extends Component {
                           {local.endereco ? <> {local.endereco}</> : <> </>}
                           {local.endereco && local.numero ? <>, </> : <> </>}
                           {local.numero ? <> {local.numero}</> : <> </>}
-                          {local.cep? <> - CEP: {local.cep}<br /></> : <> </>}
+                          {local.cep ? (
+                            <>
+                              {" "}
+                              - CEP: {local.cep}
+                              <br />
+                            </>
+                          ) : (
+                            <> </>
+                          )}
                           {`${dados.localização.bairro}, ${
                             dados.localização.cidade
                           } - ${dados.localização.estado.toUpperCase()}`}
@@ -287,7 +296,7 @@ class Perfil extends Component {
                       <div className="card-divider-long-white mb-4"></div>
                       <div className="row">
                         <div className="col-6 col-md-3 col-xl-3">
-                        <Link
+                          <Link
                             to={{
                               pathname: "/imagem",
                               link: dados.anuncio.imagens
@@ -313,7 +322,7 @@ class Perfil extends Component {
                           return (
                             <>
                               <div className="col-6 col-md-3 col-xl-3">
-                              <Link
+                                <Link
                                   to={{
                                     pathname: "/imagem",
                                     link: imagem
@@ -342,7 +351,7 @@ class Perfil extends Component {
                       <div className="card-divider-long-white mb-4"></div>
                       <div className="row">
                         <div className="col-6 col-md-3 col-xl-3">
-                        <Link
+                          <Link
                             to={{
                               pathname: "/imagem",
                               link: dados.anuncio.imagens

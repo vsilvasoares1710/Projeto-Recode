@@ -6,6 +6,9 @@ import Valores from "../img/heart.svg";
 import Logo from "../img/fixhub_oficial.png";
 
 class QuemSomos extends Component {
+  componentDidMount(){
+    document.getElementById("top-of-root").scrollIntoView(true)
+  }
   render() {
     return (
       <div className="container-fluid bg-white">
@@ -50,9 +53,9 @@ class QuemSomos extends Component {
                 </h4>
                 <br />
                 <h4 className="text-content text-left">
-                  O FixHub é a nossa solução apresentada para ajudar as pessoas que dependem, total ou parcialmente, 
-                  do trabalho autônomo e precisam não só divulgar seus serviços, como também encontrar 
-                  clientes próximos das suas localidades. Tudo isso sem precisar gastar mais dinheiro e tempo para 
+                  O FixHub é a nossa solução apresentada para ajudar as pessoas que dependem, total ou parcialmente,
+                  do trabalho autônomo e precisam não só divulgar seus serviços, como também encontrar
+                  clientes próximos das suas localidades. Tudo isso sem precisar gastar mais dinheiro e tempo para
                   tais buscas e anúncios.
                 </h4>
               </div>
@@ -131,7 +134,7 @@ class QuemSomos extends Component {
                   <br />
                   <h5 className="text-content text-left white-text">
                     Simplicidade, segurança, eficiência e transparência total entre clientes e
-                    profissionais. 
+                    profissionais.
                   </h5>
                 </div>
               </div>
