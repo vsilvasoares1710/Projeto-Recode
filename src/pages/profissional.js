@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import api from "../services/fixhubAPI";
-import ReactMap from "../components/map";
 // Images
 import phoneIcon from "../img/phone-icon.svg";
 import cellphoneIcon from "../img/cellphone-icon.svg";
@@ -285,13 +285,18 @@ class Profissional extends Component {
                       <div className="card-divider-long-white mb-4"></div>
                       <div className="row">
                         <div className="col-6 col-md-3 col-xl-3">
-                          <a href={dados.anuncio.imagens}>
+                          <Link
+                            to={{
+                              pathname: "/imagem",
+                              link: dados.anuncio.imagens
+                            }}
+                          >
                             <img
                               src={dados.anuncio.imagens}
                               width="100%"
                               className="rounded m-1 border-white"
                             />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </>
@@ -306,13 +311,18 @@ class Profissional extends Component {
                           return (
                             <>
                               <div className="col-6 col-md-3 col-xl-3">
-                                <a href={imagem}>
+                                <Link
+                                  to={{
+                                    pathname: "/imagem",
+                                    link: imagem
+                                  }}
+                                >
                                   <img
                                     src={imagem}
                                     width="100%"
                                     className="rounded m-1 border-white"
                                   />
-                                </a>
+                                </Link>
                               </div>
                             </>
                           );
@@ -330,13 +340,18 @@ class Profissional extends Component {
                       <div className="card-divider-long-white mb-4"></div>
                       <div className="row">
                         <div className="col-6 col-md-3 col-xl-3">
-                          <a href={dados.anuncio.imagens}>
+                          <Link
+                            to={{
+                              pathname: "/imagem",
+                              link: dados.anuncio.imagens
+                            }}
+                          >
                             <img
                               src={dados.anuncio.imagens}
                               width="100%"
                               className="rounded m-1 border-white"
                             />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </>

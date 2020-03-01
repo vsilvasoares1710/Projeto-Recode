@@ -13,6 +13,7 @@ import Cadastro from "./pages/cadastro";
 import Profissional from "./pages/profissional";
 import Perfil from "./pages/perfil";
 import AlterarCadastro from "./pages/alterarCadastro";
+import Imagem from "./pages/imagem";
 
 function Routes() {
   if (isAuthenticated()) {
@@ -27,6 +28,7 @@ function Routes() {
         <Route exact path="/contato" component={Contato} />
         <Route exact path="/quemSomos" component={QuemSomos} />
         <Route exact path="/profissional/:id" component={Profissional} />
+        <Route exact path="/imagem" component={Imagem} />
         <Route exact path="/perfil" component={Perfil} />
         <Route exact path="/alterarCadastro" component={AlterarCadastro} />
         <Route component={Home} />
@@ -51,6 +53,7 @@ function Routes() {
         <Route exact path="/entrar" component={Entrar} />
         <Route exact path="/cadastro" component={Cadastro} />
         <Route exact path="/profissional/:id" component={Profissional} />
+        <Route exact path="/imagem" component={Imagem} />
         <Route component={Home} />
       </Switch>
     );
