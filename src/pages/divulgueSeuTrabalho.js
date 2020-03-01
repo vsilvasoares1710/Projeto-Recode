@@ -26,7 +26,7 @@ class DivulgueSeuTrabalho extends Component {
                   vender cada vez mais.
                 </h4>
                 <br />
-                <Btn text="Cadastre-se" lead="/cadastro" />
+                <Btn text="Cadastre-se" lead="/cadastro" onClick={this.scrollToTheTop} />
               </div>
             </div>
             {/* <!-- Fim da text-box com conteúdo à direita/topo da primeira imagem -*/}

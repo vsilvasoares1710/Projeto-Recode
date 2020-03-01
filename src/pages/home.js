@@ -12,6 +12,9 @@ import redeIcon from "../img/networking.svg";
 import comunidadeLocal from "../img/trabalho-em-equipe.svg";
 
 class Home extends Component {
+  scrollToTheTop() {
+    window.scrollTo(0, 0);
+  }
   render() {
     return (
       <div className="container-fluid bg-white">
@@ -49,6 +52,7 @@ class Home extends Component {
                 <Btn
                   text="Encontre Profissionais"
                   lead="/encontreProfissionais"
+                  onClick={this.scrollToTheTop}
                 />
               </div>
             </div>
@@ -170,6 +174,7 @@ class Home extends Component {
                       lead="/encontreProfissionais"
                       tabIndex="-1"
                       className="btn btn-info shadow mt-3 mx-0"
+                      onClick={this.scrollToTheTop}
                     />
                   </div>
                 </div>
@@ -244,6 +249,7 @@ class Home extends Component {
                       lead="/encontreProfissionais"
                       tabIndex="-1"
                       className="btn btn-info shadow mt-3 mx-0"
+                      onClick={this.scrollToTheTop}
                     />
                   </div>
                 </div>
@@ -318,6 +324,7 @@ class Home extends Component {
                       lead="/encontreProfissionais"
                       tabIndex="-1"
                       className="btn btn-info shadow mt-3 mx-0"
+                      onClick={this.scrollToTheTop}
                     />
                   </div>
                 </div>
@@ -338,6 +345,7 @@ class Home extends Component {
                       text="Mais Categorias..."
                       lead="/encontreProfissionais"
                       className="btn btn-info shadow mt-auto mx-0"
+                      onClick={this.scrollToTheTop}
                     />
                   </div>
                 </div>
@@ -373,8 +381,9 @@ class Home extends Component {
                     <Btn
                       text="Divulgue Seu Trabalho"
                       lead="/divulgueSeuTrabalho"
+                      onClick={this.scrollToTheTop}
                     />
-                    <Btn text="Cadastre-se" lead="/cadastro" />
+                    <Btn text="Cadastre-se" lead="/cadastro" onClick={this.scrollToTheTop} />
                   </>
                 )}
               </div>
