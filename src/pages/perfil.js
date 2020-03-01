@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import api from "../services/fixhubAPI";
 import logout from "../services/logout";
 // Images
@@ -121,7 +122,7 @@ class Perfil extends Component {
             href={`http://www.${redes.facebook}`}
             className="d-flex flex-nowrap"
           >
-            <h3 className="text-link">{redes.facebook}</h3>
+            <h3 className="text-link">Facebok</h3>
           </a>
           <a
             href={`http://www.${redes.facebook}`}
@@ -139,7 +140,7 @@ class Perfil extends Component {
             href={`http://www.${redes.linkedin}`}
             className="d-flex flex-nowrap"
           >
-            <h3 className="text-link">{redes.linkedin}</h3>
+            <h3 className="text-link">LinkedIn</h3>
           </a>
           <a
             href={`http://www.${redes.linkedin}`}
@@ -158,7 +159,7 @@ class Perfil extends Component {
             className="d-flex flex-nowrap"
           >
             <h3 className="text-link" width="100">
-              {redes.siteOficial}
+              Site
             </h3>
           </a>
           <a
@@ -237,7 +238,7 @@ class Perfil extends Component {
                     {!dados.anuncio.texto ? (
                       <> </>
                     ) : (
-                      <h4 className="text-content text-justify mb-4 text-break-all">
+                      <h4 className="text-content text-left mb-4">
                         {dados.anuncio.texto}
                       </h4>
                     )}
@@ -258,11 +259,11 @@ class Perfil extends Component {
                     </div>
                     {local ? (
                       <>
-                        <h3 className="text-content text-justify mt-4">
+                        <h3 className="text-content text-left mt-4">
                           Localização:
                         </h3>
                         <div className="card-divider-long"></div>
-                        <h3 className="text-content text-justify mb-4">
+                        <h3 className="text-content text-left mb-4">
                           {local.endereco ? <> {local.endereco}</> : <> </>}
                           {local.endereco && local.numero ? <>, </> : <> </>}
                           {local.numero ? <> {local.numero}</> : <> </>}
@@ -280,25 +281,30 @@ class Perfil extends Component {
                     <> </>
                   ) : typeof dados.anuncio.imagens === "string" ? (
                     <>
-                      <h3 className="white-text text-left text-content">
+                      <h3 className="white-text text-left text-content mt-3">
                         <strong>Imagens: </strong>
                       </h3>
                       <div className="card-divider-long-white mb-4"></div>
                       <div className="row">
                         <div className="col-6 col-md-3 col-xl-3">
-                          <a href={dados.anuncio.imagens}>
+                        <Link
+                            to={{
+                              pathname: "/imagem",
+                              link: dados.anuncio.imagens
+                            }}
+                          >
                             <img
                               src={dados.anuncio.imagens}
                               width="100%"
-                              className="rounded m-1 border-white"
+                              className="rounded m-1 bg-white"
                             />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </>
                   ) : (
                     <>
-                      <h3 className="white-text text-left text-content">
+                      <h3 className="white-text text-left text-content mt-3">
                         <strong>Imagens: </strong>
                       </h3>
                       <div className="card-divider-long-white mb-4"></div>
@@ -307,13 +313,18 @@ class Perfil extends Component {
                           return (
                             <>
                               <div className="col-6 col-md-3 col-xl-3">
-                                <a href={imagem}>
+                              <Link
+                                  to={{
+                                    pathname: "/imagem",
+                                    link: imagem
+                                  }}
+                                >
                                   <img
                                     src={imagem}
                                     width="100%"
-                                    className="rounded m-1 border-white"
+                                    className="rounded m-1 bg-white"
                                   />
-                                </a>
+                                </Link>
                               </div>
                             </>
                           );
@@ -325,19 +336,24 @@ class Perfil extends Component {
                     <> </>
                   ) : (
                     <>
-                      <h3 className="white-text text-left text-content">
+                      <h3 className="white-text text-left text-content mt-3">
                         <strong>Imagens: </strong>
                       </h3>
                       <div className="card-divider-long-white mb-4"></div>
                       <div className="row">
                         <div className="col-6 col-md-3 col-xl-3">
-                          <a href={dados.anuncio.imagens}>
+                        <Link
+                            to={{
+                              pathname: "/imagem",
+                              link: dados.anuncio.imagens
+                            }}
+                          >
                             <img
                               src={dados.anuncio.imagens}
                               width="100%"
-                              className="rounded m-1 border-white"
+                              className="rounded m-1 bg-white"
                             />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </>

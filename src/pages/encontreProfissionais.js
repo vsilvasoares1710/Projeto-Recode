@@ -89,7 +89,7 @@ class EncontreProfissionais extends Component {
 
     const rota = `/profissionais/${searchParams.estado}/${searchParams.cidade}/${searchParams.bairros}/${searchParams.tags}/${searchParams.pesquisa}/${this.state.paginas.atual}`;
     const pesquisa = await search(rota);
-    console.log(pesquisa)
+    console.log(pesquisa);
     if (typeof pesquisa === "object" && pesquisa !== null) {
       this.setState({ profissionaisEncontrados: pesquisa.profissionais });
       localStorage.setItem(
@@ -582,18 +582,26 @@ class EncontreProfissionais extends Component {
                                   )}
                                 </div>
                                 <div className="card-divider-long-white mt-2"></div>
-                                <div className="text-right">
-                                  {" "}
-                                  <Btn
-                                    text="Limpar Filtros"
-                                    className="btn btn-dark-green shadow mt-2 mr-2"
-                                    onClick={this.limparFiltros}
-                                  />
-                                  <Btn
-                                    text="Limpar Lista"
-                                    className="btn btn-dark-green shadow mt-2"
-                                    onClick={this.limparLista}
-                                  />
+                                <div className="d-flex flex-wrap justify-content-between text-center mx-auto">
+                                  <div className="">
+                                    <Btn
+                                      text="Limpar Filtros"
+                                      className="btn btn-dark-green shadow mt-2 mr-2"
+                                      onClick={this.limparFiltros}
+                                    />
+                                    <Btn
+                                      text="Limpar Lista"
+                                      className="btn btn-dark-green shadow mt-2"
+                                      onClick={this.limparLista}
+                                    />
+                                  </div>
+                                  <div className="text-right align-self-end">
+                                    <Btn
+                                      text="Pesquisar"
+                                      className="btn btn-white shadow my-2 mr-1"
+                                      onClick={this.getProfissionais}
+                                    />
+                                  </div>
                                 </div>
                               </div>
                             </div>

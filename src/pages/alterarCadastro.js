@@ -714,7 +714,7 @@ class AlterarCadastro extends Component {
                           )}
                           <label
                             for="file-foto"
-                            className="btn btn-info btn-sm mt-2 col-2 text-center mx-auto"
+                            className="btn btn-info btn-sm mt-2 text-center mx-auto"
                           >
                             Alterar foto
                           </label>
@@ -729,7 +729,7 @@ class AlterarCadastro extends Component {
                       </div>
                     </div>
                     <div className="row">
-                      <div className="form-group col-6 col-md-2 col-lg-1">
+                      <div className="form-group col-12 col-md-4 col-lg-1">
                         <label
                           for="idProfissional"
                           className="text-green"

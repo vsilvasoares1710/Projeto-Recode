@@ -113,7 +113,7 @@ class Profissional extends Component {
             href={`http://www.${redes.facebook}`}
             className="d-flex flex-nowrap"
           >
-            <h3 className="text-link">{redes.facebook}</h3>
+            <h3 className="text-link">Facebook</h3>
           </a>
           <a
             href={`http://www.${redes.facebook}`}
@@ -131,7 +131,7 @@ class Profissional extends Component {
             href={`http://www.${redes.linkedin}`}
             className="d-flex flex-nowrap"
           >
-            <h3 className="text-link">{redes.linkedin}</h3>
+            <h3 className="text-link">LinkedIn</h3>
           </a>
           <a
             href={`http://www.${redes.linkedin}`}
@@ -150,7 +150,7 @@ class Profissional extends Component {
             className="d-flex flex-nowrap"
           >
             <h3 className="text-link" width="100">
-              {redes.siteOficial}
+              Site
             </h3>
           </a>
           <a
@@ -228,7 +228,7 @@ class Profissional extends Component {
                     {!dados.anuncio.texto ? (
                       <> </>
                     ) : (
-                      <h4 className="text-content text-justify mb-4 text-break-all">
+                      <h4 className="text-content text-left mb-4">
                         {dados.anuncio.texto}
                       </h4>
                     )}
@@ -249,11 +249,11 @@ class Profissional extends Component {
                     </div>
                     {local ? (
                       <>
-                        <h3 className="text-content text-justify mt-4">
+                        <h3 className="text-content text-left mt-4">
                           Localização:
                         </h3>
                         <div className="card-divider-long"></div>
-                        <h3 className="text-content text-justify mb-4">
+                        <h3 className="text-content text-left mb-4">
                           {local.endereco ? <> {local.endereco}</> : <> </>}
                           {local.endereco && local.numero ? <>, </> : <> </>}
                           {local.numero ? <> {local.numero}</> : <> </>}
@@ -279,7 +279,7 @@ class Profissional extends Component {
                     <> </>
                   ) : typeof dados.anuncio.imagens === "string" ? (
                     <>
-                      <h3 className="white-text text-left text-content">
+                      <h3 className="white-text text-left text-content mt-3">
                         <strong>Imagens: </strong>
                       </h3>
                       <div className="card-divider-long-white mb-4"></div>
@@ -302,7 +302,7 @@ class Profissional extends Component {
                     </>
                   ) : (
                     <>
-                      <h3 className="white-text text-left text-content">
+                      <h3 className="white-text text-left text-content mt-3">
                         <strong>Imagens: </strong>
                       </h3>
                       <div className="card-divider-long-white mb-4"></div>
@@ -334,7 +334,7 @@ class Profissional extends Component {
                     <> </>
                   ) : (
                     <>
-                      <h3 className="white-text text-left text-content">
+                      <h3 className="white-text text-left text-content mt-3">
                         <strong>Imagens: </strong>
                       </h3>
                       <div className="card-divider-long-white mb-4"></div>
