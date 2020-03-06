@@ -6,8 +6,8 @@ import Valores from "../img/heart.svg";
 import Logo from "../img/fixhub_oficial.png";
 
 class QuemSomos extends Component {
-  componentDidMount(){
-    document.getElementById("top-of-root").scrollIntoView(true)
+  componentDidMount() {
+    document.getElementById("top-of-root").scrollIntoView(true);
   }
   render() {
     return (
@@ -33,30 +33,17 @@ class QuemSomos extends Component {
                 <br />
                 <h4 className="text-content text-left">
                   O FixHub é uma plataforma fundada no ano de 2020 na cidade de
-                  Osasco/SP por estudantes de tecnologia do programa Recode Pro. No período
-                  em questão, nós - desenvolvedores do FixHub - participávamos do RecodePro,
-                  um projeto social realizado pela ONG Recode, que tem como
-                  objetivo a inclusão e o empoderamento digital.
+                  Osasco/SP por estudantes de tecnologia. No período em questão,
+                  nossa equipe encontrou um problema muito presente em
+                  comunidades locais: A falta de desenvolvimento econômico
+                  interno.
                 </h4>
                 <br />
                 <h4 className="text-content text-left">
-                  Durante a realização do projeto, tínhamos a missão de
-                  desenvolver um projeto de impacto social que promovesse o
-                  crescimento da economia de comunidades locais.
-                </h4>
-                <br />
-                <h4 className="text-content text-left">
-                  A partir desta missão, surgiu a ideia por trás da plataforma:
-                  a criação de um espaço gratuito para a disseminação de
-                  informações e divulgação de profissionais, free-lancers e
-                  pequenas empresas.
-                </h4>
-                <br />
-                <h4 className="text-content text-left">
-                  O FixHub é a nossa solução apresentada para ajudar as pessoas que dependem, total ou parcialmente,
-                  do trabalho autônomo e precisam não só divulgar seus serviços, como também encontrar
-                  clientes próximos das suas localidades. Tudo isso sem precisar gastar mais dinheiro e tempo para
-                  tais buscas e anúncios.
+                  Tendo em vista este problema, foi desenvolvido o conceito pro
+                  trás da plataforma: Um espaço gratuito, simples e objetivo que
+                  tem como propósito concectar profissionais a possíveis
+                  clientes dentro de suas comunidades locais.
                 </h4>
               </div>
               {/* <!-- Fim do jumbotron superior --> */}
@@ -83,9 +70,9 @@ class QuemSomos extends Component {
                   </h3>
                   <br />
                   <h5 className="text-content text-left white-text">
-                    Proporcionamos o poder da tecnologia à trabalhadores autônomos,
-                    pequenas empresas, prestadores de serviços e o poder da
-                    informação à clientes e consumidores.
+                    Proporcionamos o poder da tecnologia à trabalhadores
+                    autônomos, pequenas empresas, prestadores de serviços e o
+                    poder da informação à clientes e consumidores.
                   </h5>
                 </div>
               </div>
@@ -110,7 +97,7 @@ class QuemSomos extends Component {
                   <h5 className="text-content text-left white-text">
                     Estabecer o FixHub, como a maior, mais acessível e
                     transparente plataforma para divulgação de profissionais e
-                    serviços do Brasil.
+                    serviços em comunidades locais.
                   </h5>
                 </div>
               </div>
@@ -129,12 +116,14 @@ class QuemSomos extends Component {
                     alt="icone-valores"
                   />
                   <h3>
-                    <b className="text-content white-text">No que acreditamos</b>
+                    <b className="text-content white-text">
+                      No que acreditamos
+                    </b>
                   </h3>
                   <br />
                   <h5 className="text-content text-left white-text">
-                    Simplicidade, segurança, eficiência e transparência total entre clientes e
-                    profissionais.
+                    Simplicidade, segurança, eficiência e transparência total
+                    entre clientes e profissionais.
                   </h5>
                 </div>
               </div>
